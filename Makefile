@@ -4,24 +4,22 @@ NAME			=	minishell
 
 SOURCES			= srcs/
 
-HEADER_PWD		= 
+HEADER_PWD		= includes/
+
+EXECUTOR_PWD	= $(SOURCES)executor/
 
 
 #-------------------COMPILATION----------------------
 
 CC				=	cc
-FLAGS			=	-Wall -Werror -Wextra
+FLAGS			=	-Wall -Werror -Wextra -I $(SOURCES) -I $(HEADER_PWD)
 # FLAGS			=	-Wall -Werror -Wextra -g
 # FLAGS			=	-Wall -Werror -Wextra -fsanitize=address
 
 #-------------------SOURCES FILES----------------------
-HEADERS			=	$(HEADER_PWD)minishell.h
-
-H_LIB 			= 
-
 MAIN			=	main.c
 	
-SRCS			=	
+SRCS			=	$(EXECUTOR_PWD)test.c
 				
 #-------------------OBJECTS----------------------
 
@@ -32,8 +30,6 @@ MAIN_OBJ		=	$(MAIN:.c=.o)
 #-------------------HEADERS----------------------
 
 I_HEADER		=	$(addprefix( -include, $(HEADERS)))
-
-I_BONUS_HEADER	=	$(addprefix( -include, $(BONUS_HEADERS)))
 
 #-------------------COLORS-----------------------
 
@@ -55,7 +51,7 @@ all:	$(NAME)
 
 %.o: %.c
 	@printf "$(YELLOW)Generating $(NAME) objects... %-45.45s\r$(NO_COLOR)" $@
-	@$(CC) $(FLAGS) $(I_HEADER) $(I_BONUS_HEADER) -c $< -o $@
+	@$(CC) $(FLAGS) -c $< -o $@
 
 $(NAME):	$(OBJS) $(MAIN_OBJ)
 	@printf "$(GREEN)Linking $(NAME)... %45s\r$(NO_COLOR)" " "

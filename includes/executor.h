@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   executor.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/25 15:09:31 by adupin            #+#    #+#             */
-/*   Updated: 2023/09/26 16:26:21 by adupin           ###   ########.fr       */
+/*   Created: 2023/09/26 16:02:22 by adupin            #+#    #+#             */
+/*   Updated: 2023/09/26 16:13:09 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef EXECUTOR_H
+# define EXECUTOR_H
 
-int	main(void)
-{
-	char	*line;
+# include <stdio.h>
 
-	test();
-	while (1)
-	{
-		line = readline("minishell> ");
-		add_history(line);
-		printf("line = %s\n", line);
-	}
-	return (0);
-}
+#endif

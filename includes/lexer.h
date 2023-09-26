@@ -1,27 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/25 15:09:31 by adupin            #+#    #+#             */
-/*   Updated: 2023/09/26 16:26:21 by adupin           ###   ########.fr       */
+/*   Created: 2023/09/26 16:01:59 by adupin            #+#    #+#             */
+/*   Updated: 2023/09/26 16:02:08 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef LEXER_H
+# define LEXER_H
 
-int	main(void)
-{
-	char	*line;
-
-	test();
-	while (1)
-	{
-		line = readline("minishell> ");
-		add_history(line);
-		printf("line = %s\n", line);
-	}
-	return (0);
-}
+#endif

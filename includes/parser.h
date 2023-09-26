@@ -1,27 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/25 15:09:31 by adupin            #+#    #+#             */
-/*   Updated: 2023/09/26 16:26:21 by adupin           ###   ########.fr       */
+/*   Created: 2023/09/26 16:01:42 by adupin            #+#    #+#             */
+/*   Updated: 2023/09/26 16:01:55 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef PARSER_H
+# define PARSER_H
 
-int	main(void)
-{
-	char	*line;
-
-	test();
-	while (1)
-	{
-		line = readline("minishell> ");
-		add_history(line);
-		printf("line = %s\n", line);
-	}
-	return (0);
-}
+#endif

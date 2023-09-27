@@ -6,7 +6,7 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 13:29:21 by adupin            #+#    #+#             */
-/*   Updated: 2023/09/27 11:43:29 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/09/27 12:01:04 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 
 # include "lexer.h"
 # include "parser.h"
-# include "expender.h"
+# include "expander.h"
 # include "executor.h"
 
 #endif

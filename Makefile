@@ -6,7 +6,7 @@
 #    By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/24 13:17:37 by alexphil          #+#    #+#              #
-#    Updated: 2023/09/27 11:42:02 by alexphil         ###   ########.fr        #
+#    Updated: 2023/09/27 12:00:06 by alexphil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ LFLAGS			=	-lreadline
 SRCS_DIR		= 	srcs
 LEXER_DIR		=   $(SRCS_DIR)/lexer
 PARSER_DIR		=   $(SRCS_DIR)/parser
-EXPENDER_DIR	=   $(SRCS_DIR)/expender
+EXPANDER_DIR	=   $(SRCS_DIR)/expander
 EXECTOR_DIR		=   $(SRCS_DIR)/executor
 LIBFT_DIR 		= 	libft
 BUILD_DIR 		= 	build
@@ -32,14 +32,14 @@ BUILD_DIR 		= 	build
 MAIN_FILE		=	main.c
 LEXER_FILES		= 	
 PARSER_FILES	=	
-EXPENDER_FILES	=
+EXPANDER_FILES	=
 EXECUTOR_FILES	=
 
 # Define the path of the sources files 
 SRC_MAIN		= 	$(addprefix $(SRCS_DIR)/,$(MAIN_FILE))
 SRC_LEXER   	=	$(addprefix $(LEXER_DIR)/, $(LEXER_FILES))
 SRC_PARSER  	=	$(addprefix $(PARSER_DIR)/, $(PARSER_FILES))
-SRC_EXPANDER  	=	$(addprefix $(EXPANDER_DIR)/, $(EXPENDER_FILES))
+SRC_EXPANDER  	=	$(addprefix $(EXPANDER_DIR)/, $(EXPANDER_FILES))
 SRC_EXECUTOR 	=	$(addprefix $(EXECUTOR_DIR)/, $(EXECUTOR_FILES))
 
 # Derive object files from .c files in the build directory
@@ -62,7 +62,7 @@ $(BUILD_DIR)/%.o: $(PARSER_DIR)/%.c
 	mkdir -p $(BUILD_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(BUILD_DIR)/%.o: $(EXPENDER_DIR)/%.c
+$(BUILD_DIR)/%.o: $(EXPANDER_DIR)/%.c
 	mkdir -p $(BUILD_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 

@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
+/*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/25 15:09:31 by adupin            #+#    #+#             */
-/*   Updated: 2023/09/26 16:26:21 by adupin           ###   ########.fr       */
+/*   Created: 2023/04/05 11:22:14 by alexphil          #+#    #+#             */
+/*   Updated: 2023/09/11 16:39:16 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	main(void)
+// Locate byte in byte string.
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	char	*line;
+	const unsigned char	*p;
+	size_t				i;
 
-	test();
-	while (1)
+	p = s;
+	i = 0;
+	while (i < n)
 	{
-		line = readline("minishell> ");
-		add_history(line);
-		printf("line = %s\n", line);
+		if (p[i] == (unsigned char) c)
+			return ((void *)&p[i]);
+		i++;
 	}
 	return (0);
 }

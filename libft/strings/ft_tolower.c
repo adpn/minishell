@@ -1,16 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   executor.h                                         :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/26 16:02:22 by adupin            #+#    #+#             */
-/*   Updated: 2023/09/27 11:18:44 by alexphil         ###   ########.fr       */
+/*   Created: 2023/04/04 18:19:57 by alexphil          #+#    #+#             */
+/*   Updated: 2023/09/11 16:38:47 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXECUTOR_H
-# define EXECUTOR_H
-
-#endif
+// Convert a character to lowercase.
+int	ft_tolower(int c)
+{
+	if (c >= 'A' && c <= 'Z')
+		c += ' ';
+	return (c);
+}

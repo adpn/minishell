@@ -1,18 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
+/*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/26 16:12:05 by adupin            #+#    #+#             */
-/*   Updated: 2023/09/26 16:24:56 by adupin           ###   ########.fr       */
+/*   Created: 2023/04/14 15:47:14 by alexphil          #+#    #+#             */
+/*   Updated: 2023/09/11 16:41:14 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "executor.h"
+#include "libft.h"
 
-void	test(void)
+// Iterates the list ’lst’ and applies the function ’f’ to its elements content.
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	printf("test\n");
+	if (!lst || !f)
+		return ;
+	f(lst->content);
+	ft_lstiter(lst->next, f);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+         #
+#    By: adupin <adupin@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/24 13:42:57 by alexphil          #+#    #+#              #
-#    Updated: 2023/09/27 10:44:20 by alexphil         ###   ########.fr        #
+#    Updated: 2023/09/27 12:11:05 by adupin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,33 +83,48 @@ OBJS 		= 	$(addprefix $(BUILD_DIR)/, $(LST_SRC:.c=.o)) \
 	  		  	$(addprefix $(BUILD_DIR)/, $(STR_SRC:.c=.o)) \
 	  		  	$(addprefix $(BUILD_DIR)/, $(MEM_SRC:.c=.o))
 
+#-------------------COLORS-----------------------
+
+RED				=	\x1b[31m
+
+YELLOW			=	\x1b[33m
+
+GREEN			=	\x1b[32m
+
+NO_COLOR		=	\x1b[0m
+
+BOLD			= 	\x1b[1m
+
+BOLD_OFF		=	\x1b[21m
+
 # Rule to build object files from source files
 $(BUILD_DIR)/%.o: $(LST_DIR)/%.c
-	mkdir -p $(BUILD_DIR)
-	$(CC) $(CFLAGS) -c $< -o $@
+	@mkdir -p $(BUILD_DIR)
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(BUILD_DIR)/%.o: $(STR_DIR)/%.c
-	mkdir -p $(BUILD_DIR)
-	$(CC) $(CFLAGS) -c $< -o $@
+	@mkdir -p $(BUILD_DIR)
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(BUILD_DIR)/%.o: $(MEM_DIR)/%.c
-	mkdir -p $(BUILD_DIR)
-	$(CC) $(CFLAGS) -c $< -o $@
+	@mkdir -p $(BUILD_DIR)
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 # Rule to build the library from object files
 $(NAME): $(OBJS)
-	ar rcs $@ $^
+	@echo "$(YELLOW)Libft ready$(NO_COLOR)"
+	@ar rcs $@ $^
 
 # Phony target to build the library
 all: $(NAME)
 
 # Phony target to clean the object files
 clean:
-	rm -rf $(BUILD_DIR)
+	@rm -rf $(BUILD_DIR)
 
 # Phony target to delete the library and object files
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 # Phony target to delete the library and object files and rebuild
 re: fclean all
@@ -119,7 +134,7 @@ debug: CFLAGS += $(DEBUG_CFLAGS)
 debug: all
 
 # --silent flag disable echoing of commands on MacOS and Linux
-MAKEFLAGS += --silent
+#MAKEFLAGS += --silent
 
 # Phony targets
 .PHONY: all clean fclean re

@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
+/*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 13:29:21 by adupin            #+#    #+#             */
-/*   Updated: 2023/09/27 12:01:04 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/09/28 11:19:09 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+# include "libft.h"
 # include <stdio.h>   // printf
 # include <stdlib.h>  // malloc, free, exit
 # include <unistd.h>  // access, open, read, close, fork, wait, waitpid,

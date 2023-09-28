@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+         #
+#    By: adupin <adupin@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/24 13:17:37 by alexphil          #+#    #+#              #
-#    Updated: 2023/09/27 13:25:50 by alexphil         ###   ########.fr        #
+#    Updated: 2023/09/28 13:34:55 by adupin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,15 +25,17 @@ LEXER_DIR		=   $(SRCS_DIR)/lexer
 PARSER_DIR		=   $(SRCS_DIR)/parser
 EXPANDER_DIR	=   $(SRCS_DIR)/expander
 EXECTOR_DIR		=   $(SRCS_DIR)/executor
+BUILTINS_DIR 	=   $(SRCS_DIR)/builtins
 LIBFT_DIR 		= 	libft
 BUILD_DIR 		= 	build
 
 # Define the source files
 MAIN_FILE		=	main.c
-LEXER_FILES		= 	
+LEXER_FILES		= 	lexer.c
 PARSER_FILES	=	
 EXPANDER_FILES	=
 EXECUTOR_FILES	=
+BUILTINS_FILES 	=
 
 # Define the path of the sources files 
 SRC_MAIN		= 	$(addprefix $(SRCS_DIR)/,$(MAIN_FILE))
@@ -41,13 +43,15 @@ SRC_LEXER   	=	$(addprefix $(LEXER_DIR)/, $(LEXER_FILES))
 SRC_PARSER  	=	$(addprefix $(PARSER_DIR)/, $(PARSER_FILES))
 SRC_EXPANDER  	=	$(addprefix $(EXPANDER_DIR)/, $(EXPANDER_FILES))
 SRC_EXECUTOR 	=	$(addprefix $(EXECUTOR_DIR)/, $(EXECUTOR_FILES))
+SRC_BUILTINS	=	$(addprefix $(BUILTINS_DIR)/, $(BUILTINS_FILES))
 
 # Derive object files from .c files in the build directory
 OBJS 			= 	$(patsubst $(SRCS_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRC_MAIN)) \
 					$(patsubst $(LEXER_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRC_LEXER)) \
 					$(patsubst $(PARSER_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRC_PARSER)) \
 					$(patsubst $(EXPANDER_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRC_EXPAND)) \
-					$(patsubst $(EXECUTOR_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRC_EXECUTE))
+					$(patsubst $(EXECUTOR_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRC_EXECUTE)) \
+					$(patsubst $(BUILTINS_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRC_BUILTINS))
 
 #-------------------COLORS-----------------------
 
@@ -82,6 +86,10 @@ $(BUILD_DIR)/%.o: $(EXPENDER_DIR)/%.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(BUILD_DIR)/%.o: $(EXECUTOR_DIR)/%.c
+	@mkdir -p $(BUILD_DIR)
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+$(BUILD_DIR)/%.o: $(BUILTINS_DIR)/%.c
 	@mkdir -p $(BUILD_DIR)
 	@$(CC) $(CFLAGS) -c $< -o $@
 

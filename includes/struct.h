@@ -1,23 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer.h                                            :+:      :+:    :+:   */
+/*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/26 16:01:59 by adupin            #+#    #+#             */
-/*   Updated: 2023/09/28 14:19:34 by adupin           ###   ########.fr       */
+/*   Created: 2023/09/28 11:18:19 by adupin            #+#    #+#             */
+/*   Updated: 2023/09/28 13:53:36 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LEXER_H
-# define LEXER_H
+#ifndef STRUCT_H
+# define STRUCT_H
 
-# include "struct.h"
-# include "minishell.h"
+enum e_tokens
+{
+	PIPE = 1,
+	R_INPUT,
+	R_OUTPUT,
+	HEREDOC,
+	R_APP
+};
 
-t_lex	*lexer(char *str);
-void	print_lex(t_lex *lex);
-void	free_lex(t_lex *lex);
+/* if word != NULL token = 0, if token != 0 word = NULL */
+typedef struct s_lex
+{
+	char			*word;
+	int				operator;
+	int				index;
+	struct s_lex	*next;
+	struct s_lex	*prev;	
+}			t_lex;
 
 #endif

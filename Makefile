@@ -6,7 +6,7 @@
 #    By: adupin <adupin@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/24 13:17:37 by alexphil          #+#    #+#              #
-#    Updated: 2023/09/28 13:34:55 by adupin           ###   ########.fr        #
+#    Updated: 2023/10/02 09:00:03 by adupin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,8 @@ BUILD_DIR 		= 	build
 
 # Define the source files
 MAIN_FILE		=	main.c
-LEXER_FILES		= 	lexer.c
+LEXER_FILES		= 	lexer.c \
+					lexer_utils.c
 PARSER_FILES	=	
 EXPANDER_FILES	=
 EXECUTOR_FILES	=

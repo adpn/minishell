@@ -6,7 +6,7 @@
 #    By: adupin <adupin@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/24 13:17:37 by alexphil          #+#    #+#              #
-#    Updated: 2023/10/02 09:00:03 by adupin           ###   ########.fr        #
+#    Updated: 2023/10/02 13:01:00 by adupin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,8 @@ NAME 			= 	minishell
 
 # Compiler, compiler flags and linking flags
 CC				= 	cc
-CFLAGS 			= 	-Wall -Wextra -Werror -Iincludes -Ilibft/include
-DFLAGS      	=   -g -fsanitize=address
+CFLAGS 			= 	-Wall -Wextra -Werror -Iincludes -Ilibft/include -g
+DFLAGS      	=   -fsanitize=address
 LFLAGS			=	-lreadline
 
 # Directories for sources files, object files, and the libft library

@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 11:18:19 by adupin            #+#    #+#             */
-/*   Updated: 2023/10/02 11:14:21 by adupin           ###   ########.fr       */
+/*   Updated: 2023/10/02 14:30:39 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ enum e_tokens
 	R_INPUT,
 	R_OUTPUT,
 	HEREDOC,
-	R_APP
+	R_APP,
+	WORD
 };
 
 /* if word != NULL token = 0, if token != 0 word = NULL */

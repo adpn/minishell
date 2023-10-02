@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 08:39:20 by adupin            #+#    #+#             */
-/*   Updated: 2023/10/02 11:57:51 by adupin           ###   ########.fr       */
+/*   Updated: 2023/10/02 12:16:24 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,13 @@ void	free_struct(t_lex *lex)
 }
 
 /*Free all the following chained list*/
-void	free_lex(t_lex *lex)
+t_lex	*free_lex(t_lex *lex)
 {
 	if (lex == NULL)
-		return ;
+		return (NULL);
 	free_lex(lex->next);
 	free_struct(lex);
+	return (NULL);
 }
 
 void	print_lex(t_lex *lex)

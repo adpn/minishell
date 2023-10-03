@@ -1,19 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.h                                           :+:      :+:    :+:   */
+/*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/26 16:01:42 by adupin            #+#    #+#             */
-/*   Updated: 2023/10/03 09:49:05 by alexphil         ###   ########.fr       */
+/*   Created: 2023/10/03 09:46:55 by alexphil          #+#    #+#             */
+/*   Updated: 2023/10/03 11:21:13 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSER_H
-# define PARSER_H
+#include "parser.h"
 
-# include "struct.h"
-# include "minishell.h"
+int	has_pipe(t_lex *lex)
+{
+	while (lex)
+	{
+		if (lex->operator == PIPE)
+			return (1);
+		lex = lex->next;
+	}
+	return (0);
+}
 
-#endif
+void	parser(t_lex *lex)
+{
+	t_simple_cmds	*cmds;
+	int				has_redirect;
+
+	while (lex != PIPE)
+	{
+		if (lex->operator)
+			
+	}
+}

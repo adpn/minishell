@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 11:18:19 by adupin            #+#    #+#             */
-/*   Updated: 2023/10/02 14:30:39 by adupin           ###   ########.fr       */
+/*   Updated: 2023/10/03 09:50:30 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ typedef struct s_lex
 	char			*word;
 	int				operator;
 	int				index;
-	int				check;
 	struct s_lex	*next;
 	struct s_lex	*prev;	
 }			t_lex;

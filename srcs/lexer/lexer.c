@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 13:29:30 by adupin            #+#    #+#             */
-/*   Updated: 2023/10/03 10:00:32 by adupin           ###   ########.fr       */
+/*   Updated: 2023/10/03 11:54:33 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ t_lex	*lexer(char *str)
 	t_lex	*lex;
 
 	lex = NULL;
+
 	splitted = ft_split(str, ' ');
 	if (!splitted)
 		return (NULL);

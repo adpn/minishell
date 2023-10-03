@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 11:18:19 by adupin            #+#    #+#             */
-/*   Updated: 2023/10/03 09:50:30 by adupin           ###   ########.fr       */
+/*   Updated: 2023/10/03 15:09:14 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,17 @@ typedef struct s_lex
 	struct s_lex	*next;
 	struct s_lex	*prev;	
 }			t_lex;
+
+// Structure used for the parser process
+typedef struct s_simple_cmds
+{
+	char					**str;
+	//int						(*builtin)(t_tools *, struct s_simple_cmds *);
+	int						num_redirections;
+	char					*hd_file_name;
+	t_lex					*redirections;
+	struct s_simple_cmds	*next;
+	struct s_simple_cmds	*prev;
+}	t_simple_cmds;
 
 #endif

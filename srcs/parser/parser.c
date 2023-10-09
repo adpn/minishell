@@ -6,31 +6,35 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:46:55 by alexphil          #+#    #+#             */
-/*   Updated: 2023/10/03 11:21:13 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/10/09 12:16:35 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-int	has_pipe(t_lex *lex)
+t_lex	*has_pipe(t_lex *lex)
 {
 	while (lex)
 	{
 		if (lex->operator == PIPE)
-			return (1);
+			return (lex);
 		lex = lex->next;
 	}
-	return (0);
+	return (NULL);
+}
+
+void	has_redirect(t_lex *lex)
+{
+	;
+}
+
+void	set_redirect(t_lex *lex, t_simple_cmds *cmds)
+{
+	;
 }
 
 void	parser(t_lex *lex)
 {
 	t_simple_cmds	*cmds;
-	int				has_redirect;
-
-	while (lex != PIPE)
-	{
-		if (lex->operator)
-			
-	}
+	int				redirect;
 }

@@ -6,7 +6,7 @@
 #    By: adupin <adupin@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/24 13:17:37 by alexphil          #+#    #+#              #
-#    Updated: 2023/10/03 11:52:47 by adupin           ###   ########.fr        #
+#    Updated: 2023/10/09 12:14:09 by adupin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ SRCS_DIR		= 	srcs
 LEXER_DIR		=   $(SRCS_DIR)/lexer
 PARSER_DIR		=   $(SRCS_DIR)/parser
 EXPANDER_DIR	=   $(SRCS_DIR)/expander
-EXECTOR_DIR		=   $(SRCS_DIR)/executor
+EXECUTOR_DIR	=   $(SRCS_DIR)/executor
 BUILTINS_DIR 	=   $(SRCS_DIR)/builtins
 LIBFT_DIR 		= 	libft
 BUILD_DIR 		= 	build
@@ -50,8 +50,8 @@ SRC_BUILTINS	=	$(addprefix $(BUILTINS_DIR)/, $(BUILTINS_FILES))
 OBJS 			= 	$(patsubst $(SRCS_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRC_MAIN)) \
 					$(patsubst $(LEXER_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRC_LEXER)) \
 					$(patsubst $(PARSER_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRC_PARSER)) \
-					$(patsubst $(EXPANDER_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRC_EXPAND)) \
-					$(patsubst $(EXECUTOR_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRC_EXECUTE)) \
+					$(patsubst $(EXPANDER_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRC_EXPANDER)) \
+					$(patsubst $(EXECUTOR_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRC_EXECUTOR)) \
 					$(patsubst $(BUILTINS_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRC_BUILTINS))
 
 #-------------------COLORS-----------------------
@@ -82,7 +82,7 @@ $(BUILD_DIR)/%.o: $(PARSER_DIR)/%.c
 	@mkdir -p $(BUILD_DIR)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
-$(BUILD_DIR)/%.o: $(EXPENDER_DIR)/%.c
+$(BUILD_DIR)/%.o: $(EXPANDER_DIR)/%.c
 	@mkdir -p $(BUILD_DIR)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
@@ -128,7 +128,7 @@ fclean: clean
 re: fclean all
 
 # Rule to build with debug flags
-debug: CFLAGS += $(DEBUG_CFLAGS)
+debug: CFLAGS += $(DFLAGS) 
 debug: re
 
 # --silent flag disables echoing of commands on both MacOS and Linux

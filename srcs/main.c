@@ -3,20 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
+/*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 15:09:31 by adupin            #+#    #+#             */
-/*   Updated: 2023/10/03 10:00:51 by adupin           ###   ########.fr       */
+/*   Updated: 2023/10/03 11:43:09 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(void)
+int	main(int ac, char **av, char **envp)
 {
 	char	*line;
 	t_lex	*lex;
 
+	(void)av;
+	// structure.envp = envp;
+	if (ac != 1)
+		return (1);
 	while (1)
 	{
 		line = readline("TerminalCancer> ");

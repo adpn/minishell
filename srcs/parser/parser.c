@@ -6,33 +6,11 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:46:55 by alexphil          #+#    #+#             */
-/*   Updated: 2023/10/11 10:24:25 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/10/11 10:52:15 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
-
-void	count_pipes(t_lex *node, t_tools *tools)
-{
-	tools->pipes = 0;
-	while (node)
-	{
-		if (node->operator == PIPE)
-			tools->pipes++;
-		node = node->next;
-	}
-}
-
-t_parser_tools	init_parser_tools(t_lex *lex_list, t_tools *tools)
-{
-	t_parser_tools	parser_tools;
-
-	parser_tools.lexer_list = lex_list;
-	parser_tools.redirections = NULL;
-	parser_tools.num_redirections = 0;
-	parser_tools.tools = tools;
-	return (parser_tools);
-}
+#include "minishell.h"
 
 t_simple_cmds	*init_cmd(t_parser_tools *parser_tools)
 {

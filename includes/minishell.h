@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
+/*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 13:29:21 by adupin            #+#    #+#             */
-/*   Updated: 2023/09/28 11:19:09 by adupin           ###   ########.fr       */
+/*   Updated: 2023/10/11 10:52:49 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,8 @@
 # include "parser.h"
 # include "expander.h"
 # include "executor.h"
+# include "builtins.h"
+# include "utils.h"
+# include "errors.h"
 
 #endif

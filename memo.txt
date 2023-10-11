@@ -1,0 +1,5 @@
+$ inside single quotes ' shouldn't be expanded
+
+need to expand $? => need to keep last exit status
+
+check exit status with ctrl-c

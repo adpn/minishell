@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 11:37:06 by adupin            #+#    #+#             */
-/*   Updated: 2023/10/09 12:54:28 by adupin           ###   ########.fr       */
+/*   Updated: 2023/10/10 15:05:59 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,10 @@ char	*get_var_name(char *str)
 	i = 1;
 	while (str[i] && str[i] != '$' && str[i] != ' ' && str[i] != '\t')
 		i++;
-	name = ft_substr(str, 1, i - 1);
+	if (str[1] && str[1] == '?')
+		name = ft_strdup("?");
+	else
+		name = ft_substr(str, 1, i - 1);
 	if (!name)
 		return (NULL);
 	return (name);
@@ -58,7 +61,13 @@ char	*complete_string(char *str)
 		name = get_var_name(ft_strchr(str, '$'));
 		if (!name)
 			return (NULL);
-		value = getenv(name);
+		if (ft_strncmp("?", name, ft_strlen(name)) == 0)
+		{
+			value = NULL;
+			printf("Hello need exit status here\n");
+		}
+		else
+			value = getenv(name);
 		if (!value)
 			value = "";
 		new = malloc(ft_strlen(str) - ft_strlen(name) + ft_strlen(value) + 1);

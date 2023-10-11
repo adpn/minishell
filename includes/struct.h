@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 11:18:19 by adupin            #+#    #+#             */
-/*   Updated: 2023/10/03 15:09:14 by adupin           ###   ########.fr       */
+/*   Updated: 2023/10/10 14:42:07 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ enum e_tokens
 	WORD
 };
 
-/* if word != NULL token = 0, if token != 0 word = NULL */
+/* If operator != WORD, word = NULL */
 typedef struct s_lex
 {
 	char			*word;
 	int				operator;
 	int				index;
 	struct s_lex	*next;
-	struct s_lex	*prev;	
+	struct s_lex	*prev;
 }			t_lex;
 
 // Structure used for the parser process

@@ -1,5 +1,3 @@
-If there is token inside quotes, don't forget to reverse it into characters
-
 $ inside single quotes ' shouldn't be expanded
 
 need to expand $? => need to keep last exit status

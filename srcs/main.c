@@ -6,11 +6,7 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 15:09:31 by adupin            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/10/03 11:43:09 by alexphil         ###   ########.fr       */
-=======
-/*   Updated: 2023/10/09 12:33:28 by adupin           ###   ########.fr       */
->>>>>>> 5f0c04bba1b8c77c76f177cb96e89a7a192d86fc
+/*   Updated: 2023/10/11 10:43:04 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +15,8 @@
 int	main(int ac, char **av, char **envp)
 {
 	char	*line;
-<<<<<<< HEAD
-	t_lex	*lex;
-
-	(void)av;
-	// structure.envp = envp;
-	if (ac != 1)
-		return (1);
-=======
 	//t_lex	*lex;
 	char 	*expanded;
->>>>>>> 5f0c04bba1b8c77c76f177cb96e89a7a192d86fc
 	while (1)
 	{
 		line = readline("TerminalCancer> ");

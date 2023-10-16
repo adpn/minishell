@@ -6,11 +6,27 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 13:29:30 by adupin            #+#    #+#             */
-/*   Updated: 2023/10/11 15:32:44 by adupin           ###   ########.fr       */
+/*   Updated: 2023/10/16 10:47:19 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
+
+t_lex *assign_node(t_lex *lex, t_lex *node, int i)
+{
+	if (i == 0)
+	{
+		node->prev = NULL;
+		node->next = NULL;
+	}
+	else
+	{
+		lex->next = node;
+		node->prev = lex;
+		node->next = NULL;
+	}
+	return (node);
+}
 
 int	handle_token(char *str, t_lex *lex)
 {
@@ -93,19 +109,7 @@ t_lex	*lexer(char *str)
 			return (free_lex_chained(get_element(lex, 0)), free(node),
 				ft_free_split(splitted), NULL);
 		node->index = i;
-		if (i == 0)
-		{
-			lex = node;
-			lex->prev = NULL;
-			lex->next = NULL;
-		}
-		else
-		{
-			lex->next = node;
-			node->prev = lex;
-			node->next = NULL;
-			lex = node;
-		}
+		lex = assign_node(lex, node, i);
 		i++;
 	}
 	ft_free_split(splitted);

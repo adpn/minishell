@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 08:39:20 by adupin            #+#    #+#             */
-/*   Updated: 2023/10/11 15:06:56 by adupin           ###   ########.fr       */
+/*   Updated: 2023/10/12 10:06:25 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	print_lex(t_lex *lex)
 	print_lex(lex->next);
 }
 
-void	add_count_quotes(t_quotes *quotes, char *str)
+static void	add_count_quotes(t_quotes *quotes, char *str)
 {
 	int	i;
 	

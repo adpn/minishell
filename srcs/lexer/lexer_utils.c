@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 08:39:20 by adupin            #+#    #+#             */
-/*   Updated: 2023/10/12 10:06:25 by adupin           ###   ########.fr       */
+/*   Updated: 2023/10/16 16:43:25 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	print_lex(t_lex *lex)
 	if (lex == NULL)
 		return ;
 	if (lex->operator == WORD)
-		printf("%s\n", lex->word);
+		printf("WORD = %s\n", lex->word);
 	else
 		printf("%i\n", lex->operator);
 	print_lex(lex->next);

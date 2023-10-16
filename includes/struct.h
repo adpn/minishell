@@ -6,7 +6,7 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 11:18:19 by adupin            #+#    #+#             */
-/*   Updated: 2023/10/11 16:10:50 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/10/12 13:41:48 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct s_lex
 
 typedef struct s_parser_tools
 {
-	t_lex			*lexer_list;
+	t_lex			*lex_list;
 	t_lex			*redirections;
 	int				num_redirections;
 	struct s_tools	*tools;
@@ -47,7 +47,7 @@ typedef struct s_tools
 	char					**paths;
 	char					**envp;
 	struct s_simple_cmds	*simple_cmds;
-	t_lex					*lexer_list;
+	t_lex					*lex_list;
 	char					*pwd;
 	char					*old_pwd;
 	int						pipes;
@@ -62,7 +62,7 @@ typedef struct s_simple_cmds
 	char					**str;
 	int						(*builtin)(t_tools *, struct s_simple_cmds *);
 	int						num_redirections;
-	char					*hd_file_name;
+	char					*file_name;
 	t_lex					*redirections;
 	struct s_simple_cmds	*next;
 	struct s_simple_cmds	*prev;

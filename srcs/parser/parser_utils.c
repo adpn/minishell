@@ -6,7 +6,7 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 10:50:34 by alexphil          #+#    #+#             */
-/*   Updated: 2023/10/11 15:30:10 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/10/12 13:31:53 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_parser_tools	init_parser_tools(t_lex *lex_list, t_tools *tools)
 {
 	t_parser_tools	parser_tools;
 
-	parser_tools.lexer_list = lex_list;
+	parser_tools.lex_list = lex_list;
 	parser_tools.redirections = NULL;
 	parser_tools.num_redirections = 0;
 	parser_tools.tools = tools;
@@ -41,7 +41,7 @@ int	count_args(t_lex *node)
 	i = 0;
 	while (node && node->operator != PIPE)
 	{
-		if (node->operator == WORD)
+		if (node->index >= 0)
 			i++;
 		node = node->next;
 	}

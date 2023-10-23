@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 08:39:20 by adupin            #+#    #+#             */
-/*   Updated: 2023/10/11 15:06:56 by adupin           ###   ########.fr       */
+/*   Updated: 2023/10/23 12:39:57 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,31 +37,27 @@ void	print_lex(t_lex *lex)
 	if (lex == NULL)
 		return ;
 	if (lex->operator == WORD)
-		printf("%s\n", lex->word);
+		printf("WORD = %s\n", lex->word);
 	else
 		printf("%i\n", lex->operator);
 	print_lex(lex->next);
 }
-
-void	add_count_quotes(t_quotes *quotes, char *str)
+/* Return pointer to i node*/
+t_lex	*get_element(t_lex *node, int i)
 {
-	int	i;
-	
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == '\"')
-			quotes->double_q++;
-		else if (str[i] == '\'')
-			quotes->simple_q++;
-		i++;
-	}
+	if (i < 0)
+		return (NULL);
+	if (node->index == i)
+		return (node);
+	if (node->index > i)
+		return (get_element(node->prev, i));
+	else
+		return (get_element(node->next, i));
 }
 
-int	is_inside_quote(char *str, t_quotes *quotes)
+bool is_inside_quotes(t_quotes *quotes)
 {
-	add_count_quotes(quotes, str);
-	if ((ft_strchr(str, '\'') || ft_strchr(str, '\"'))|| (quotes->double_q % 2 == 1 || quotes->simple_q % 2 == 1))
-		return (1);
-	return (0);
+	if (quotes->double_q % 2 == 1 || quotes->simple_q % 2 == 1)
+		return (true);
+	return (false);
 }

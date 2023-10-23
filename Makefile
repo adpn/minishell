@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+         #
+#    By: adupin <adupin@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/24 13:17:37 by alexphil          #+#    #+#              #
-#    Updated: 2023/10/11 10:37:43 by alexphil         ###   ########.fr        #
+#    Updated: 2023/10/16 10:40:50 by adupin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,10 +14,12 @@
 NAME 			= 	minishell
 
 # Compiler, compiler flags and linking flags
+# Readline include give access to rl_replace_line
+READLINE_DIR	=	/Users/$(USER)/Applications/homebrew/opt/readline
 CC				= 	cc
-CFLAGS 			= 	-Wall -Wextra -Werror -Iincludes -Ilibft/include -g
+CFLAGS 			= 	-Wall -Wextra -Werror -Iincludes -Ilibft/include -I$(READLINE_DIR)/include -g 
 DFLAGS      	=   -fsanitize=address
-LFLAGS			=	-lreadline
+LFLAGS			=	-lreadline -lhistory -L $(READLINE_DIR)/lib
 
 # Directories for sources files, object files, and the libft library
 SRCS_DIR		= 	srcs
@@ -35,7 +37,8 @@ BUILD_DIR 		= 	build
 MAIN_FILE		=	main.c
 LEXER_FILES		= 	lexer.c \
 					lexer_utils.c
-PARSER_FILES	=	parser.c
+PARSER_FILES	=	parser.c \
+					parser_utils.c
 EXPANDER_FILES	=	expander.c
 EXECUTOR_FILES	=
 BUILTINS_FILES 	=

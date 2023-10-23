@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 08:39:20 by adupin            #+#    #+#             */
-/*   Updated: 2023/10/16 16:43:25 by adupin           ###   ########.fr       */
+/*   Updated: 2023/10/20 16:39:17 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,18 @@ void	print_lex(t_lex *lex)
 	else
 		printf("%i\n", lex->operator);
 	print_lex(lex->next);
+}
+/* Return pointer to i node*/
+t_lex	*get_element(t_lex *node, int i)
+{
+	if (i < 0)
+		return (NULL);
+	if (node->index == i)
+		return (node);
+	if (node->index > i)
+		return (get_element(node->prev, i));
+	else
+		return (get_element(node->next, i));
 }
 
 static void	add_count_quotes(t_quotes *quotes, char *str)

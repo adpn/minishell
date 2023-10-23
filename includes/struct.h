@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 11:18:19 by adupin            #+#    #+#             */
-/*   Updated: 2023/10/12 10:21:16 by adupin           ###   ########.fr       */
+/*   Updated: 2023/10/20 13:35:37 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,14 @@
 
 #include "minishell.h"
 
+//The order is important do not change it !
 enum e_tokens
 {
 	PIPE = 1,
-	R_INPUT,
-	R_OUTPUT,
 	HEREDOC,
 	R_APP,
+	R_INPUT,
+	R_OUTPUT,
 	WORD
 };
 

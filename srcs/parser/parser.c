@@ -6,7 +6,7 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:46:55 by alexphil          #+#    #+#             */
-/*   Updated: 2023/10/23 10:18:15 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/10/23 13:58:04 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ void	syntax_check(t_tools *tools)
 
 	lex = tools->lex_list;
 	if (lex->operator != WORD)
-		return ; // error_mgmt
+		return ; // error_mgmt()
 	while (lex)
 	{
 		if (lex->operator != WORD)
 			if (lex->prev && lex->prev->operator != WORD
 				|| lex->next && lex->next->operator != WORD
 				|| lex->next == NULL)
-				return ; // error_mgmt
+				return ; // error_mgmt()
 		lex = lex->next;
 	}
 }
@@ -39,33 +39,46 @@ void	init_cmd(t_cmds *cmd)
 	cmd->next = NULL;
 }
 
-void	add_redirect()
+void	add_redirect(t_cmds *cmd, t_lex *redirect)
 {
-	;
+	t_cmds	*tmp;
+
+	if (!cmd->redirects)
+	{
+		cmd->redirects = redirect;
+		redirect->prev = NULL;
+	}
+	else
+	{
+		tmp = cmd->redirects;
+		while (tmp->next)
+			tmp = tmp->next;
+		redirect->prev = tmp;
+		tmp->next = redirect;
+	}
+	redirect->next = NULL;
 }
 
-void	new_redirect()
+void	new_redirect(t_tools *tools, t_cmds *cmd)
 {
-	;
+	t_lex	*node;
+
+	node = malloc(sizeof(t_lex));
+	if (!node)
+		; // error_mgmt()
+	node->operator = tools->lex_list->operator;
+	tools->lex_list = tools->lex_list->next;
+	node->word = ft_strdup(tools->lex_list->word);
+	add_redirect(cmd, node);
 }
 
 void	*get_redirects(t_tools *tools, t_cmds *cmd)
 {
 	if (tools->lex_list->operator == HEREDOC)
 		tools->heredoc = true;
-	else if (tools->lex_list->operator == R_INPUT)
-	{
-		// create new redirections node with operator INPUT and word = next word node;
-	}
-	else if (tools->lex_list->operator == R_OUTPUT)
-	{
-		;
-	}
-	else if (tools->lex_list->operator == R_APP)
-	{
-		;
-	}
-	add_redirect();
+	else
+		new_redirect(tools, cmd);
+	tools->lex_list = tools->lex_list->next;
 }
 
 void	add_cmd(t_tools *tools, t_cmds *cmd)
@@ -73,12 +86,16 @@ void	add_cmd(t_tools *tools, t_cmds *cmd)
 	t_cmds	*tmp;
 
 	if (!tools->cmds)
+	{
 		tools->cmds = cmd;
+		cmd->prev = NULL;
+	}
 	else
 	{
 		tmp = tools->cmds;
 		while (tmp->next)
 			tmp = tmp->next;
+		cmd->prev = tmp;
 		tmp->next = cmd;
 	}
 	cmd->next = NULL;
@@ -96,6 +113,7 @@ void	new_cmd(t_tools *tools)
 	init_cmd(cmd);
 	nb_args = count_args(tools->lex_list);
 	cmd->args = malloc(sizeof(char *) * nb_args);
+	cmd->nb_redirects = count_redirects(tools->lex_list);
 	i = 0;
 	while (tools->lex_list->operator == WORD)
 	{

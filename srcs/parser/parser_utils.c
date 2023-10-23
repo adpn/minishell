@@ -6,7 +6,7 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 10:50:34 by alexphil          #+#    #+#             */
-/*   Updated: 2023/10/16 16:50:55 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/10/23 13:50:06 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ int	count_redirects(t_lex *lex)
 
 	tmp = lex;
 	i = 0;
-	while (tmp)
+	while (tmp && tmp->operator != PIPE)
 	{
-		if (lex->operator >= HEREDOC && lex->operator <= R_APP)
+		if (lex->operator >= R_INPUT && lex->operator <= R_APP) // Should HEREDOC be considered a redirect ?
 			i++;
 		tmp = tmp->next;
 	}

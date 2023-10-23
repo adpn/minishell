@@ -6,7 +6,7 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 11:18:19 by adupin            #+#    #+#             */
-/*   Updated: 2023/10/20 14:49:19 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/10/23 13:41:01 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,6 @@ typedef struct s_lex
 	struct s_lex	*prev;	
 }	t_lex;
 
-typedef struct s_parser_tools
-{
-	t_lex			*lex_list;
-	t_lex			*redirections;
-	int				num_redirections;
-	struct s_tools	*tools;
-}	t_parser_tools;
-
 typedef struct s_tools
 {
 	char			*args;
@@ -64,6 +56,7 @@ typedef struct s_cmds
 	int				nb_redirects;
 	t_lex			*redirects;
 	struct s_cmds	*next;
+	struct s_cmds	*prev;
 }	t_cmds;
 
 #endif

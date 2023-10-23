@@ -6,51 +6,52 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 10:50:34 by alexphil          #+#    #+#             */
-/*   Updated: 2023/10/12 13:31:53 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/10/16 16:50:55 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_parser_tools	init_parser_tools(t_lex *lex_list, t_tools *tools)
+int	count_pipes(t_lex *lex)
 {
-	t_parser_tools	parser_tools;
+	t_lex	*tmp;
+	int		i;
 
-	parser_tools.lex_list = lex_list;
-	parser_tools.redirections = NULL;
-	parser_tools.num_redirections = 0;
-	parser_tools.tools = tools;
-	return (parser_tools);
-}
-
-void	count_pipes(t_lex *node, t_tools *tools)
-{
-	tools->pipes = 0;
-	while (node)
-	{
-		if (node->operator == PIPE)
-			tools->pipes++;
-		node = node->next;
-	}
-}
-
-int	count_args(t_lex *node)
-{
-	int	i;
-
+	tmp = lex;
 	i = 0;
-	while (node && node->operator != PIPE)
+	while (tmp)
 	{
-		if (node->index >= 0)
+		if (lex->operator == PIPE)
 			i++;
-		node = node->next;
+		tmp = tmp->next;
 	}
 	return (i);
 }
 
-t_lex	*get_next_cmd(t_lex *node)
+int	count_redirects(t_lex *lex)
 {
-	while (node && node->operator != PIPE)
-		node = node->next;
-	return (node);
+	t_lex	*tmp;
+	int		i;
+
+	tmp = lex;
+	i = 0;
+	while (tmp)
+	{
+		if (lex->operator >= HEREDOC && lex->operator <= R_APP)
+			i++;
+		tmp = tmp->next;
+	}
+	return (i);
+}
+
+int	count_args(t_lex *lex)
+{
+	t_lex	*tmp;
+	int		i;
+
+	tmp = lex;
+	i = 0;
+	while (lex->word)
+		i++;
+	return (i);
 }

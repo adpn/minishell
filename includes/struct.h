@@ -6,7 +6,7 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 11:18:19 by adupin            #+#    #+#             */
-/*   Updated: 2023/10/12 13:41:48 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/10/20 14:49:19 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 enum e_tokens
 {
 	PIPE = 1,
+	HEREDOC,
 	R_INPUT,
 	R_OUTPUT,
-	HEREDOC,
 	R_APP,
 	WORD
 };
@@ -43,29 +43,27 @@ typedef struct s_parser_tools
 
 typedef struct s_tools
 {
-	char					*args;
-	char					**paths;
-	char					**envp;
-	struct s_simple_cmds	*simple_cmds;
-	t_lex					*lex_list;
-	char					*pwd;
-	char					*old_pwd;
-	int						pipes;
-	int						*pid;
-	bool					heredoc;
-	bool					reset;
+	char			*args;
+	char			**paths;
+	char			**envp;
+	struct s_cmds	*cmds;
+	t_lex			*lex_list;
+	char			*pwd;
+	char			*old_pwd;
+	int				pipes;
+	int				*pid;
+	bool			heredoc;
+	bool			reset;
 }	t_tools;
 
 // Structure used for the parser process
-typedef struct s_simple_cmds
+typedef struct s_cmds
 {
-	char					**str;
-	int						(*builtin)(t_tools *, struct s_simple_cmds *);
-	int						num_redirections;
-	char					*file_name;
-	t_lex					*redirections;
-	struct s_simple_cmds	*next;
-	struct s_simple_cmds	*prev;
-}	t_simple_cmds;
+	char			**args;
+	int				(*builtin)(t_tools *, struct s_simple_cmds *);
+	int				nb_redirects;
+	t_lex			*redirects;
+	struct s_cmds	*next;
+}	t_cmds;
 
 #endif

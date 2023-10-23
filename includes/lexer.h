@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 16:01:59 by adupin            #+#    #+#             */
-/*   Updated: 2023/10/20 16:39:34 by adupin           ###   ########.fr       */
+/*   Updated: 2023/10/23 12:40:13 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,8 @@ typedef struct s_quotes
 void	print_lex(t_lex *lex);
 t_lex	*free_lex_chained(t_lex *lex);
 void	free_lex_node(t_lex *lex);
-int		is_inside_quote(char *str, t_quotes *quotes);
 t_lex	*get_element(t_lex *node, int i);
-
+bool	is_inside_quotes(t_quotes *quotes);
 t_lex	*lexer(char *str);
 
 #endif

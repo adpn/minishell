@@ -6,7 +6,7 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 11:18:19 by adupin            #+#    #+#             */
-/*   Updated: 2023/10/24 08:52:09 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/10/24 10:08:01 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define STRUCT_H
 
 # include "minishell.h"
+
+typedef struct s_tools	t_tools;
 
 //The order is important do not change it !
 enum e_tokens
@@ -36,6 +38,17 @@ typedef struct s_lex
 	struct s_lex	*prev;	
 }	t_lex;
 
+// Structure used for the parser process
+typedef struct s_cmds
+{
+	char			**args;
+	int				(*builtin)(t_tools *, struct s_cmds *);
+	int				nb_redirects;
+	t_lex			*redirects;
+	struct s_cmds	*next;
+	struct s_cmds	*prev;
+}	t_cmds;
+
 typedef struct s_tools
 {
 	char			*args;
@@ -50,16 +63,5 @@ typedef struct s_tools
 	bool			heredoc;
 	bool			reset;
 }	t_tools;
-
-// Structure used for the parser process
-typedef struct s_cmds
-{
-	char			**args;
-	int				(*builtin)(t_tools *, struct s_cmds *);
-	int				nb_redirects;
-	t_lex			*redirects;
-	struct s_cmds	*next;
-	struct s_cmds	*prev;
-}	t_cmds;
 
 #endif

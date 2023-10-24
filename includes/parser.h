@@ -6,7 +6,7 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 16:01:42 by adupin            #+#    #+#             */
-/*   Updated: 2023/10/24 08:58:06 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/10/24 09:46:28 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define PARSER_H
 
 # include "struct.h"
-# include "minishell.h"
 
 // Counters
 int		count_pipes(t_lex *lex);
@@ -22,7 +21,7 @@ int		count_redirects(t_lex *lex);
 int		count_args(t_lex *lex);
 
 // Redirects
-void	*get_redirects(t_tools *tools, t_cmds *cmd);
+void	get_redirects(t_tools *tools, t_cmds *cmd);
 void	new_redirect(t_tools *tools, t_cmds *cmd);
 void	add_redirect(t_cmds *cmd, t_lex *redirect);
 

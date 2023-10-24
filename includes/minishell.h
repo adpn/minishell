@@ -6,7 +6,7 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 13:29:21 by adupin            #+#    #+#             */
-/*   Updated: 2023/10/24 08:42:21 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/10/24 10:09:11 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,5 @@
 # include <curses.h>  // tgetent, tgetflag, tgetnum, tgetstr, tgoto, tputs
 # include <readline/readline.h>
 # include <readline/history.h>
-
-# include "struct.h"
-# include "builtins.h"
-# include "lexer.h"
-# include "parser.h"
-# include "expander.h"
-# include "executor.h"
-# include "utils.h"
-# include "errors.h"
 
 #endif

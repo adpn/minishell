@@ -6,11 +6,11 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:46:55 by alexphil          #+#    #+#             */
-/*   Updated: 2023/10/24 08:18:51 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/10/24 09:43:27 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "parser.h"
 
 void	syntax_check(t_tools *tools)
 {
@@ -22,8 +22,8 @@ void	syntax_check(t_tools *tools)
 	while (lex)
 	{
 		if (lex->operator != WORD)
-			if (lex->prev && lex->prev->operator != WORD
-				|| lex->next && lex->next->operator != WORD
+			if ((lex->prev && lex->prev->operator != WORD)
+				|| (lex->next && lex->next->operator != WORD)
 				|| lex->next == NULL)
 				return ; // error_mgmt()
 		lex = lex->next;
@@ -41,7 +41,7 @@ void	init_cmd(t_cmds *cmd)
 
 void	add_redirect(t_cmds *cmd, t_lex *redirect)
 {
-	t_cmds	*tmp;
+	t_lex	*tmp;
 
 	if (!cmd->redirects)
 	{
@@ -72,7 +72,7 @@ void	new_redirect(t_tools *tools, t_cmds *cmd)
 	add_redirect(cmd, node);
 }
 
-void	*get_redirects(t_tools *tools, t_cmds *cmd)
+void	get_redirects(t_tools *tools, t_cmds *cmd)
 {
 	if (tools->lex_list->operator == HEREDOC)
 		tools->heredoc = true;

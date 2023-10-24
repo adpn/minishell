@@ -6,11 +6,11 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 10:50:34 by alexphil          #+#    #+#             */
-/*   Updated: 2023/10/24 08:58:56 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/10/24 09:44:55 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "parser.h"
 
 int	count_pipes(t_lex *lex)
 {
@@ -37,7 +37,7 @@ int	count_redirects(t_lex *lex)
 	i = 0;
 	while (tmp && tmp->operator != PIPE)
 	{
-		if (lex->operator >= R_INPUT && lex->operator <= R_APP) // Should HEREDOC be considered a redirect ?
+		if (lex->operator >= R_APP && lex->operator <= R_OUTPUT)
 			i++;
 		tmp = tmp->next;
 	}

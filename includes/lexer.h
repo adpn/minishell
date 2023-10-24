@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
+/*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 16:01:59 by adupin            #+#    #+#             */
-/*   Updated: 2023/10/23 12:40:13 by adupin           ###   ########.fr       */
+/*   Updated: 2023/10/24 09:48:54 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEXER_H
 # define LEXER_H
 
-# include "struct.h"
 # include "minishell.h"
+# include "struct.h"
 
 typedef struct s_quotes
 {

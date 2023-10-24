@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: adupin <adupin@student.s19.be>             +#+  +:+       +#+         #
+#    By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/24 13:17:37 by alexphil          #+#    #+#              #
-#    Updated: 2023/10/16 10:40:50 by adupin           ###   ########.fr        #
+#    Updated: 2023/10/24 10:04:46 by alexphil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,11 @@ NAME 			= 	minishell
 
 # Compiler, compiler flags and linking flags
 # Readline include give access to rl_replace_line
-READLINE_DIR	=	/Users/$(USER)/Applications/homebrew/opt/readline
+ifeq ($(USER), alexphil)
+	READLINE_DIR = /Users/$(USER)/homebrew/opt/readline
+else
+	READLINE_DIR = /Users/alexphil/Applications/homebrew/opt/readline
+endif
 CC				= 	cc
 CFLAGS 			= 	-Wall -Wextra -Werror -Iincludes -Ilibft/include -I$(READLINE_DIR)/include -g 
 DFLAGS      	=   -fsanitize=address

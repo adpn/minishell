@@ -6,20 +6,23 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 11:18:19 by adupin            #+#    #+#             */
-/*   Updated: 2023/10/23 13:41:01 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/10/24 08:19:27 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
 
+#include "minishell.h"
+
+//The order is important do not change it !
 enum e_tokens
 {
 	PIPE = 1,
 	HEREDOC,
+	R_APP,
 	R_INPUT,
 	R_OUTPUT,
-	R_APP,
 	WORD
 };
 

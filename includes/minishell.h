@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
+/*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 13:29:21 by adupin            #+#    #+#             */
-/*   Updated: 2023/10/11 10:52:49 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/10/16 10:46:48 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # include <termios.h> // tcsetattr, tcgetattr
 # include <curses.h>  // tgetent, tgetflag, tgetnum, tgetstr, tgoto, tputs
 # include <readline/readline.h>
+# include <readline/history.h>
 
 # include "lexer.h"
 # include "parser.h"
@@ -37,5 +38,6 @@
 # include "builtins.h"
 # include "utils.h"
 # include "errors.h"
+# include "struct.h"
 
 #endif

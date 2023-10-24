@@ -6,109 +6,148 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 13:29:30 by adupin            #+#    #+#             */
-/*   Updated: 2023/10/11 15:32:44 by adupin           ###   ########.fr       */
+/*   Updated: 2023/10/23 17:02:43 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 
-int	handle_token(char *str, t_lex *lex)
+t_lex *assign_node(t_lex *lex, t_lex *node)
 {
-	size_t	len;
-
-	len = ft_strlen(str);
-	if (!ft_strncmp(str, "|", len))
-		lex->operator = PIPE;
-	else if (!ft_strncmp(str, "<<", len))
-		lex->operator = HEREDOC;
-	else if (!ft_strncmp(str, ">>", len))
-		lex->operator = R_APP;
-	else if (!ft_strncmp(str, "<", len))
-		lex->operator = R_INPUT;
-	else if (!ft_strncmp(str, ">", len))
-		lex->operator = R_OUTPUT;
+	if (lex == NULL)
+	{
+		node->prev = NULL;
+		node->next = NULL;
+	}
 	else
-		return (0);
-	return (1);
+	{
+		lex->next = node;
+		node->prev = lex;
+		node->next = NULL;
+	}
+	return (node);
 }
 
-/* Return pointer to i node*/
-t_lex	*get_element(t_lex *node, int i)
+bool	ft_in_charset(char c, char *charset)
 {
-	if (i < 0)
+	int	i;
+	
+	i = 0;
+	while (charset[i])
+	{
+		if (c == charset[i])
+			return (true);
+		i++;
+	}
+	return (false);
+}
+/* Type -1 resets the node_index */
+t_lex *create_node(char *str, int type)
+{
+	static int node_index = 0;
+	t_lex *node;
+
+	if (type == -1)
+	{
+		node_index = 0;
 		return (NULL);
-	if (node->index == i)
-		return (node);
-	if (node->index > i)
-		return (get_element(node->prev, i));
-	else
-		return (get_element(node->next, i));
+	}
+	node = malloc(sizeof(t_lex));
+	if (!node)
+		return (NULL);
+	node->index = node_index;
+	node->operator = type;
+	node->word = NULL;
+	//printf("str = %s\nop = %d\n", str, type);
+	if (type == WORD)
+	{
+		node->word = ft_strdup(str);
+		if (!node->word)
+			return(free(node), NULL);
+	}
+	node_index++;
+	return (node);
 }
-
-int	op_or_word(char *str, t_lex *lex, t_quotes *quotes)
+t_lex *create_op_node(char *str)
 {
-	if (!is_inside_quote(str, quotes))
+	t_lex *node;
+
+	node = NULL;
+	if (str[0] == '|')
+		node = create_node(str, PIPE);
+	else if (str[0] == '<')
 	{
-		if (!handle_token(str, lex))
-		{
-			lex->operator = WORD;
-			lex->word = ft_strdup(str);
-			if (!lex->word)
-				return (0);
-		}
-		if (lex->operator != 0 && lex->operator != WORD)
-			lex->word = NULL;
+		if (str[1] && str[1] == '<')
+			node = create_node(str, HEREDOC);
+		else
+			node = create_node (str, R_INPUT);
 	}
-	else
+	else if (str[0] == '>')
 	{
-		lex->operator = WORD;
-		lex->word = ft_strdup(str);
-			if (!lex->word)
-				return (0);
+		if (str[1] && str[1] == '>')
+			node = create_node(str, R_APP);
+		else
+			node = create_node(str, R_OUTPUT);
 	}
-	return (1);
+	return (node);	
 }
 
 t_lex	*lexer(char *str)
 {
-	char	**splitted;
-	int		i;
-	t_lex	*node;
-	t_lex	*lex;
-	t_quotes quotes;
-
-	lex = NULL;
+	int			i;
+	char		*buffer;
+	int			ib;
+	t_lex		*lex;
+	t_lex		*node;
+	t_quotes	quotes;
+	
+	i = 0;
+	ib = 0;
 	quotes.double_q = 0;
 	quotes.simple_q = 0;
-	splitted = ft_split(str, ' ');
-	if (!splitted)
-		return (NULL);
-	i = 0;
-	while (splitted[i])
+	lex = NULL;
+	buffer = ft_calloc(ft_strlen(str) + 1, sizeof(char));
+	while (str[i])
 	{
-		node = malloc(sizeof(t_lex));
-		if (!node)
-			return (free_lex_chained(get_element(lex, 0)), ft_free_split(splitted), NULL);
-		if (!op_or_word(splitted[i], node, &quotes))
-			return (free_lex_chained(get_element(lex, 0)), free(node),
-				ft_free_split(splitted), NULL);
-		node->index = i;
-		if (i == 0)
+		buffer[ib] = str[i];
+		//printf("buffer = %s %i\n", buffer, ib);
+		ib++;
+		if (str[i] == '\'')
+			quotes.simple_q++;
+		else if (str[i] == '\"')
+			quotes.double_q++;
+		else if (ft_in_charset(str[i], "|<> ") == true && is_inside_quotes(&quotes) == false)
 		{
-			lex = node;
-			lex->prev = NULL;
-			lex->next = NULL;
-		}
-		else
-		{
-			lex->next = node;
-			node->prev = lex;
-			node->next = NULL;
-			lex = node;
+			buffer[ib - 1] = '\0';
+			if (ib > 1)
+			{
+				node = create_node(buffer, WORD);
+				if (!node)
+					return (0);
+				ft_bzero(buffer, ft_strlen(str));
+				lex = assign_node(lex, node);
+			}
+			ib = 0;
+			if (str[i] != ' ')
+			{
+				node = create_op_node(&str[i]);
+				if (!node)
+					return (0);
+				if (node->operator == HEREDOC || node->operator == R_APP)
+					i++;
+				lex = assign_node(lex, node);
+			}
 		}
 		i++;
 	}
-	ft_free_split(splitted);
-	lex->next = NULL;
+	if (ib > 0)
+	{
+		node = create_node(buffer, WORD);
+		if (!node)
+			return (0);
+		lex = assign_node(lex, node);
+	}
+	free(buffer);
+	create_node(NULL, -1);
 	return (get_element(lex, 0));
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+         #
+#    By: adupin <adupin@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/24 13:17:37 by alexphil          #+#    #+#              #
-#    Updated: 2023/10/24 10:04:46 by alexphil         ###   ########.fr        #
+#    Updated: 2023/10/24 17:40:06 by adupin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ NAME 			= 	minishell
 ifeq ($(USER), alexphil)
 	READLINE_DIR = /Users/$(USER)/homebrew/opt/readline
 else
-	READLINE_DIR = /Users/alexphil/Applications/homebrew/opt/readline
+	READLINE_DIR = /Users/$(USER)/Applications/homebrew/opt/readline
 endif
 CC				= 	cc
 CFLAGS 			= 	-Wall -Wextra -Werror -Iincludes -Ilibft/include -I$(READLINE_DIR)/include -g 
@@ -40,13 +40,15 @@ BUILD_DIR 		= 	build
 # Define the source files
 MAIN_FILE		=	main.c
 LEXER_FILES		= 	lexer.c \
-					lexer_utils.c
+					lexer_utils.c \
+					lexer_free.c \
+					nodes.c
 PARSER_FILES	=	parser.c \
 					parser_utils.c
 EXPANDER_FILES	=	expander.c
 EXECUTOR_FILES	=
 BUILTINS_FILES 	=
-UTILS_FILES		=	
+UTILS_FILES		=	xmalloc.c
 ERRORS_FILES	=	
 
 # Defining the paths of the sources files 

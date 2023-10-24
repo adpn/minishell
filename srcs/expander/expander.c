@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 11:37:06 by adupin            #+#    #+#             */
-/*   Updated: 2023/10/10 15:05:59 by adupin           ###   ########.fr       */
+/*   Updated: 2023/10/24 17:50:03 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,9 @@ char	*complete_string(char *str)
 			value = getenv(name);
 		if (!value)
 			value = "";
-		new = malloc(ft_strlen(str) - ft_strlen(name) + ft_strlen(value) + 1);
-		if (!new)
-			return (free(name), NULL);
+		new = ft_xmalloc(ft_strlen(str) - ft_strlen(name) + ft_strlen(value) + 1);
+		// if (!new)
+		// 	return (free(name), NULL);
 		ft_strlcpy(new, str, i + 1);
 		ft_strlcat(new, value, ft_strlen(new) + ft_strlen(value) + 1);
 		ft_strlcat(new, &str[i + ft_strlen(name) + 1], ft_strlen(new) + ft_strlen(&str[i + ft_strlen(name)]) + 1);

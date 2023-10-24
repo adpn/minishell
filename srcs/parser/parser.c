@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
+/*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:46:55 by alexphil          #+#    #+#             */
-/*   Updated: 2023/10/24 09:43:27 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/10/24 17:50:19 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,9 @@ void	new_redirect(t_tools *tools, t_cmds *cmd)
 {
 	t_lex	*node;
 
-	node = malloc(sizeof(t_lex));
-	if (!node)
-		; // error_mgmt()
+	node = ft_xmalloc(sizeof(t_lex));
+	// if (!node)
+	// 	; // error_mgmt()
 	node->operator = tools->lex_list->operator;
 	tools->lex_list = tools->lex_list->next;
 	node->word = ft_strdup(tools->lex_list->word);
@@ -107,12 +107,12 @@ void	new_cmd(t_tools *tools)
 	int		nb_args;
 	int		i;
 
-	cmd = malloc(sizeof(t_cmds));
-	if (!cmd)
-		; // error_mgmt
+	cmd = ft_xmalloc(sizeof(t_cmds));
+	// if (!cmd)
+	// 	; // error_mgmt
 	init_cmd(cmd);
 	nb_args = count_args(tools->lex_list);
-	cmd->args = malloc(sizeof(char *) * nb_args);
+	cmd->args = ft_xmalloc(sizeof(char *) * nb_args);
 	cmd->nb_redirects = count_redirects(tools->lex_list);
 	i = 0;
 	while (tools->lex_list->operator == WORD)

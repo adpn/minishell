@@ -1,22 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expander.h                                         :+:      :+:    :+:   */
+/*   lexer_free.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/26 16:02:10 by adupin            #+#    #+#             */
-/*   Updated: 2023/10/24 17:52:04 by adupin           ###   ########.fr       */
+/*   Created: 2023/10/24 16:23:36 by adupin            #+#    #+#             */
+/*   Updated: 2023/10/24 16:24:46 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXPANDER_H
-# define EXPANDER_H
+#include "lexer.h"
 
-# include "minishell.h"
-# include "utils.h"
+/* Free only this node*/
+void	free_lex_node(t_lex *lex)
+{
+	if (lex == NULL)
+		return ;
+	if (lex->word)
+		free(lex->word);
+	free(lex);
+}
 
-char	*get_var_name(char *str);
-char	*complete_string(char *str);
-
-#endif
+/*Free all the following chained list*/
+t_lex	*free_lex_chained(t_lex *lex)
+{
+	if (lex == NULL)
+		return (NULL);
+	free_lex_chained(lex->next);
+	free_lex_node(lex);
+	return (NULL);
+}

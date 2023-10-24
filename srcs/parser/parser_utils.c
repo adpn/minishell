@@ -6,7 +6,7 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 10:50:34 by alexphil          #+#    #+#             */
-/*   Updated: 2023/10/23 13:50:06 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/10/24 08:58:56 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,10 @@ int	count_args(t_lex *lex)
 
 	tmp = lex;
 	i = 0;
-	while (lex->word)
+	while (tmp->word)
+	{
 		i++;
+		tmp = tmp->next;
+	}
 	return (i);
 }

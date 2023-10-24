@@ -6,14 +6,14 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 11:18:19 by adupin            #+#    #+#             */
-/*   Updated: 2023/10/24 08:19:27 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/10/24 08:52:09 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
 
-#include "minishell.h"
+# include "minishell.h"
 
 //The order is important do not change it !
 enum e_tokens
@@ -55,7 +55,7 @@ typedef struct s_tools
 typedef struct s_cmds
 {
 	char			**args;
-	int				(*builtin)(t_tools *, struct s_simple_cmds *);
+	int				(*builtin)(t_tools *, struct s_cmds *);
 	int				nb_redirects;
 	t_lex			*redirects;
 	struct s_cmds	*next;

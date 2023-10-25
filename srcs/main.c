@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 15:09:31 by adupin            #+#    #+#             */
-/*   Updated: 2023/10/25 11:53:29 by adupin           ###   ########.fr       */
+/*   Updated: 2023/10/25 14:45:41 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,11 @@
 #include "lexer.h"
 #include "parser.h"
 
-char	*g_line;
-
 static void	signal_handler(int sig)
 {
 	if (sig == SIGINT)
 	{
-		g_line = NULL;
+		//g_line = NULL;
 		rl_replace_line("", 0);
 		printf("\n");
 		rl_on_new_line();
@@ -34,33 +32,37 @@ static void	signal_handler(int sig)
 
 }
 
-int	main(void)
+int	main(int argc, char **argv, char **envp)
 {
-	//char	*line;
-	t_lex	*lex;
+	char	*line;
+	//t_tools	tools;
 
+	if (argc != 1)
+		return (1);
+	(void)argv;
+	g_tools.envp = envp;
 	signal(SIGINT, signal_handler);
 	signal(SIGQUIT, signal_handler);
 	while (1)
 	{
-		g_line = readline("TerminalCancer> ");
-		if (!g_line)
+		line = readline("TerminalCancer> ");
+		if (!line)
 		{
 			printf("exit\n");
 			return (0);
 		}
-		if (g_line && g_line[0])
+		if (line && line[0])
 		{
-			add_history(g_line);
-			lex = lexer(g_line);
-			if (lex)
+			add_history(line);
+			g_tools.lex_list = lexer(line);
+			if (g_tools.lex_list)
 			{
-				print_lex(tools.lex_list);
+				print_lex(g_tools.lex_list);
 				// free_lex_chained(tools.lex_list);
 			}
-			parser(&tools);
+			parser(&g_tools);
 		}
-		free(g_line);
+		free(line);
 		
 		// free(line);
 		// printf("line = %s\n", line);

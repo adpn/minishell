@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 11:37:06 by adupin            #+#    #+#             */
-/*   Updated: 2023/10/24 17:50:03 by adupin           ###   ########.fr       */
+/*   Updated: 2023/10/25 16:43:09 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ char	*complete_string(char *str)
 			printf("Hello need exit status here\n");
 		}
 		else
-			value = getenv(name);
+			value = getenv(name); //need to custom it with environ
 		if (!value)
 			value = "";
 		new = ft_xmalloc(ft_strlen(str) - ft_strlen(name) + ft_strlen(value) + 1);
@@ -85,6 +85,9 @@ char	*complete_string(char *str)
 //Return 1 if success, 0 if malloc failed
 int	expand(char **str)
 {
+	extern char **environ;
+	//need to use it
+	
 	int	i;
 
 	i = 0;

@@ -6,13 +6,14 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 15:09:31 by adupin            #+#    #+#             */
-/*   Updated: 2023/10/24 09:49:51 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/10/25 09:09:43 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "struct.h"
 #include "lexer.h"
+#include "parser.h"
 
 char	*g_line;
 
@@ -37,7 +38,7 @@ static void	signal_handler(int sig)
 int	main(void)
 {
 	//char	*line;
-	t_lex	*lex;
+	t_tools	tools;
 	// struct sigaction sig;
 	
 	// char 	*expanded;
@@ -64,15 +65,16 @@ int	main(void)
 			// 	return (1);
 			// printf("expanded %s\n", expanded);
 			//free(expanded);
-			lex = lexer(g_line);
-			if (lex)
+			tools.lex_list = lexer(g_line);
+			if (tools.lex_list)
 			{
-			print_lex(lex);
-			free_lex_chained(lex);
+				print_lex(tools.lex_list);
+				// free_lex_chained(tools.lex_list);
 			}
+			parser(&tools);
 		}
 		
-		//free(line);
+		// free(line);
 		// printf("line = %s\n", line);
 	}
 	return (0);

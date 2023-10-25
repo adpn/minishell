@@ -6,7 +6,7 @@
 #    By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/24 13:17:37 by alexphil          #+#    #+#              #
-#    Updated: 2023/10/24 10:04:46 by alexphil         ###   ########.fr        #
+#    Updated: 2023/10/25 09:23:48 by alexphil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,10 @@ MAIN_FILE		=	main.c
 LEXER_FILES		= 	lexer.c \
 					lexer_utils.c
 PARSER_FILES	=	parser.c \
-					parser_utils.c
+					counters.c \
+					cmds.c \
+					redirects.c \
+					print.c
 EXPANDER_FILES	=	expander.c
 EXECUTOR_FILES	=
 BUILTINS_FILES 	=

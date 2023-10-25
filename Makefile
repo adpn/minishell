@@ -6,7 +6,7 @@
 #    By: adupin <adupin@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/24 13:17:37 by alexphil          #+#    #+#              #
-#    Updated: 2023/10/24 17:40:06 by adupin           ###   ########.fr        #
+#    Updated: 2023/10/25 11:52:11 by adupin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,10 @@ LEXER_FILES		= 	lexer.c \
 					lexer_free.c \
 					nodes.c
 PARSER_FILES	=	parser.c \
-					parser_utils.c
+					counters.c \
+					cmds.c \
+					redirects.c \
+					print.c
 EXPANDER_FILES	=	expander.c
 EXECUTOR_FILES	=
 BUILTINS_FILES 	=

@@ -6,13 +6,14 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 15:09:31 by adupin            #+#    #+#             */
-/*   Updated: 2023/10/24 17:00:52 by adupin           ###   ########.fr       */
+/*   Updated: 2023/10/25 11:53:29 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "struct.h"
 #include "lexer.h"
+#include "parser.h"
 
 char	*g_line;
 
@@ -54,13 +55,14 @@ int	main(void)
 			lex = lexer(g_line);
 			if (lex)
 			{
-			print_lex(lex);
-			free_lex_chained(lex);
+				print_lex(tools.lex_list);
+				// free_lex_chained(tools.lex_list);
 			}
+			parser(&tools);
 		}
 		free(g_line);
 		
-		//free(line);
+		// free(line);
 		// printf("line = %s\n", line);
 	}
 	return (0);

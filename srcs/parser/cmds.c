@@ -6,7 +6,7 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:59:34 by alexphil          #+#    #+#             */
-/*   Updated: 2023/10/25 10:33:14 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/10/25 13:19:51 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,7 @@ void	new_cmd(t_tools *tools)
 		; // error_mgmt
 	init_cmd(cmd);
 	nb_args = count_args(tools->lex_list);
-	// printf("nb args: %i\n", nb_args);
-	cmd->args = malloc(sizeof(char *) * nb_args);
+	cmd->args = malloc(sizeof(char *) * nb_args + 1);
 	if (!cmd->args)
 		;
 	cmd->nb_redirects = count_redirects(tools->lex_list);

@@ -6,7 +6,7 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:59:54 by alexphil          #+#    #+#             */
-/*   Updated: 2023/10/25 10:12:05 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/10/25 13:28:36 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ void	new_redirect(t_tools *tools, t_cmds *cmd)
 {
 	t_lex	*node;
 
-	node = malloc(sizeof(t_lex));
-	if (!node)
+	node = ft_xmalloc(sizeof(t_lex));
+	// if (!node)
 		; // error_mgmt()
 	node->operator = tools->lex_list->operator;
 	tools->lex_list = tools->lex_list->next;
-	node->word = ft_strdup(tools->lex_list->word);
-	if (!node->word)
+	node->word = ft_xstrdup(tools->lex_list->word);
+	// if (!node->word)
 		; // error_mgmt()
 	add_redirect(cmd, node);
 }

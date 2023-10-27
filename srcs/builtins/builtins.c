@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:08:51 by adupin            #+#    #+#             */
-/*   Updated: 2023/10/27 14:45:42 by adupin           ###   ########.fr       */
+/*   Updated: 2023/10/27 15:00:52 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,18 +70,18 @@ void	builtin(t_tools *tools, t_cmds *cmds)
 	size_t	len;
 
 	len = ft_strlen(cmds->args[0]);
-	if (ft_strncmp(cmds->args[0], "echo", len))
+	if (!ft_strncmp(cmds->args[0], "echo", len))
 		ft_echo(tools, cmds);
-	else if (ft_strncmp(cmds->args[0], "cd", len))
+	else if (!ft_strncmp(cmds->args[0], "cd", len))
 		ft_cd(tools, cmds);
-	else if (ft_strncmp(cmds->args[0], "pwd", len))
+	else if (!ft_strncmp(cmds->args[0], "pwd", len))
 		ft_pwd(tools, cmds);
-	else if (ft_strncmp(cmds->args[0], "export", len))
+	else if (!ft_strncmp(cmds->args[0], "export", len))
 		ft_export(tools, cmds);
-	else if (ft_strncmp(cmds->args[0], "unset", len))
+	else if (!ft_strncmp(cmds->args[0], "unset", len))
 		ft_unset(tools, cmds);
-	else if (ft_strncmp(cmds->args[0], "env", len))
+	else if (!ft_strncmp(cmds->args[0], "env", len))
 		ft_env(tools, cmds);
-	else if (ft_strncmp(cmds->args[0], "exit", len))
+	else if (!ft_strncmp(cmds->args[0], "exit", len))
 		ft_exit(tools, cmds);
 }

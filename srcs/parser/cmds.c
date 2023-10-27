@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmds.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
+/*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:59:34 by alexphil          #+#    #+#             */
-/*   Updated: 2023/10/27 14:16:48 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/10/27 15:11:29 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	new_cmd(t_tools *tools)
 	cmd = ft_xmalloc(sizeof(t_cmds));
 	init_cmd(cmd);
 	nb_args = count_args(tools->lex_list);
-	cmd->args = ft_xmalloc(sizeof(char *) * nb_args + 1);
+	cmd->args = ft_xmalloc(sizeof(char *) * (nb_args + 1));
 	cmd->nb_redirects = count_redirects(tools->lex_list);
 	i = 0;
 	while (tools->lex_list && tools->lex_list->operator == WORD)

@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 10:26:04 by adupin            #+#    #+#             */
-/*   Updated: 2023/10/27 14:23:53 by adupin           ###   ########.fr       */
+/*   Updated: 2023/10/27 15:30:20 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,20 +71,18 @@ void	add_element_to_environ(char *name, char *value)
 	char **new;
 	int	i;
 	int	len_array;
-	int	len_element;
 	
 	i = 0;
+	printf("%s %s\n", name, value);
 	len_array = ft_array_len(environ);
 	new = ft_xmalloc(sizeof(char *) * (len_array + 2));
-	while (i < len_array - 2)
+	while (i < len_array)
 	{
 		new[i] = environ[i];
 		i++;
 	}
-	len_element = ft_strlen(name) + ft_strlen(value) + 2;
 	new[i] = create_element(name, value);
-	i++;
-	new[i] = environ[i - 1];
+	new[i + 1] = NULL;
 	free(environ);
 	environ = new;
 }
@@ -97,7 +95,7 @@ void	replace_element_to_environ(char *name, char *value)
 	
 	i = index_element_environ(name);
 	len_element = ft_strlen(name) + ft_strlen(value) + 2;
-	free(environ[i]);
+	// free(environ[i]);
 	environ[i] = create_element(name, value);
 }
 

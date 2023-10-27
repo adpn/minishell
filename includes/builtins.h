@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 11:16:17 by adupin            #+#    #+#             */
-/*   Updated: 2023/10/25 14:11:45 by adupin           ###   ########.fr       */
+/*   Updated: 2023/10/27 11:33:01 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,4 +15,6 @@
 
 #include "minishell.h"
 #include "struct.h"
+#include "utils.h"
+
 #endif

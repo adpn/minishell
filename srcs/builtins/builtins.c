@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:08:51 by adupin            #+#    #+#             */
-/*   Updated: 2023/10/25 16:43:43 by adupin           ###   ########.fr       */
+/*   Updated: 2023/10/27 14:29:20 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,6 @@ void	ft_cd(t_tools *tools, t_cmds *cmds)
 }
 
 void	ft_pwd(t_tools *tools, t_cmds *cmds)
-{
-
-}
-
-void	ft_export(t_tools *tools, t_cmds *cmds)
 {
 
 }

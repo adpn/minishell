@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
+/*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 11:18:19 by adupin            #+#    #+#             */
-/*   Updated: 2023/10/24 10:08:01 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/10/27 14:28:12 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,13 @@ typedef struct s_tools
 	int				*pid;
 	bool			heredoc;
 	bool			reset;
+	int				error_code;
 }	t_tools;
+
+typedef struct	s_var_env
+{
+	char	*name;
+	char	*value;
+}				t_var_env;
 
 #endif

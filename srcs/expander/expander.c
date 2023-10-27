@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 11:37:06 by adupin            #+#    #+#             */
-/*   Updated: 2023/10/25 16:43:09 by adupin           ###   ########.fr       */
+/*   Updated: 2023/10/27 11:31:32 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	get_index(char *str, char c)
 	}
 	return (-1);
 }
-
+/* Get variable name to expand: starting with $*/
 char	*get_var_name(char *str)
 {
 	int		i;
@@ -40,7 +40,7 @@ char	*get_var_name(char *str)
 	while (str[i] && str[i] != '$' && str[i] != ' ' && str[i] != '\t')
 		i++;
 	if (str[1] && str[1] == '?')
-		name = ft_strdup("?");
+		name = ft_xstrdup("?");
 	else
 		name = ft_substr(str, 1, i - 1);
 	if (!name)
@@ -67,7 +67,7 @@ char	*complete_string(char *str)
 			printf("Hello need exit status here\n");
 		}
 		else
-			value = getenv(name); //need to custom it with environ
+			value = value_var_environ(name);
 		if (!value)
 			value = "";
 		new = ft_xmalloc(ft_strlen(str) - ft_strlen(name) + ft_strlen(value) + 1);

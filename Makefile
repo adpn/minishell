@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: adupin <adupin@student.s19.be>             +#+  +:+       +#+         #
+#    By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/24 13:17:37 by alexphil          #+#    #+#              #
-#    Updated: 2023/10/25 11:52:11 by adupin           ###   ########.fr        #
+#    Updated: 2023/10/27 14:17:00 by alexphil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ PARSER_FILES	=	parser.c \
 					print.c
 EXPANDER_FILES	=	expander.c
 EXECUTOR_FILES	=
-BUILTINS_FILES 	=
+BUILTINS_FILES 	=	ms_echo.c
 UTILS_FILES		=	xmalloc.c
 ERRORS_FILES	=	
 

@@ -6,7 +6,7 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:46:55 by alexphil          #+#    #+#             */
-/*   Updated: 2023/10/25 13:33:46 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/10/27 13:59:37 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,16 @@ void	syntax_check(t_tools *tools)
 
 void	parser(t_tools *tools)
 {
+	t_lex	*head;
+
+	head = tools->lex_list;
 	syntax_check(tools);
 	tools->pipes = count_pipes(tools->lex_list);
 	tools->cmds = NULL;
 	while (tools->lex_list)
-	{
-		if (tools->lex_list->operator == PIPE)
-			tools->lex_list = tools->lex_list->next;
 		new_cmd(tools);
-	}
 	parser_display(tools);
+	tools->lex_list = head;
 }
+
+// Connect ms_echo to main and parser for testing it

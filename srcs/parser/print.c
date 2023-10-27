@@ -6,7 +6,7 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:47:46 by alexphil          #+#    #+#             */
-/*   Updated: 2023/10/25 14:25:16 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/10/27 14:28:27 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,20 @@ void	redirects_display(t_lex	*redirects)
 	}
 }
 
-void	args_display(char **args)
+void	args_display(t_cmds *cmd)
 {
+	char	**args;
 	int		i;
 
+	args = cmd->args;
 	i = 0;
 	while (args[i])
 	{
 		printf("args[%i]: ", i);
-		printf("%s\n", args[i]);
+		printf("%s", args[i]);
+		if (i == 0 && cmd->builtin)
+			printf(" [BUILTIN]");
+		printf("\n");
 		i++;
 	}
 }
@@ -57,7 +62,7 @@ void	cmds_display(t_cmds *cmds)
 	{
 		printf("COMMAND #%i:\n\n", i++);
 		if (cmds->args)
-			args_display(cmds->args);
+			args_display(cmds);
 		if (cmds->nb_redirects)
 		{
 			printf("\nHas %i redirect(s)\n\n", cmds->nb_redirects);

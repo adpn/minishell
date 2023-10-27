@@ -6,12 +6,13 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:59:34 by alexphil          #+#    #+#             */
-/*   Updated: 2023/10/25 13:19:51 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/10/27 14:16:48 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "builtins.h"
 #include "struct.h"
+#include "parser.h"
 
 void	init_cmd(t_cmds *cmd)
 {
@@ -41,29 +42,44 @@ void	add_cmd(t_tools *tools, t_cmds *cmd)
 	cmd->next = NULL;
 }
 
+// Is echo / cd / pwd / export / unset / env / exit ?
+void	set_builtin(t_cmds *cmd, char *arg0)
+{
+	if (!ft_strncmp(arg0, "echo", ft_strlen(arg0)))
+		cmd->builtin = ms_echo;
+	// else if (!ft_strncmp(arg0, "cd", ft_strlen(arg0)))
+	// 	cmd->builtin = cd;
+	// else if (!ft_strncmp(arg0, "pwd", ft_strlen(arg0)))
+	// 	cmd->builtin = pwd;
+	// else if (!ft_strncmp(arg0, "export", ft_strlen(arg0)))
+	// 	cmd->builtin = export;
+	// else if (!ft_strncmp(arg0, "unset", ft_strlen(arg0)))
+	// 	cmd->builtin = unset;
+	// else if (!ft_strncmp(arg0, "env", ft_strlen(arg0)))
+	// 	cmd->builtin = env;
+	// else if (!ft_strncmp(arg0, "exit", ft_strlen(arg0)))
+	// 	cmd->builtin = exit;
+}
+
 void	new_cmd(t_tools *tools)
 {
 	t_cmds	*cmd;
 	int		nb_args;
 	int		i;
 
-	if (!tools->lex_list)
-		return ;
-	cmd = malloc(sizeof(t_cmds));
-	if (!cmd)
-		; // error_mgmt
+	if (tools->lex_list->operator == PIPE)
+		tools->lex_list = tools->lex_list->next;
+	cmd = ft_xmalloc(sizeof(t_cmds));
 	init_cmd(cmd);
 	nb_args = count_args(tools->lex_list);
-	cmd->args = malloc(sizeof(char *) * nb_args + 1);
-	if (!cmd->args)
-		;
+	cmd->args = ft_xmalloc(sizeof(char *) * nb_args + 1);
 	cmd->nb_redirects = count_redirects(tools->lex_list);
 	i = 0;
 	while (tools->lex_list && tools->lex_list->operator == WORD)
 	{
-		cmd->args[i++] = ft_strdup(tools->lex_list->word);
-		if (!cmd->args[i - 1])
-			;
+		if (i == 0)
+			set_builtin(cmd, tools->lex_list->word);
+		cmd->args[i++] = ft_xstrdup(tools->lex_list->word);
 		tools->lex_list = tools->lex_list->next;
 	}
 	cmd->args[i] = NULL;

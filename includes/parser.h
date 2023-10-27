@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
+/*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 16:01:42 by adupin            #+#    #+#             */
-/*   Updated: 2023/10/25 11:52:17 by adupin           ###   ########.fr       */
+/*   Updated: 2023/10/27 14:27:52 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	parser(t_tools *tools);
 
 // Print
 void	redirects_display(t_lex	*redirects);
-void	args_display(char **args);
+void	args_display(t_cmds *cmd);
 void	cmds_display(t_cmds *cmds);
 void	parser_display(t_tools *tools);
 

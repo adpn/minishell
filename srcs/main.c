@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
+/*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 15:09:31 by adupin            #+#    #+#             */
-/*   Updated: 2023/10/27 14:40:06 by adupin           ###   ########.fr       */
+/*   Updated: 2023/10/27 15:11:25 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "struct.h"
 #include "lexer.h"
 #include "parser.h"
+#include "builtins.h"
 
 static void	signal_handler(int sig)
 {
@@ -58,6 +59,7 @@ int	main(int argc, char **argv, char **envp)
 			{
 				// print_lex(tools.lex_list);
 				parser(&g_tools);
+				ms_echo(&g_tools, g_tools.cmds); // TESTING MS_ECHO 
 				free_lex_chained(g_tools.lex_list);
 			}
 		}

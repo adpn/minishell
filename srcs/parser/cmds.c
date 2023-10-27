@@ -6,7 +6,7 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:59:34 by alexphil          #+#    #+#             */
-/*   Updated: 2023/10/27 14:16:48 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/10/27 15:11:19 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,17 +48,17 @@ void	set_builtin(t_cmds *cmd, char *arg0)
 	if (!ft_strncmp(arg0, "echo", ft_strlen(arg0)))
 		cmd->builtin = ms_echo;
 	// else if (!ft_strncmp(arg0, "cd", ft_strlen(arg0)))
-	// 	cmd->builtin = cd;
+	// 	cmd->builtin = ft_cd;
 	// else if (!ft_strncmp(arg0, "pwd", ft_strlen(arg0)))
-	// 	cmd->builtin = pwd;
+	// 	cmd->builtin = ft_pwd;
 	// else if (!ft_strncmp(arg0, "export", ft_strlen(arg0)))
-	// 	cmd->builtin = export;
+	// 	cmd->builtin = ft_export;
 	// else if (!ft_strncmp(arg0, "unset", ft_strlen(arg0)))
-	// 	cmd->builtin = unset;
+	// 	cmd->builtin = ft_unset;
 	// else if (!ft_strncmp(arg0, "env", ft_strlen(arg0)))
-	// 	cmd->builtin = env;
+	// 	cmd->builtin = ft_env;
 	// else if (!ft_strncmp(arg0, "exit", ft_strlen(arg0)))
-	// 	cmd->builtin = exit;
+	// 	cmd->builtin = ft_exit;
 }
 
 void	new_cmd(t_tools *tools)

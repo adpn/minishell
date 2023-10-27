@@ -6,7 +6,7 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:46:55 by alexphil          #+#    #+#             */
-/*   Updated: 2023/10/27 14:36:38 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/10/27 15:03:58 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	parser(t_tools *tools)
 	tools->cmds = NULL;
 	while (tools->lex_list)
 		new_cmd(tools);
-	parser_display(tools);
+	// parser_display(tools);
 	tools->lex_list = head;
 }
 

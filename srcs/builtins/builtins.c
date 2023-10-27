@@ -6,34 +6,41 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:08:51 by adupin            #+#    #+#             */
-/*   Updated: 2023/10/27 15:00:52 by adupin           ###   ########.fr       */
+/*   Updated: 2023/10/27 16:28:50 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
 
-void	ft_echo(t_tools *tools, t_cmds *cmds)
-{
-	(void)tools;
-	(void)cmds;
-}
-
 void	ft_cd(t_tools *tools, t_cmds *cmds)
 {
 	(void)tools;
 	(void)cmds;
+
+	//Need to update PWD and OLD, in environ and in struct
 }
 
 void	ft_pwd(t_tools *tools, t_cmds *cmds)
 {
-	(void)tools;
 	(void)cmds;
+	printf("%s\n", tools->pwd);
 }
 
 void	ft_unset(t_tools *tools, t_cmds *cmds)
 {
+	extern char **environ;
+	int			i;
+	int			j;
+
 	(void)tools;
-	(void)cmds;
+	i = 1;
+	while (cmds->args[i])
+	{
+		j = index_element_environ(cmds->args[i]);
+		if (j != -1)
+			ft_bzero(environ[j], ft_strlen(environ[j]));
+		i++;
+	}
 }
 
 void	ft_env(t_tools *tools, t_cmds *cmds)
@@ -52,7 +59,8 @@ void	ft_env(t_tools *tools, t_cmds *cmds)
 	i = 0;
 	while (environ[i])
 	{
-		printf("%s\n", environ[i]);
+		if(environ[i][0])
+			printf("%s\n", environ[i]);
 		i++;
 	}
 }
@@ -71,7 +79,7 @@ void	builtin(t_tools *tools, t_cmds *cmds)
 
 	len = ft_strlen(cmds->args[0]);
 	if (!ft_strncmp(cmds->args[0], "echo", len))
-		ft_echo(tools, cmds);
+		ms_echo(tools, cmds);
 	else if (!ft_strncmp(cmds->args[0], "cd", len))
 		ft_cd(tools, cmds);
 	else if (!ft_strncmp(cmds->args[0], "pwd", len))

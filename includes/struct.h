@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 11:18:19 by adupin            #+#    #+#             */
-/*   Updated: 2023/10/27 14:41:43 by adupin           ###   ########.fr       */
+/*   Updated: 2023/10/27 16:09:59 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,5 @@ typedef struct s_tools
 	bool			reset;
 	int				error_code;
 }	t_tools;
-
-typedef struct	s_var_env
-{
-	char	*name;
-	char	*value;
-}				t_var_env;
 
 #endif

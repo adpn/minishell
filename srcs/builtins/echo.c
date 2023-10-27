@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ms_echo.c                                          :+:      :+:    :+:   */
+/*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 11:04:09 by alexphil          #+#    #+#             */
-/*   Updated: 2023/10/27 14:19:45 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/10/27 15:48:32 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,17 @@ void	ms_echo(t_tools *tools, t_cmds *cmd)
 {
 	int		i;
 	int		j;
-	bool	trailing;
+	int		flag;
 
 	(void) tools;
 	i = 0;
-	if (!ft_strncmp(cmd->args[1], "-n", ft_strlen(cmd->args[1])))
-	{
-		trailing = false;
+	flag = (ft_strncmp(cmd->args[1], "-n", ft_strlen(cmd->args[1])) == 0);
+	if (flag)
 		i = 1;
-	}
 	while (cmd->args[++i])
 	{
-		j = 0;
-		while (cmd->args[i][j])
+		j = -1;
+		while (cmd->args[i][++j])
 		{
 			if (cmd->args[i][j] == '"')
 				continue ;
@@ -37,7 +35,6 @@ void	ms_echo(t_tools *tools, t_cmds *cmd)
 		if (cmd->args[i + 1])
 			write(1, " ", 1);
 	}
-	if (!trailing)
-		return ;
-	write(1, "\n", 1);
+	if (!flag)
+		write(1, "\n", 1);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: adupin <adupin@student.s19.be>             +#+  +:+       +#+         #
+#    By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/24 13:17:37 by alexphil          #+#    #+#              #
-#    Updated: 2023/10/27 14:42:35 by adupin           ###   ########.fr        #
+#    Updated: 2023/10/27 15:10:44 by alexphil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,7 @@ EXPANDER_FILES	=	expander.c
 EXECUTOR_FILES	=
 BUILTINS_FILES 	=	builtins.c \
 					export.c \
-					ms_echo.c
+					echo.c
 UTILS_FILES		=	xmalloc.c \
 					environ.c
 ERRORS_FILES	=	

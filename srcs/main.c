@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
+/*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 15:09:31 by adupin            #+#    #+#             */
-/*   Updated: 2023/10/27 14:36:22 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/10/27 14:40:06 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,8 @@ static void	signal_handler(int sig)
 
 int	main(int argc, char **argv, char **envp)
 {
-	//char	*line;
-	t_tools	tools;
-
+	char	*line;
+	
 	if (argc != 1)
 		return (1);
 	(void)argv;
@@ -53,16 +52,16 @@ int	main(int argc, char **argv, char **envp)
 		}
 		if (line && line[0])
 		{
-			add_history(g_line);
-			tools.lex_list = lexer(g_line);
-			if (tools.lex_list)
+			add_history(line);
+			g_tools.lex_list = lexer(line);
+			if (g_tools.lex_list)
 			{
 				// print_lex(tools.lex_list);
-				parser(&tools);
-				free_lex_chained(tools.lex_list);
+				parser(&g_tools);
+				free_lex_chained(g_tools.lex_list);
 			}
 		}
-		free(g_line);
+		free(line);
 		// free(line);
 		// printf("line = %s\n", line);
 	}

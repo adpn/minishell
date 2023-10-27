@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:08:51 by adupin            #+#    #+#             */
-/*   Updated: 2023/10/27 14:29:20 by adupin           ###   ########.fr       */
+/*   Updated: 2023/10/27 14:45:42 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,26 @@
 
 void	ft_echo(t_tools *tools, t_cmds *cmds)
 {
-	
+	(void)tools;
+	(void)cmds;
 }
 
 void	ft_cd(t_tools *tools, t_cmds *cmds)
 {
-
+	(void)tools;
+	(void)cmds;
 }
 
 void	ft_pwd(t_tools *tools, t_cmds *cmds)
 {
-
+	(void)tools;
+	(void)cmds;
 }
 
 void	ft_unset(t_tools *tools, t_cmds *cmds)
 {
-	
+	(void)tools;
+	(void)cmds;
 }
 
 void	ft_env(t_tools *tools, t_cmds *cmds)
@@ -37,6 +41,8 @@ void	ft_env(t_tools *tools, t_cmds *cmds)
 	extern char	**environ;
 	int	i;
 	
+	(void)tools;
+	(void)cmds;
 	if (cmds->args[1])
 	{
 		printf("env: %s: No such file or directory\n", cmds->args[1]);
@@ -53,11 +59,13 @@ void	ft_env(t_tools *tools, t_cmds *cmds)
 
 void	ft_exit(t_tools *tools, t_cmds *cmds)
 {
+	(void)tools;
+	(void)cmds;
 	printf("exit\n");
 	exit(0);
 }
 
-int	builtin(t_tools *tools, t_cmds *cmds)
+void	builtin(t_tools *tools, t_cmds *cmds)
 {
 	size_t	len;
 
@@ -76,6 +84,4 @@ int	builtin(t_tools *tools, t_cmds *cmds)
 		ft_env(tools, cmds);
 	else if (ft_strncmp(cmds->args[0], "exit", len))
 		ft_exit(tools, cmds);
-	else
-		return (0);
 }

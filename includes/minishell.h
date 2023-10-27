@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 13:29:21 by adupin            #+#    #+#             */
-/*   Updated: 2023/10/25 14:17:43 by adupin           ###   ########.fr       */
+/*   Updated: 2023/10/27 14:41:47 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # include <readline/history.h>
 
 # include "struct.h"
+typedef struct s_tools	t_tools;
 
 t_tools g_tools;
 

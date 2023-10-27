@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: adupin <adupin@student.s19.be>             +#+  +:+       +#+         #
+#    By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/24 13:17:37 by alexphil          #+#    #+#              #
-#    Updated: 2023/10/27 14:03:49 by adupin           ###   ########.fr        #
+#    Updated: 2023/10/27 14:34:58 by alexphil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,10 +50,8 @@ PARSER_FILES	=	parser.c \
 					print.c
 EXPANDER_FILES	=	expander.c
 EXECUTOR_FILES	=
-BUILTINS_FILES 	=	builtins.c \
-					export.c
-UTILS_FILES		=	xmalloc.c \
-					environ.c
+BUILTINS_FILES 	=
+UTILS_FILES		=	xmalloc.c
 ERRORS_FILES	=	
 
 # Defining the paths of the sources files 

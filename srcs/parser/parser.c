@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
+/*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:46:55 by alexphil          #+#    #+#             */
-/*   Updated: 2023/10/25 12:11:54 by adupin           ###   ########.fr       */
+/*   Updated: 2023/10/27 14:36:38 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,16 @@ void	syntax_check(t_tools *tools)
 
 void	parser(t_tools *tools)
 {
+	t_lex	*head;
+
+	head = tools->lex_list;
 	syntax_check(tools);
 	tools->pipes = count_pipes(tools->lex_list);
-	printf("Found %i pipes\n", tools->pipes);
 	tools->cmds = NULL;
 	while (tools->lex_list)
 		new_cmd(tools);
 	parser_display(tools);
+	tools->lex_list = head;
 }
+
+// Connect ms_echo to main and parser for testing it

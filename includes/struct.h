@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
+/*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 11:18:19 by adupin            #+#    #+#             */
-/*   Updated: 2023/10/27 14:28:12 by adupin           ###   ########.fr       */
+/*   Updated: 2023/10/27 14:35:53 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct s_lex
 typedef struct s_cmds
 {
 	char			**args;
-	int				(*builtin)(t_tools *, struct s_cmds *);
+	void			(*builtin)(t_tools *, struct s_cmds *);
 	int				nb_redirects;
 	t_lex			*redirects;
 	struct s_cmds	*next;

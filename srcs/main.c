@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 15:09:31 by adupin            #+#    #+#             */
-/*   Updated: 2023/10/27 16:39:35 by adupin           ###   ########.fr       */
+/*   Updated: 2023/11/01 11:57:16 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ int	main(int argc, char **argv, char **envp)
 		return (1);
 	(void)argv;
 	g_tools.envp = envp;
+	g_tools.pwd = ft_xstrdup(value_var_environ("PWD"));
+	g_tools.old_pwd = ft_xstrdup(value_var_environ("OLDPWD"));
 	signal(SIGINT, signal_handler);
 	signal(SIGQUIT, signal_handler);
 	while (1)

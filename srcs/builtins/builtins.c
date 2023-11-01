@@ -6,19 +6,11 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:08:51 by adupin            #+#    #+#             */
-/*   Updated: 2023/10/27 16:28:50 by adupin           ###   ########.fr       */
+/*   Updated: 2023/10/31 15:18:02 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
-
-void	ft_cd(t_tools *tools, t_cmds *cmds)
-{
-	(void)tools;
-	(void)cmds;
-
-	//Need to update PWD and OLD, in environ and in struct
-}
 
 void	ft_pwd(t_tools *tools, t_cmds *cmds)
 {

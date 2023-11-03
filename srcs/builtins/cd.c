@@ -6,16 +6,38 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:18:05 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/01 17:08:16 by adupin           ###   ########.fr       */
+/*   Updated: 2023/11/02 14:10:02 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
 
+char	*home_path(char *path)
+{
+	char	*home;
+	char	*new;
+
+	home = value_var_environ("HOME");
+	if (!home)
+	{
+		if (!path[0])
+			return (NULL);
+		return (ft_xstrdup(path));
+	}
+	if (!path || !path[0])
+		return (ft_xstrdup(path));
+	new = ft_strjoin(home, path);
+	if (!new)
+		return (NULL);
+	return (new);
+}
+
 void	update_pwd(t_tools *tools, char *new)
 {
 	char	*new_m;
-	
+
+	if (!new)
+		return ;
 	new_m = ft_xstrdup(new);
 	if (chdir(new_m) == -1)
 	{
@@ -38,7 +60,7 @@ char	*get_absolute_path(t_tools *tools, char *str)
 	int		i;
 	int		j;
 
-	path = ft_xmalloc(ft_strlen(str) * sizeof(char) + 1);
+	path = ft_xmalloc(ft_strlen(str) * sizeof(char) + 2);
 	i = 0;
 	j = 0;
 	while (str[i] && str[i] != '=')
@@ -50,7 +72,8 @@ char	*get_absolute_path(t_tools *tools, char *str)
 	path[j] = '\0';
 	if (path[0] == '~') 
 	{
-		new = ft_strjoin(value_var_environ("HOME"), path + 1); //handle case where HOME is unset
+		new = home_path(path + 1);
+		free(path);
 		return (new);
 	}
 	new = ft_strjoin(tools->pwd, path);
@@ -64,7 +87,7 @@ void	ft_cd(t_tools *tools, t_cmds *cmds)
 	
 	if (!cmds->args[1])
 	{
-		update_pwd(tools, "/");
+		update_pwd(tools, get_absolute_path(tools, "~"));
 		return ;
 	}
 	if (cmds->args[2])

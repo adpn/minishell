@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:08:51 by adupin            #+#    #+#             */
-/*   Updated: 2023/10/31 15:18:02 by adupin           ###   ########.fr       */
+/*   Updated: 2023/11/07 11:13:35 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,12 @@
 
 void	ft_pwd(t_tools *tools, t_cmds *cmds)
 {
+	char	pwd[4096];
+
+	(void)tools;
 	(void)cmds;
-	printf("%s\n", tools->pwd);
+	getcwd(pwd, 4096);
+	printf("%s\n", pwd);
 }
 
 void	ft_unset(t_tools *tools, t_cmds *cmds)

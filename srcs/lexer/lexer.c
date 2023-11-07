@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 13:29:30 by adupin            #+#    #+#             */
-/*   Updated: 2023/10/24 17:53:47 by adupin           ###   ########.fr       */
+/*   Updated: 2023/11/07 10:36:54 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	update_quotes(t_quotes *quotes, char c)
 {
-	if (c == '\'')
+	if (c == '\'' && !(quotes->double_q % 2))
 		quotes->simple_q++;
-	else if (c == '\"')
+	else if (c == '\"' && !(quotes->simple_q % 2))
 		quotes->double_q++;
 }
 

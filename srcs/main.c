@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 15:09:31 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/06 17:05:25 by adupin           ###   ########.fr       */
+/*   Updated: 2023/11/07 10:56:18 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,19 +55,19 @@ int	main(int argc, char **argv, char **envp)
 		}
 		if (line && line[0])
 		{
-			if (chdir(line) == -1)
-			{
-				printf("non\n");
-			}
-			// add_history(line);
-			// g_tools.lex_list = lexer(line);
-			// if (g_tools.lex_list)
+			// if (chdir(line) == -1)
 			// {
-			// 	// print_lex(tools.lex_list);
-			// 	parser(&g_tools);
-			// 	builtin(&g_tools, g_tools.cmds);
-			// 	free_lex_chained(g_tools.lex_list);
+			// 	printf("non\n");
 			// }
+			add_history(line);
+			g_tools.lex_list = lexer(line);
+			if (g_tools.lex_list)
+			{
+				// print_lex(tools.lex_list);
+				parser(&g_tools);
+				builtin(&g_tools, g_tools.cmds);
+				free_lex_chained(g_tools.lex_list);
+			}
 		}
 		free(line);
 		// free(line);

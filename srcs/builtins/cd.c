@@ -6,138 +6,80 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:18:05 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/07 10:34:48 by adupin           ###   ########.fr       */
+/*   Updated: 2023/11/07 11:32:33 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
 
-void	update_pwd(t_tools *tools, char *new, char *input)
+void	error_cd(char *home, char *new, char *pwd, int move)
 {
-	char	*new_m;
-
-	if (!new)
-		return ;
-	printf("new = %s\n", new);
-	if (chdir(new) == -1)
+	if (!home &&  move == 1)
+		ft_putendl_fd("bash: cd: HOME not set", 2);
+	else
 	{
 		ft_putstr_fd("bash: cd: ", 2);
-		ft_putstr_fd(input, 2);
+		if (move == 1)
+			ft_putstr_fd(home, 2);
+		ft_putstr_fd(new + move, 2);
 		ft_putstr_fd(": No such file or directory\n", 2);
+	}
+	if (move == 1)
+		chdir(pwd);
+}
+
+void	update_pwd(t_tools *tools, char *new)
+{
+	char	*home;
+	char	pwd[4096];
+
+	getcwd(pwd, 4096);
+	(void)tools;
+	home = value_var_environ("HOME");
+	if (!new || !ft_strncmp("~/", new, 2) || !ft_strncmp("~", new, ft_strlen(new)))
+	{
+		if (chdir(home) == -1)
+		{
+			error_cd(home, new, pwd, 1);
+			return ;
+		}
+		if (new && new[1] && new[2] && chdir(new + 2) == -1)
+		{
+			error_cd(home, new, pwd, 1);
+			return ;
+		}
+	}
+	else if (chdir(new) == -1)
+	{
+		error_cd(home, new, pwd, 0);
 		return ;
 	}
-	new_m = ft_xstrdup(new);
-	free(tools->old_pwd);
-	tools->old_pwd = tools->pwd;
-	replace_element_to_environ("OLDPWD", tools->old_pwd);
-	replace_element_to_environ("PWD", new_m);
-	tools->pwd = new_m;
+	replace_element_to_environ("OLDPWD", pwd);
+	getcwd(pwd, 4096);
+	replace_element_to_environ("PWD", pwd);
 }
-// char	*pp_to_str(char **tab, char *c)
-// {
-// 	char *str;
-// 	int	size;
-// 	int	i;
-
-// 	i = 0;
-// 	size = 0;
-// 	while (tab[i])
-// 	{
-// 		size += ft_strlen(tab[i]) + 1;
-// 		i++;
-// 	}
-// 	str = ft_xmalloc(sizeof(char) * size + 1);
-// 	i = 0;
-// 	while (tab[i])
-// 	{
-// 		printf("tab = %s\n",tab[i]);
-// 		ft_strlcat(str, tab[i], size + 1);
-// 		ft_strlcat(str, c, size + 1);
-// 		free(tab[i]);
-// 		i++;
-// 	}
-// 	free(tab);
-// 	str[size - 1] = '\0';
-// 	return (str);
-// }
-
-// void	remove_back(char **tab)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (tab[i])
-// 	{
-// 		if (!ft_strncmp("..", tab[i], ft_strlen(tab[i])))
-// 		{
-// 			free(tab[i]);
-// 			free(tab[i - 1]);
-// 			tab[i - 1] = NULL;
-// 			ft_ppcpy(&tab[i - 1], &tab[i + 1]);			
-// 		}
-// 		else
-// 			i++;
-// 	}	
-// }
-// char	*get_absolute_path(char *input, t_tools *tools)
-// {
-// 	char	*path;
-// 	char	**tmp;
-// 	char	**s_input;
-// 	char	**absolute;
-
-// 	if (input[0] == '~')
-// 	{
-// 		if (value_var_environ("HOME"))
-// 			tmp = ft_split(value_var_environ("HOME"), '/');
-// 		else
-// 			tmp = ft_xmalloc(sizeof(char));
-// 	}
-// 	else
-// 		tmp = ft_split(tools->pwd, '/');
-// 	if (!tmp)
-// 		return (NULL);
-// 	s_input = ft_split(input, '/');
-// 	if (!s_input)
-// 		return (NULL);
-// 	absolute = ft_xmalloc((ft_pplen(tmp) + ft_pplen(s_input) + 1) * sizeof(char *));
-// 	absolute[0] = NULL;
-// 	ft_ppcat(absolute, tmp);
-// 	ft_ppcat(absolute, s_input);
-// 	printf("absolute = %s\n", absolute[0]);
-// 	free(tmp);
-// 	free(s_input);
-// 	remove_back(absolute);
-// 	printf("absolute2 = %s\n", absolute[0]);
-// 	path = pp_to_str(absolute, "/");
-// 	printf("path = %s\n", path);
-// 	return (path);
-// }
 
 void	ft_cd(t_tools *tools, t_cmds *cmds)
 {
-	char	*path;
 	//CHDIR GERE .. TOUT SEUL ET LES CHEMINS RELATIFS
 	
-	if (cmds->args[2])
+	if (cmds->args[1] && cmds->args[2])
 	{
 		ft_putstr_fd("bash: cd: too many arguments\n", 2);
 		return ;
 	}
-	if (!ft_strncmp(cmds->args[1], "-", ft_strlen(cmds->args[1])))
+	if (cmds->args[1] && !ft_strncmp(cmds->args[1], "-", ft_strlen(cmds->args[1])))
 	{
 		if (!value_var_environ("OLDPWD"))
 		{
 			ft_putstr_fd("bash: cd: OLDPWD not set\n", 2);
 			return ;
 		}
-		update_pwd(tools, value_var_environ("OLDPWD"), NULL);
+		update_pwd(tools, value_var_environ("OLDPWD"));
 		ft_putendl_fd(tools->pwd, 1);
 	}
 	else
 	{
-		path = get_absolute_path(cmds->args[1], tools);
-		update_pwd(tools, path, cmds->args[1]);
-		free(path);
+		update_pwd(tools, cmds->args[1]);
 	}
 }

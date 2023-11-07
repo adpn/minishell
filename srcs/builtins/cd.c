@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:18:05 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/07 11:32:33 by adupin           ###   ########.fr       */
+/*   Updated: 2023/11/07 13:34:57 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	update_pwd(t_tools *tools, char *new)
 
 void	ft_cd(t_tools *tools, t_cmds *cmds)
 {
+	char	*old;
 	//CHDIR GERE .. TOUT SEUL ET LES CHEMINS RELATIFS
 	
 	if (cmds->args[1] && cmds->args[2])
@@ -70,13 +71,14 @@ void	ft_cd(t_tools *tools, t_cmds *cmds)
 	}
 	if (cmds->args[1] && !ft_strncmp(cmds->args[1], "-", ft_strlen(cmds->args[1])))
 	{
-		if (!value_var_environ("OLDPWD"))
+		old = value_var_environ("OLDPWD");
+		if (!old)
 		{
 			ft_putstr_fd("bash: cd: OLDPWD not set\n", 2);
 			return ;
 		}
-		update_pwd(tools, value_var_environ("OLDPWD"));
-		ft_putendl_fd(tools->pwd, 1);
+		update_pwd(tools, old);
+		ft_putendl_fd(old, 1);
 	}
 	else
 	{

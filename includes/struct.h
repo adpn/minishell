@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 11:18:19 by adupin            #+#    #+#             */
-/*   Updated: 2023/10/27 16:09:59 by adupin           ###   ########.fr       */
+/*   Updated: 2023/11/07 11:39:34 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,6 @@ typedef struct s_tools
 	char			**envp;
 	struct s_cmds	*cmds;
 	t_lex			*lex_list;
-	char			*pwd;
-	char			*old_pwd;
 	int				pipes;
 	int				*pid;
 	bool			heredoc;

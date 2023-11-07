@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:08:51 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/07 11:13:35 by adupin           ###   ########.fr       */
+/*   Updated: 2023/11/07 15:39:48 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,12 @@ void	ft_unset(t_tools *tools, t_cmds *cmds)
 {
 	extern char **environ;
 	int			i;
-	int			j;
 
 	(void)tools;
 	i = 1;
 	while (cmds->args[i])
 	{
-		j = index_element_environ(cmds->args[i]);
-		if (j != -1)
-			ft_bzero(environ[j], ft_strlen(environ[j]));
+		delete_var_environ(cmds->args[i]);
 		i++;
 	}
 }

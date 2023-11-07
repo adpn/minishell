@@ -6,11 +6,60 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 11:16:57 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/06 15:27:58 by adupin           ###   ########.fr       */
+/*   Updated: 2023/11/07 15:47:09 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
+
+int	index_min_value(char **tab, int len) 
+{
+	int		i;
+	char	*min_value;
+	int		min_index;
+	
+	i = 0;
+	min_value = NULL;
+	min_index = -1;
+	while (i < len)
+	{
+		if (!min_value && tab[i])
+		{
+			min_value = tab[i];
+			min_index = i;
+		}
+		else if (tab[i] && tab[min_index] && ft_strncmp(tab[min_index], tab[i], ft_strlen(tab[min_index])) > 0)
+			min_index = i;
+		i++;
+	}
+	return(min_index);	
+}
+
+void	print_in_alphabet_order(void)
+{
+	int		min_index;
+	extern char **environ;
+	char	**cpy_environ;
+	int	len;
+	
+	cpy_environ = array_copy(environ);
+	len = ft_array_len(cpy_environ);
+	while (1)
+	{
+		min_index = index_min_value(cpy_environ, len);
+		if (min_index != -1 && cpy_environ[min_index])
+		{
+			ft_putstr_fd("declare -x ", 1);
+			ft_putstr_fd(cpy_environ[min_index], 1);
+			ft_putstr_fd("\n", 1);
+			free(cpy_environ[min_index]);
+			cpy_environ[min_index] = NULL;
+		}
+		else
+			break ;
+	}
+	free(cpy_environ);
+}
 
 void	push_var_to_environ(t_var_env *var_env)
 {
@@ -65,7 +114,7 @@ static char	*get_name(char *str)
 		i++;
 	}
 	name[j] = '\0';
-	if (ft_isdigit(name[0]))
+	if (ft_isdigit(name[0]) || !name[0])
 		return (free(name), NULL);
 	return (name);
 }
@@ -77,7 +126,7 @@ void	ft_export(t_tools *tools, t_cmds *cmds)
 
 	if (!cmds->args[1])
 	{
-		//print blabla 
+		print_in_alphabet_order();
 		return ;
 	}	
 	i = 1;
@@ -87,11 +136,13 @@ void	ft_export(t_tools *tools, t_cmds *cmds)
 		if (!var_env.name)
 		{
 			tools->error_code = 1;
+			ft_putstr_fd("bash: export: \'", 2);
+			ft_putstr_fd(cmds->args[i], 2);
+			ft_putstr_fd("\': not a valid identifier\n", 2);
 			//print not a valid identifier
 			return ;
 		}
 		var_env.value = get_value(ft_strchr(cmds->args[i], '='));
-		printf("IN EXPORT %s\n", var_env.value);
 		push_var_to_environ(&var_env);
 		free(var_env.name);
 		free(var_env.value);

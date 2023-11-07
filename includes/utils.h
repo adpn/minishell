@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 10:38:25 by alexphil          #+#    #+#             */
-/*   Updated: 2023/11/07 11:38:01 by adupin           ###   ########.fr       */
+/*   Updated: 2023/11/07 15:33:15 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,8 @@ int		index_element_environ(char *name);
 void	add_element_to_environ(char *name, char *value);
 void	replace_element_to_environ(char *name, char *value);
 char	*value_var_environ(char *name);
+void	delete_var_environ(char *name);
 
+int	ft_array_len(char **array);
+char	**array_copy(char **tab);
 #endif

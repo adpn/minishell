@@ -6,21 +6,11 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 10:26:04 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/07 11:08:58 by adupin           ###   ########.fr       */
+/*   Updated: 2023/11/07 15:50:19 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
-
-int	ft_array_len(char **array)
-{
-	int	i;
-
-	i = 0;
-	while (array[i])
-		i++;
-	return (i);
-}
 
 int	index_element_environ(char *name)
 {
@@ -73,7 +63,6 @@ void	add_element_to_environ(char *name, char *value)
 	int	len_array;
 	
 	i = 0;
-	printf("%s %s\n", name, value);
 	len_array = ft_array_len(environ);
 	new = ft_xmalloc(sizeof(char *) * (len_array + 2));
 	while (i < len_array)
@@ -104,3 +93,21 @@ void	replace_element_to_environ(char *name, char *value)
 	environ[i] = create_element(name, value);
 }
 
+void	delete_var_environ(char *name)
+{
+	extern char **environ;
+	int	i;
+	int	len_array;
+	
+	i = index_element_environ(name);
+	if (i == -1)
+		return ;
+	len_array = ft_array_len(environ);
+	//free(environ[i]);
+	while (i < len_array - 1)
+	{
+		environ[i] = environ[i + 1];
+		i++;
+	}
+	environ[i] = NULL;
+}

@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:08:51 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/07 15:39:48 by adupin           ###   ########.fr       */
+/*   Updated: 2023/11/08 12:35:42 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,13 @@ void	ft_env(t_tools *tools, t_cmds *cmds)
 	if (cmds->args[1])
 	{
 		printf("env: %s: No such file or directory\n", cmds->args[1]);
-		// NEED ERROR CODE
+		tools->error_code = 127; //127 normalement
 		return ;
 	}
 	i = 0;
 	while (environ[i])
 	{
-		if(environ[i][0])
+		if (environ[i][0])
 			printf("%s\n", environ[i]);
 		i++;
 	}

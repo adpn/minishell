@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:18:05 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/07 13:34:57 by adupin           ###   ########.fr       */
+/*   Updated: 2023/11/08 14:17:48 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ void	update_pwd(t_tools *tools, char *new)
 		error_cd(home, new, pwd, 0);
 		return ;
 	}
-	replace_element_to_environ("OLDPWD", pwd);
+	replace_element_to_environ("OLDPWD", pwd); //maybe remove the create if not exist, need to check in bash
 	getcwd(pwd, 4096);
-	replace_element_to_environ("PWD", pwd);
+	replace_element_to_environ("PWD", pwd); //same than above
 }
 
 void	ft_cd(t_tools *tools, t_cmds *cmds)

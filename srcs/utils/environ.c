@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 10:26:04 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/07 15:50:19 by adupin           ###   ########.fr       */
+/*   Updated: 2023/11/08 14:10:45 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 int	index_element_environ(char *name)
 {
 	extern char	**environ;
-	int		i;
-	int		len;
+	int			i;
+	int			len;
 
 	i = 0;
 	len = ft_strlen(name);
@@ -29,11 +29,11 @@ int	index_element_environ(char *name)
 	return (-1);
 }
 
-char *value_var_environ(char *name)
+char	*value_var_environ(char *name)
 {
 	extern char	**environ;
-	int		i;
-	int		len;
+	int			i;
+	int			len;
 
 	i = index_element_environ(name);
 	if (i == -1)
@@ -44,7 +44,7 @@ char *value_var_environ(char *name)
 
 static char	*create_element(char *name, char *value)
 {
-	int	len_element;
+	int		len_element;
 	char	*new;
 
 	len_element = ft_strlen(name) + ft_strlen(value) + 2;
@@ -57,11 +57,11 @@ static char	*create_element(char *name, char *value)
 
 void	add_element_to_environ(char *name, char *value)
 {
-	extern char **environ;
-	char **new;
-	int	i;
-	int	len_array;
-	
+	extern char	**environ;
+	char		**new;
+	int			i;
+	int			len_array;
+
 	i = 0;
 	len_array = ft_array_len(environ);
 	new = ft_xmalloc(sizeof(char *) * (len_array + 2));
@@ -78,10 +78,10 @@ void	add_element_to_environ(char *name, char *value)
 
 void	replace_element_to_environ(char *name, char *value)
 {
-	extern char **environ;
-	int	i;
-	int	len_element;
-	
+	extern char	**environ;
+	int			i;
+	int			len_element;
+
 	i = index_element_environ(name);
 	if (i == -1)
 	{
@@ -95,10 +95,10 @@ void	replace_element_to_environ(char *name, char *value)
 
 void	delete_var_environ(char *name)
 {
-	extern char **environ;
-	int	i;
-	int	len_array;
-	
+	extern char	**environ;
+	int			i;
+	int			len_array;
+
 	i = index_element_environ(name);
 	if (i == -1)
 		return ;

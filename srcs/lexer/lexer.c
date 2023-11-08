@@ -6,19 +6,11 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 13:29:30 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/07 10:36:54 by adupin           ###   ########.fr       */
+/*   Updated: 2023/11/08 10:48:28 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
-
-void	update_quotes(t_quotes *quotes, char c)
-{
-	if (c == '\'' && !(quotes->double_q % 2))
-		quotes->simple_q++;
-	else if (c == '\"' && !(quotes->simple_q % 2))
-		quotes->double_q++;
-}
 
 void	init_variables(int *i, int *ib, t_lex **lex, t_quotes *quotes)
 {

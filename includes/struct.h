@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 11:18:19 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/07 11:39:34 by adupin           ###   ########.fr       */
+/*   Updated: 2023/11/08 10:46:07 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,11 @@ typedef struct s_tools
 	bool			reset;
 	int				error_code;
 }	t_tools;
+
+typedef struct s_quotes
+{
+	int		simple_q;
+	int		double_q;
+}	t_quotes;
 
 #endif

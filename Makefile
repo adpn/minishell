@@ -6,7 +6,7 @@
 #    By: adupin <adupin@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/24 13:17:37 by alexphil          #+#    #+#              #
-#    Updated: 2023/11/07 15:29:50 by adupin           ###   ########.fr        #
+#    Updated: 2023/11/08 10:58:46 by adupin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,7 +56,8 @@ BUILTINS_FILES 	=	builtins.c \
 					cd.c
 UTILS_FILES		=	xmalloc.c \
 					environ.c \
-					array.c
+					array.c \
+					quotes.c
 ERRORS_FILES	=	
 
 # Defining the paths of the sources files 

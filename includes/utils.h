@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 10:38:25 by alexphil          #+#    #+#             */
-/*   Updated: 2023/11/07 15:33:15 by adupin           ###   ########.fr       */
+/*   Updated: 2023/11/08 10:48:50 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,7 @@ void	delete_var_environ(char *name);
 
 int	ft_array_len(char **array);
 char	**array_copy(char **tab);
+
+bool is_inside_quotes(t_quotes *quotes);
+void	update_quotes(t_quotes *quotes, char c);
 #endif

@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expander.h                                         :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/26 16:02:10 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/09 11:14:11 by adupin           ###   ########.fr       */
+/*   Created: 2023/11/09 11:20:29 by adupin            #+#    #+#             */
+/*   Updated: 2023/11/09 11:21:00 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXPANDER_H
-# define EXPANDER_H
+#include "utils.h"
 
-# include "minishell.h"
-# include "utils.h"
-
-char	*get_var_name(char *str);
-char	*complete_string(char *str);
-int		expand(char **str);
-
-#endif
+bool	ft_in_charset(char c, char *charset)
+{
+	int	i;
+	
+	i = 0;
+	while (charset[i])
+	{
+		if (c == charset[i])
+			return (true);
+		i++;
+	}
+	return (false);
+}

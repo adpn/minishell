@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 11:37:06 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/08 10:58:21 by adupin           ###   ########.fr       */
+/*   Updated: 2023/11/09 11:25:07 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ char	*get_var_name(char *str)
 	char	*name;
 
 	i = 1;
-	while (str[i] && str[i] != '$' && str[i] != ' ' && str[i] != '\t')
+
+	while (str[i] && !ft_in_charset(str[i], "$ \t\'\""))
 		i++;
 	if (str[1] && str[1] == '?')
 		name = ft_xstrdup("?");
@@ -96,10 +97,7 @@ char	*complete_string(char *str)
 }
 //Return 1 if success, 0 if malloc failed
 int	expand(char **str)
-{
-	extern char **environ;
-	//need to use it
-	
+{	
 	int	i;
 
 	i = 0;

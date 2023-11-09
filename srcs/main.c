@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 15:09:31 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/07 11:50:09 by adupin           ###   ########.fr       */
+/*   Updated: 2023/11/09 11:15:44 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "lexer.h"
 #include "parser.h"
 #include "builtins.h"
+#include "expander.h"
 
 static void	signal_handler(int sig)
 {
@@ -63,6 +64,7 @@ int	main(int argc, char **argv, char **envp)
 			{
 				// print_lex(tools.lex_list);
 				parser(&g_tools);
+				expand(g_tools.cmds->args);
 				builtin(&g_tools, g_tools.cmds);
 				free_lex_chained(g_tools.lex_list);
 			}

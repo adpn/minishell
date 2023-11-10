@@ -1,21 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   executor.h                                         :+:      :+:    :+:   */
+/*   handle_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/26 16:02:22 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/09 11:02:41 by alexphil         ###   ########.fr       */
+/*   Created: 2023/11/09 11:12:58 by alexphil          #+#    #+#             */
+/*   Updated: 2023/11/10 10:58:55 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXECUTOR_H
-# define EXECUTOR_H
-
-# include "minishell.h"
-# include "expander.h"
-# include "struct.h"
-# include "utils.h"
-
-#endif
+void	handle_cmd(void)
+{
+	;
+}

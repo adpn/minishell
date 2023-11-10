@@ -6,7 +6,7 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:59:54 by alexphil          #+#    #+#             */
-/*   Updated: 2023/10/26 14:11:04 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/11/10 10:15:20 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	add_redirect(t_cmds *cmd, t_lex *redirect)
 	redirect->next = NULL;
 }
 
-void	new_redirect(t_tools *tools, t_cmds *cmd)
+void	get_redirect(t_tools *tools, t_cmds *cmd)
 {
 	t_lex	*node;
 
@@ -45,12 +45,4 @@ void	new_redirect(t_tools *tools, t_cmds *cmd)
 	while (tools->lex_list && tools->lex_list->operator == WORD)
 		tools->lex_list = tools->lex_list->next;
 	add_redirect(cmd, node);
-}
-
-void	get_redirects(t_tools *tools, t_cmds *cmd)
-{
-	if (tools->lex_list->operator == HEREDOC)
-		tools->heredoc = true;
-	else
-		new_redirect(tools, cmd);
 }

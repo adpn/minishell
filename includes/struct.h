@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
+/*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 11:18:19 by adupin            #+#    #+#             */
-/*   Updated: 2023/10/27 14:41:43 by adupin           ###   ########.fr       */
+/*   Updated: 2023/11/10 10:17:44 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_cmds
 	char			**args;
 	void			(*builtin)(t_tools *, struct s_cmds *);
 	int				nb_redirects;
+	char			*hd_file_name;
 	t_lex			*redirects;
 	struct s_cmds	*next;
 	struct s_cmds	*prev;
@@ -56,11 +57,11 @@ typedef struct s_tools
 	char			**envp;
 	struct s_cmds	*cmds;
 	t_lex			*lex_list;
-	char			*pwd;
-	char			*old_pwd;
 	int				pipes;
 	int				*pid;
 	bool			heredoc;
+	int				stop_heredoc;
+	int				in_heredoc;
 	bool			reset;
 	int				error_code;
 }	t_tools;

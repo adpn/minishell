@@ -6,7 +6,7 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:59:34 by alexphil          #+#    #+#             */
-/*   Updated: 2023/10/27 15:11:19 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/11/10 10:14:51 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,6 @@ void	new_cmd(t_tools *tools)
 	}
 	cmd->args[i] = NULL;
 	while (tools->lex_list && tools->lex_list->operator != PIPE)
-		get_redirects(tools, cmd);
+		get_redirect(tools, cmd);
 	add_cmd(tools, cmd);
 }

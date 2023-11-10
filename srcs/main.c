@@ -6,7 +6,7 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 15:09:31 by adupin            #+#    #+#             */
-/*   Updated: 2023/10/27 15:11:25 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/11/09 11:28:46 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ int	main(int argc, char **argv, char **envp)
 			g_tools.lex_list = lexer(line);
 			if (g_tools.lex_list)
 			{
-				// print_lex(tools.lex_list);
+				print_lex(g_tools.lex_list);
 				parser(&g_tools);
-				ms_echo(&g_tools, g_tools.cmds); // TESTING MS_ECHO 
+				// ms_echo(&g_tools, g_tools.cmds); // TESTING MS_ECHO 
 				free_lex_chained(g_tools.lex_list);
 			}
 		}

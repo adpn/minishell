@@ -6,7 +6,7 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:47:46 by alexphil          #+#    #+#             */
-/*   Updated: 2023/10/27 14:28:27 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/11/09 11:53:23 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,18 @@ void	redirects_display(t_lex	*redirects)
 	{
 		printf("Redirect #%i:\n", i++);
 		printf("Type: ");
-		if (redirects->operator == R_APP)
+		if (redirects->operator == HEREDOC)
+			printf("HEREDOC\n");
+		else if (redirects->operator == R_APP)
 			printf("APPEND\n");
 		else if (redirects->operator == R_INPUT)
 			printf("INPUT\n");
 		else if (redirects->operator == R_OUTPUT)
 			printf("OUTPUT\n");
-		printf("File: %s\n", redirects->word);
+		if (redirects->operator == HEREDOC)
+			printf("Delimiter: %s\n", redirects->word);
+		else
+			printf("File: %s\n", redirects->word);
 		if (redirects->next)
 			printf("\n");
 		redirects = redirects->next;

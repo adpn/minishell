@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:08:51 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/08 12:35:42 by adupin           ###   ########.fr       */
+/*   Updated: 2023/11/17 14:29:00 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_pwd(t_tools *tools, t_cmds *cmds)
 
 void	ft_unset(t_tools *tools, t_cmds *cmds)
 {
-	extern char **environ;
+	extern char	**environ;
 	int			i;
 
 	(void)tools;
@@ -39,9 +39,8 @@ void	ft_unset(t_tools *tools, t_cmds *cmds)
 void	ft_env(t_tools *tools, t_cmds *cmds)
 {
 	extern char	**environ;
-	int	i;
-	
-	(void)tools;
+	int			i;
+
 	(void)cmds;
 	if (cmds->args[1])
 	{
@@ -62,7 +61,7 @@ void	ft_exit(t_tools *tools, t_cmds *cmds)
 {
 	(void)tools;
 	(void)cmds;
-	printf("exit\n");
+	ft_putendl_fd("exit", 2);
 	exit(0);
 }
 
@@ -72,7 +71,7 @@ void	builtin(t_tools *tools, t_cmds *cmds)
 
 	len = ft_strlen(cmds->args[0]);
 	if (!ft_strncmp(cmds->args[0], "echo", len))
-		ms_echo(tools, cmds);
+		ft_echo(tools, cmds);
 	else if (!ft_strncmp(cmds->args[0], "cd", len))
 		ft_cd(tools, cmds);
 	else if (!ft_strncmp(cmds->args[0], "pwd", len))

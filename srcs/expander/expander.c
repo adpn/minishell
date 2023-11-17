@@ -6,62 +6,25 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 11:37:06 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/09 11:25:07 by adupin           ###   ########.fr       */
+/*   Updated: 2023/11/17 16:17:25 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "expander.h"
 
-char	*get_dollar(char *str)
+char	*copy_new_string(char *str, char *name, char *value, char *dol)
 {
-	t_quotes quotes;
-	int	i;
+	char	*new;
 
-	quotes.double_q = 0;
-	quotes.simple_q = 0;
-	i = -1;
-	while (str[++i])
-	{
-		update_quotes(&quotes, str[i]);
-		if (str[i] == ('$') && !(quotes.simple_q % 2))
-			return (&((char *)str)[i]);
-	}
-	return (0);
+	new = ft_xmalloc(ft_strlen(str) - ft_strlen(name) + ft_strlen(value) + 1);
+	ft_strlcpy(new, str, (dol - str) + 1);
+	ft_strlcat(new, value, ft_strlen(new) + ft_strlen(value) + 1);
+	ft_strlcat(new, &str[(dol - str) + ft_strlen(name) + 1],
+		ft_strlen(new) + ft_strlen(&str[(dol - str) + ft_strlen(name)]) + 1);
+	return (new);
 }
 
-int	get_index(char *str, char c)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == c)
-			return (i);
-		i++;
-	}
-	return (-1);
-}
-/* Get variable name to expand: starting with $*/
-char	*get_var_name(char *str)
-{
-	int		i;
-	char	*name;
-
-	i = 1;
-
-	while (str[i] && !ft_in_charset(str[i], "$ \t\'\""))
-		i++;
-	if (str[1] && str[1] == '?')
-		name = ft_xstrdup("?");
-	else
-		name = ft_substr(str, 1, i - 1);
-	if (!name)
-		return (NULL);
-	return (name);
-}
-
-char	*complete_string(char *str)
+char	*complete_string(char *str, t_tools *tools)
 {
 	char	*new;
 	char	*value;
@@ -74,30 +37,22 @@ char	*complete_string(char *str)
 		name = get_var_name(dol);
 		if (!name)
 			return (NULL);
-		if (ft_strncmp("?", name, ft_strlen(name)) == 0) // TO CHECK, $? with anything behind is supposed to work
-		{
-			value = NULL;
-			printf("Hello need exit status here\n");
-		}
-		else
-			value = value_var_environ(name);
+		value = get_value(name, tools);
 		if (!value)
-			value = "";
-		new = ft_xmalloc(ft_strlen(str) - ft_strlen(name) + ft_strlen(value) + 1);
-		// if (!new)
-		// 	return (free(name), NULL);
-		ft_strlcpy(new, str, (dol - str) + 1);
-		ft_strlcat(new, value, ft_strlen(new) + ft_strlen(value) + 1);
-		ft_strlcat(new, &str[(dol - str) + ft_strlen(name) + 1], ft_strlen(new) + ft_strlen(&str[(dol - str) + ft_strlen(name)]) + 1);
+			return (NULL);
+		new = copy_new_string(str, name, value, dol);
+		if (name[0] == '?')
+			free(value);
 		free(str);
 		free(name);
 		str = new;
 	}
-	return(str);
+	return (str);
 }
+
 //Return 1 if success, 0 if malloc failed
-int	expand(char **str)
-{	
+int	expand(char **str, t_tools *tools)
+{
 	int	i;
 
 	i = 0;
@@ -105,7 +60,7 @@ int	expand(char **str)
 	{
 		if (get_dollar(str[i]))
 		{
-			str[i] = complete_string(str[i]);
+			str[i] = complete_string(str[i], tools);
 			if (!str[i])
 				return (0);
 		}

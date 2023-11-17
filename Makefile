@@ -6,7 +6,7 @@
 #    By: adupin <adupin@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/24 13:17:37 by alexphil          #+#    #+#              #
-#    Updated: 2023/11/09 11:22:47 by adupin           ###   ########.fr        #
+#    Updated: 2023/11/17 16:22:00 by adupin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,8 @@ PARSER_FILES	=	parser.c \
 					cmds.c \
 					redirects.c \
 					print.c
-EXPANDER_FILES	=	expander.c
+EXPANDER_FILES	=	expander.c \
+					expand_get.c
 EXECUTOR_FILES	=
 BUILTINS_FILES 	=	builtins.c \
 					export.c \
@@ -56,6 +57,7 @@ BUILTINS_FILES 	=	builtins.c \
 					cd.c
 UTILS_FILES		=	xmalloc.c \
 					environ.c \
+					change_environ.c \
 					array.c \
 					quotes.c \
 					utils.c

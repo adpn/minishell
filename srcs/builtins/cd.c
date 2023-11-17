@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:18:05 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/08 14:17:48 by adupin           ###   ########.fr       */
+/*   Updated: 2023/11/17 14:43:10 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	error_cd(char *home, char *new, char *pwd, int move)
 {
-	if (!home &&  move == 1)
-		ft_putendl_fd("bash: cd: HOME not set", 2);
+	if (!home && move == 1)
+		ft_print_error("cd", ": HOME not set", "\n");
 	else
 	{
-		ft_putstr_fd("bash: cd: ", 2);
+		ft_print_error("cd: ", "", "");
 		if (move == 1)
 			ft_putstr_fd(home, 2);
 		ft_putstr_fd(new + move, 2);
@@ -54,27 +54,28 @@ void	update_pwd(t_tools *tools, char *new)
 		error_cd(home, new, pwd, 0);
 		return ;
 	}
-	replace_element_to_environ("OLDPWD", pwd); //maybe remove the create if not exist, need to check in bash
+	replace_element_to_environ("OLDPWD", pwd);
 	getcwd(pwd, 4096);
-	replace_element_to_environ("PWD", pwd); //same than above
+	replace_element_to_environ("PWD", pwd);
 }
 
 void	ft_cd(t_tools *tools, t_cmds *cmds)
 {
 	char	*old;
-	//CHDIR GERE .. TOUT SEUL ET LES CHEMINS RELATIFS
-	
+
 	if (cmds->args[1] && cmds->args[2])
 	{
-		ft_putstr_fd("bash: cd: too many arguments\n", 2);
+		tools->error_code = 1;
+		ft_print_error("cd: ", "too many arguments", "\n");
 		return ;
 	}
-	if (cmds->args[1] && !ft_strncmp(cmds->args[1], "-", ft_strlen(cmds->args[1])))
+	if (cmds->args[1] && cmds->args[1][0] == '-' && !cmds->args[1][1])
 	{
 		old = value_var_environ("OLDPWD");
 		if (!old)
 		{
-			ft_putstr_fd("bash: cd: OLDPWD not set\n", 2);
+			tools->error_code = 1;
+			ft_print_error("cd: ", "OLDPWD not set", "\n");
 			return ;
 		}
 		update_pwd(tools, old);

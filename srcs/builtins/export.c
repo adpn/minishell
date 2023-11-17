@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 11:16:57 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/07 15:47:09 by adupin           ###   ########.fr       */
+/*   Updated: 2023/11/17 14:35:46 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	index_min_value(char **tab, int len)
 	int		i;
 	char	*min_value;
 	int		min_index;
-	
+
 	i = 0;
 	min_value = NULL;
 	min_index = -1;
@@ -37,11 +37,11 @@ int	index_min_value(char **tab, int len)
 
 void	print_in_alphabet_order(void)
 {
-	int		min_index;
-	extern char **environ;
-	char	**cpy_environ;
-	int	len;
-	
+	int			min_index;
+	extern char	**environ;
+	char		**cpy_environ;
+	int			len;
+
 	cpy_environ = array_copy(environ);
 	len = ft_array_len(cpy_environ);
 	while (1)
@@ -50,8 +50,7 @@ void	print_in_alphabet_order(void)
 		if (min_index != -1 && cpy_environ[min_index])
 		{
 			ft_putstr_fd("declare -x ", 1);
-			ft_putstr_fd(cpy_environ[min_index], 1);
-			ft_putstr_fd("\n", 1);
+			ft_putendl_fd(cpy_environ[min_index], 1);
 			free(cpy_environ[min_index]);
 			cpy_environ[min_index] = NULL;
 		}
@@ -67,11 +66,16 @@ void	push_var_to_environ(t_var_env *var_env)
 
 	value = var_env->value;
 	if (!value)
-		value = "";
+	{
+		free(var_env->name);
+		return ;
+	}
 	if (index_element_environ(var_env->name) == -1)
 		add_element_to_environ(var_env->name, value);
 	else
 		replace_element_to_environ(var_env->name, value);
+	free(var_env->name);
+	free(var_env->value);
 }
 
 static char	*get_value(char *str)
@@ -79,7 +83,7 @@ static char	*get_value(char *str)
 	char	*value;
 	int		i;
 	int		j;
-	
+
 	if (!str || !str[0])
 		return (NULL);
 	str = str + 1;
@@ -101,7 +105,7 @@ static char	*get_name(char *str)
 	char	*name;
 	int		i;
 	int		j;
-	
+
 	name = ft_xmalloc(ft_strlen(str) * sizeof (char) + 1);
 	i = 0;
 	j = 0;
@@ -128,7 +132,7 @@ void	ft_export(t_tools *tools, t_cmds *cmds)
 	{
 		print_in_alphabet_order();
 		return ;
-	}	
+	}
 	i = 1;
 	while (cmds->args[i])
 	{
@@ -136,16 +140,12 @@ void	ft_export(t_tools *tools, t_cmds *cmds)
 		if (!var_env.name)
 		{
 			tools->error_code = 1;
-			ft_putstr_fd("bash: export: \'", 2);
-			ft_putstr_fd(cmds->args[i], 2);
-			ft_putstr_fd("\': not a valid identifier\n", 2);
-			//print not a valid identifier
+			ft_print_error("export: `",
+				cmds->args[i], "': not a valid identifier\n");
 			return ;
 		}
 		var_env.value = get_value(ft_strchr(cmds->args[i], '='));
 		push_var_to_environ(&var_env);
-		free(var_env.name);
-		free(var_env.value);
 		i++;
 	}
 }

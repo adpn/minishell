@@ -6,7 +6,7 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 12:24:45 by alexphil          #+#    #+#             */
-/*   Updated: 2023/11/10 11:08:26 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/11/16 15:13:30 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,10 @@ void	get_heredoc(t_tools *tools, t_cmds *cmd)
 	{
 		if (cmd->redirects->operator == HEREDOC)
 		{
-			if (cmd->hd_file_name)
-				free(cmd->hd_file_name);
-			cmd->hd_file_name = gen_hd_file_name();
-			sl = heredoc(tools, cmd->redirects, cmd->hd_file_name);
+			if (cmd->hd_filename)
+				free(cmd->hd_filename);
+			cmd->hd_filename = gen_hd_filename();
+			sl = heredoc(tools, cmd->redirects, cmd->hd_filename);
 			if (sl)
 			{
 				tools->error_code = 1;

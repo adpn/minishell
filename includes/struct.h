@@ -6,7 +6,7 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 11:18:19 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/10 10:17:44 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/11/16 15:49:57 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ typedef struct s_lex
 typedef struct s_cmds
 {
 	char			**args;
-	void			(*builtin)(t_tools *, struct s_cmds *);
+	int				(*builtin)(t_tools *, struct s_cmds *);
 	int				nb_redirects;
-	char			*hd_file_name;
+	char			*hd_filename;
 	t_lex			*redirects;
 	struct s_cmds	*next;
 	struct s_cmds	*prev;
@@ -66,7 +66,7 @@ typedef struct s_tools
 	int				error_code;
 }	t_tools;
 
-typedef struct	s_var_env
+typedef struct s_var_env
 {
 	char	*name;
 	char	*value;

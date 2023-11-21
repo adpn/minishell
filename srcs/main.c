@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 15:09:31 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/17 16:24:36 by adupin           ###   ########.fr       */
+/*   Updated: 2023/11/20 13:40:03 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,15 @@ int	main(int argc, char **argv, char **envp)
 	g_tools.envp = envp;
 	signal(SIGINT, signal_handler);
 	signal(SIGQUIT, signal_handler);
+	g_tools.error_code = 0;
 	while (1)
 	{
 		line = readline("TerminalCancer> ");
 		if (!line)
 		{
-			printf("exit\n");
+			ft_putendl_fd("exit", STDOUT_FILENO);
 			return (0);
 		}
-		g_tools.error_code = 0;
 		if (line && line[0])
 		{
 			add_history(line);

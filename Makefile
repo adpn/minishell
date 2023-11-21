@@ -6,7 +6,7 @@
 #    By: adupin <adupin@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/24 13:17:37 by alexphil          #+#    #+#              #
-#    Updated: 2023/11/17 16:22:00 by adupin           ###   ########.fr        #
+#    Updated: 2023/11/21 12:29:28 by adupin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,16 +14,11 @@
 NAME 			= 	minishell
 
 # Compiler, compiler flags and linking flags
-# Readline include give access to rl_replace_line
-ifeq ($(USER), alexphil)
-	READLINE_DIR = /Users/$(USER)/homebrew/opt/readline
-else
-	READLINE_DIR = /Users/$(USER)/Applications/homebrew/opt/readline
-endif
+READLINE_DIR	=	/Users/$(USER)/homebrew/opt/readline
 CC				= 	cc
 CFLAGS 			= 	-Wall -Wextra -Werror -Iincludes -Ilibft/include -I$(READLINE_DIR)/include -g 
-DFLAGS      	=   -fsanitize=address
 LFLAGS			=	-lreadline -lhistory -L $(READLINE_DIR)/lib
+DFLAGS      	=   -fsanitize=address
 
 # Directories for sources files, object files, and the libft library
 SRCS_DIR		= 	srcs

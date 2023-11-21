@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:18:05 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/17 14:43:10 by adupin           ###   ########.fr       */
+/*   Updated: 2023/11/21 12:54:18 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,29 +34,28 @@ void	update_pwd(t_tools *tools, char *new)
 	char	pwd[4096];
 
 	getcwd(pwd, 4096);
-	(void)tools;
 	home = value_var_environ("HOME");
-	if (!new || !ft_strncmp("~/", new, 2) || !ft_strncmp("~", new, ft_strlen(new)))
+	if (!new || !ft_strncmp("~/", new, 2)
+		|| !ft_strncmp("~", new, ft_strlen(new)))
 	{
-		if (chdir(home) == -1)
+		if ((chdir(home) == -1)
+			|| (new && new[1] && new[2] && chdir(new + 2) == -1))
 		{
 			error_cd(home, new, pwd, 1);
-			return ;
-		}
-		if (new && new[1] && new[2] && chdir(new + 2) == -1)
-		{
-			error_cd(home, new, pwd, 1);
+			tools->error_code = 1;
 			return ;
 		}
 	}
 	else if (chdir(new) == -1)
 	{
 		error_cd(home, new, pwd, 0);
+		tools->error_code = 1;
 		return ;
 	}
 	replace_element_to_environ("OLDPWD", pwd);
 	getcwd(pwd, 4096);
 	replace_element_to_environ("PWD", pwd);
+	tools->error_code = 0;
 }
 
 void	ft_cd(t_tools *tools, t_cmds *cmds)

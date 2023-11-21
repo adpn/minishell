@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 17:10:28 by adupin            #+#    #+#             */
-/*   Updated: 2023/10/26 12:55:25 by adupin           ###   ########.fr       */
+/*   Updated: 2023/11/14 15:23:30 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	*ft_xmalloc(size_t size)
 	ptr = malloc(size);
 	if (!ptr)
 	{
-		ft_putstr_fd("Error: malloc failed\n", 2);
+		perror("Error: malloc failed");
 		exit(EXIT_FAILURE);
 	}
 	return (ptr);

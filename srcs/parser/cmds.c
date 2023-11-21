@@ -6,7 +6,7 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:59:34 by alexphil          #+#    #+#             */
-/*   Updated: 2023/11/10 10:14:51 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/11/21 12:28:44 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,20 +45,23 @@ void	add_cmd(t_tools *tools, t_cmds *cmd)
 // Is echo / cd / pwd / export / unset / env / exit ?
 void	set_builtin(t_cmds *cmd, char *arg0)
 {
-	if (!ft_strncmp(arg0, "echo", ft_strlen(arg0)))
-		cmd->builtin = ms_echo;
-	// else if (!ft_strncmp(arg0, "cd", ft_strlen(arg0)))
-	// 	cmd->builtin = ft_cd;
-	// else if (!ft_strncmp(arg0, "pwd", ft_strlen(arg0)))
-	// 	cmd->builtin = ft_pwd;
-	// else if (!ft_strncmp(arg0, "export", ft_strlen(arg0)))
-	// 	cmd->builtin = ft_export;
-	// else if (!ft_strncmp(arg0, "unset", ft_strlen(arg0)))
-	// 	cmd->builtin = ft_unset;
-	// else if (!ft_strncmp(arg0, "env", ft_strlen(arg0)))
-	// 	cmd->builtin = ft_env;
-	// else if (!ft_strncmp(arg0, "exit", ft_strlen(arg0)))
-	// 	cmd->builtin = ft_exit;
+	size_t	len;
+
+	len = ft_strlen(arg0);
+	if (!ft_strncmp(arg0, "echo", len))
+		cmd->builtin = ft_echo;
+	else if (!ft_strncmp(arg0, "cd", len))
+		cmd->builtin = ft_cd;
+	else if (!ft_strncmp(arg0, "pwd", len))
+		cmd->builtin = ft_pwd;
+	else if (!ft_strncmp(arg0, "export", len))
+		cmd->builtin = ft_export;
+	else if (!ft_strncmp(arg0, "unset", len))
+		cmd->builtin = ft_unset;
+	else if (!ft_strncmp(arg0, "env", len))
+		cmd->builtin = ft_env;
+	else if (!ft_strncmp(arg0, "exit", len))
+		cmd->builtin = ft_exit;
 }
 
 void	new_cmd(t_tools *tools)
@@ -72,7 +75,7 @@ void	new_cmd(t_tools *tools)
 	cmd = ft_xmalloc(sizeof(t_cmds));
 	init_cmd(cmd);
 	nb_args = count_args(tools->lex_list);
-	cmd->args = ft_xmalloc(sizeof(char *) * nb_args + 1);
+	cmd->args = ft_xmalloc(sizeof(char *) * (nb_args + 1));
 	cmd->nb_redirects = count_redirects(tools->lex_list);
 	i = 0;
 	while (tools->lex_list && tools->lex_list->operator == WORD)

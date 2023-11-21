@@ -1,26 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expander.h                                         :+:      :+:    :+:   */
+/*   arraycopy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/26 16:02:10 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/17 16:19:40 by adupin           ###   ########.fr       */
+/*   Created: 2023/11/07 12:04:04 by adupin            #+#    #+#             */
+/*   Updated: 2023/11/07 14:04:00 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXPANDER_H
-# define EXPANDER_H
+#include "utils.h"
 
-# include "minishell.h"
-# include "utils.h"
+int	ft_array_len(char **array)
+{
+	int	i;
 
-char	*get_dollar(char *str);
-char	*get_var_name(char *str);
-char	*get_value(char *name, t_tools *tools);
+	i = 0;
+	while (array[i])
+		i++;
+	return (i);
+}
 
-char	*complete_string(char *str, t_tools *tools);
-int	expand(char **str, t_tools *tools);
+char	**array_copy(char **tab)
+{
+	char	**new;
+	int		i;
 
-#endif
+	i = 0;
+	new = ft_xmalloc(sizeof(char *) * (ft_array_len(tab) + 1));
+	while (tab[i])
+	{
+		new[i] = ft_xstrdup(tab[i]);
+		i++;
+	}
+	new[i] = NULL;
+	return (new);
+}

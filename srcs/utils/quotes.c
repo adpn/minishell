@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expander.h                                         :+:      :+:    :+:   */
+/*   quotes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/26 16:02:10 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/17 16:19:40 by adupin           ###   ########.fr       */
+/*   Created: 2023/11/08 10:47:36 by adupin            #+#    #+#             */
+/*   Updated: 2023/11/08 14:09:12 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXPANDER_H
-# define EXPANDER_H
+#include "utils.h"
 
-# include "minishell.h"
-# include "utils.h"
+bool	is_inside_quotes(t_quotes *quotes)
+{
+	if (quotes->double_q % 2 == 1 || quotes->simple_q % 2 == 1)
+		return (true);
+	return (false);
+}
 
-char	*get_dollar(char *str);
-char	*get_var_name(char *str);
-char	*get_value(char *name, t_tools *tools);
-
-char	*complete_string(char *str, t_tools *tools);
-int	expand(char **str, t_tools *tools);
-
-#endif
+void	update_quotes(t_quotes *quotes, char c)
+{
+	if (c == '\'' && !(quotes->double_q % 2))
+		quotes->simple_q++;
+	else if (c == '\"' && !(quotes->simple_q % 2))
+		quotes->double_q++;
+}

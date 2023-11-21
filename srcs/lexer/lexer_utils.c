@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 08:39:20 by adupin            #+#    #+#             */
-/*   Updated: 2023/10/24 16:25:03 by adupin           ###   ########.fr       */
+/*   Updated: 2023/11/09 11:20:53 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,25 +33,4 @@ t_lex	*get_element(t_lex *node, int i)
 		return (get_element(node->prev, i));
 	else
 		return (get_element(node->next, i));
-}
-
-bool is_inside_quotes(t_quotes *quotes)
-{
-	if (quotes->double_q % 2 == 1 || quotes->simple_q % 2 == 1)
-		return (true);
-	return (false);
-}
-
-bool	ft_in_charset(char c, char *charset)
-{
-	int	i;
-	
-	i = 0;
-	while (charset[i])
-	{
-		if (c == charset[i])
-			return (true);
-		i++;
-	}
-	return (false);
 }

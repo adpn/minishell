@@ -6,14 +6,14 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 10:38:25 by alexphil          #+#    #+#             */
-/*   Updated: 2023/11/17 13:50:30 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/11/21 12:28:21 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef UTILS_H
 # define UTILS_H
 
-#include "minishell.h"
+# include "minishell.h"
 
 void	*ft_xmalloc(size_t size);
 void	*ft_xcalloc(size_t count, size_t size);
@@ -23,4 +23,14 @@ int		index_element_environ(char *name);
 void	add_element_to_environ(char *name, char *value);
 void	replace_element_to_environ(char *name, char *value);
 char	*value_var_environ(char *name);
+void	delete_var_environ(char *name);
+
+int	ft_array_len(char **array);
+char	**array_copy(char **tab);
+
+bool is_inside_quotes(t_quotes *quotes);
+void	update_quotes(t_quotes *quotes, char c);
+
+bool	ft_in_charset(char c, char *charset);
+void	ft_print_error(char *s1, char *s2, char *s3);
 #endif

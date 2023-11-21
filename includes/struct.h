@@ -6,7 +6,7 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 11:18:19 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/21 12:24:00 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/11/21 12:28:00 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,10 @@ typedef struct s_tools
 	int				error_code;
 }	t_tools;
 
-typedef struct s_var_env
+typedef struct s_quotes
 {
-	char	*name;
-	char	*value;
-}				t_var_env;
+	int		simple_q;
+	int		double_q;
+}	t_quotes;
 
 #endif

@@ -6,27 +6,17 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 10:26:04 by adupin            #+#    #+#             */
-/*   Updated: 2023/10/27 14:23:53 by adupin           ###   ########.fr       */
+/*   Updated: 2023/11/17 16:21:21 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 
-int	ft_array_len(char **array)
-{
-	int	i;
-
-	i = 0;
-	while (array[i])
-		i++;
-	return (i);
-}
-
 int	index_element_environ(char *name)
 {
 	extern char	**environ;
-	int		i;
-	int		len;
+	int			i;
+	int			len;
 
 	i = 0;
 	len = ft_strlen(name);
@@ -39,11 +29,11 @@ int	index_element_environ(char *name)
 	return (-1);
 }
 
-char *value_var_environ(char *name)
+char	*value_var_environ(char *name)
 {
 	extern char	**environ;
-	int		i;
-	int		len;
+	int			i;
+	int			len;
 
 	i = index_element_environ(name);
 	if (i == -1)
@@ -51,53 +41,3 @@ char *value_var_environ(char *name)
 	len = ft_strlen(name);
 	return (environ[i] + len + 1);
 }
-
-static char	*create_element(char *name, char *value)
-{
-	int	len_element;
-	char	*new;
-
-	len_element = ft_strlen(name) + ft_strlen(value) + 2;
-	new = ft_xcalloc(len_element, sizeof(char));
-	ft_strlcat(new, name, len_element);
-	ft_strlcat(new, "=", len_element);
-	ft_strlcat(new, value, len_element);
-	return (new);
-}
-
-void	add_element_to_environ(char *name, char *value)
-{
-	extern char **environ;
-	char **new;
-	int	i;
-	int	len_array;
-	int	len_element;
-	
-	i = 0;
-	len_array = ft_array_len(environ);
-	new = ft_xmalloc(sizeof(char *) * (len_array + 2));
-	while (i < len_array - 2)
-	{
-		new[i] = environ[i];
-		i++;
-	}
-	len_element = ft_strlen(name) + ft_strlen(value) + 2;
-	new[i] = create_element(name, value);
-	i++;
-	new[i] = environ[i - 1];
-	free(environ);
-	environ = new;
-}
-
-void	replace_element_to_environ(char *name, char *value)
-{
-	extern char **environ;
-	int	i;
-	int	len_element;
-	
-	i = index_element_environ(name);
-	len_element = ft_strlen(name) + ft_strlen(value) + 2;
-	free(environ[i]);
-	environ[i] = create_element(name, value);
-}
-

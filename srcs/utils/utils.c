@@ -1,26 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expander.h                                         :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/26 16:02:10 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/17 16:19:40 by adupin           ###   ########.fr       */
+/*   Created: 2023/11/09 11:20:29 by adupin            #+#    #+#             */
+/*   Updated: 2023/11/17 15:23:29 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXPANDER_H
-# define EXPANDER_H
+#include "utils.h"
 
-# include "minishell.h"
-# include "utils.h"
+bool	ft_in_charset(char c, char *charset)
+{
+	int	i;
 
-char	*get_dollar(char *str);
-char	*get_var_name(char *str);
-char	*get_value(char *name, t_tools *tools);
+	i = 0;
+	while (charset[i])
+	{
+		if (c == charset[i])
+			return (true);
+		i++;
+	}
+	return (false);
+}
 
-char	*complete_string(char *str, t_tools *tools);
-int	expand(char **str, t_tools *tools);
-
-#endif
+void	ft_print_error(char *cmd_name, char *s2, char *s3)
+{
+	ft_putstr_fd("minishell: ", STDERR_FILENO);
+	ft_putstr_fd(cmd_name, STDERR_FILENO);
+	ft_putstr_fd(s2, STDERR_FILENO);
+	ft_putstr_fd(s3, STDERR_FILENO);
+}

@@ -6,27 +6,25 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 13:29:30 by adupin            #+#    #+#             */
-/*   Updated: 2023/10/24 17:53:47 by adupin           ###   ########.fr       */
+/*   Updated: 2023/11/17 15:51:02 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 
-void	update_quotes(t_quotes *quotes, char c)
-{
-	if (c == '\'')
-		quotes->simple_q++;
-	else if (c == '\"')
-		quotes->double_q++;
-}
-
-void	init_variables(int *i, int *ib, t_lex **lex, t_quotes *quotes)
+static void	init_variables(int *i, int *ib, t_lex **lex, t_quotes *quotes)
 {
 	*i = 0;
 	*ib = 0;
 	lex[0] = NULL;
 	quotes->double_q = 0;
 	quotes->simple_q = 0;
+}
+
+char	set_char(char c, t_quotes *quotes)
+{
+	update_quotes(quotes, c);
+	return (c);
 }
 
 t_lex	*lexer(char *str)
@@ -36,14 +34,12 @@ t_lex	*lexer(char *str)
 	int			ib;
 	t_lex		*lex[2];
 	t_quotes	quotes;
-	
+
 	init_variables(&i, &ib, lex, &quotes);
 	buffer = ft_xcalloc(ft_strlen(str) + 1, sizeof(char));
 	while (str[i])
 	{
-		buffer[ib] = str[i];
-		ib++;
-		update_quotes(&quotes, str[i]);
+		buffer[ib++] = set_char(str[i], &quotes);
 		if (ft_in_charset(str[i], "|<> ") == true && is_inside_quotes(&quotes) == false)
 		{
 			buffer[ib - 1] = '\0';

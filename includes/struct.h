@@ -6,7 +6,7 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 11:18:19 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/16 15:49:57 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/11/21 12:24:00 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef struct s_cmds
 
 typedef struct s_tools
 {
-	char			*args;
+	char			*args; // Unused in current iteration (21/11/23)
 	char			**paths;
 	char			**envp;
 	struct s_cmds	*cmds;
@@ -62,6 +62,7 @@ typedef struct s_tools
 	bool			heredoc;
 	int				stop_heredoc;
 	int				in_heredoc;
+	int				in_cmd;
 	bool			reset;
 	int				error_code;
 }	t_tools;

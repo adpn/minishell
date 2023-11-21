@@ -6,7 +6,7 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 12:24:45 by alexphil          #+#    #+#             */
-/*   Updated: 2023/11/16 15:13:30 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/11/21 09:27:52 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	get_heredoc(t_tools *tools, t_cmds *cmd)
 			if (sl)
 			{
 				tools->error_code = 1;
-				return (reset_tools(tools)); // [FUNCTION TO DO]
+				return (resetools(tools));
 			}
 		}
 		cmd->redirects = cmd->redirects->next;

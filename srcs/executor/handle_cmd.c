@@ -6,30 +6,31 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 11:12:58 by alexphil          #+#    #+#             */
-/*   Updated: 2023/11/17 10:24:00 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/11/21 12:16:36 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "executor.h"
 
-// Does tools->paths get initialized somewhere already ? Do they end with '/' ?
-// Not yet.
-// tools->paths = ft_split([RETRIEVE PATHS FROM ENVP]) in main when init' tools.
 int	find_cmd(t_tools *tools, t_cmds *cmd)
 {
-	char	*cmdpath;
+	char	*cmd_name;
+	char	*cmd_path;
 	int		i;
 
 	if (!access(cmd->args[0], F_OK))
 		execve(cmd->args[0], cmd->args, tools->envp);
 	i = -1;
+	cmd_name = ft_strjoin("/", cmd->args[0]);
 	while (tools->paths[++i])
 	{
-		cmdpath = ft_strjoin(tools->paths[i], cmd->args[0]);
-		if (!access(cmdpath, F_OK))
-			execve(cmdpath, cmd->args, tools->envp);
-		free(cmdpath);
+		cmd_path = ft_strjoin(tools->paths[i], cmd_name);
+		if (!access(cmd_path, F_OK))
+			execve(cmd_path, cmd->args, tools->envp);
+		free(cmd_path);
 	}
+	free(cmd_name);
+	return (cmd_not_found(cmd->args[0]));
 }
 
 void	handle_cmd(t_tools *tools, t_cmds *cmd)
@@ -58,7 +59,6 @@ void	dup_cmd(t_tools *tools, t_cmds *cmd, int end[2], int fd_in)
 	handle_cmd(tools, cmd);
 }
 
-// Add expand to each redirects->word too ?
 void	single_cmd(t_tools *tools, t_cmds *cmd)
 {
 	int	pid;

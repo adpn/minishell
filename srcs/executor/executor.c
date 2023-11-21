@@ -6,7 +6,7 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 12:08:46 by alexphil          #+#    #+#             */
-/*   Updated: 2023/11/17 10:14:52 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/11/21 12:17:11 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	expand_cmd(t_cmds *cmd)
 {
 	t_lex	*start;
 
+	start = cmd->redirects;
 	expand(cmd->args);
 	while (cmd->redirects)
 	{
@@ -37,7 +38,7 @@ int	multi_fork(t_tools *tools, int end[2], int fd_in, t_cmds *cmd)
 	}
 	tools->pid[i] = fork();
 	if (tools->pid[i] < 0)
-		return (1); // ERROR_MGMT
+		return (1); // error_mgmt()
 	if (tools->pid[i] == 0)
 		dup_cmd(tools, end, fd_in, cmd);
 	i++;

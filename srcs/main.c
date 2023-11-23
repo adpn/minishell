@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
+/*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 15:09:31 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/23 15:17:54 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/11/23 16:13:13 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "parser.h"
 #include "builtins.h"
 #include "expander.h"
+#include "executor.h"
 
 #define CLEAR_FROM_CURSOR	"\033[0K"
 
@@ -43,6 +44,7 @@ int	main(int argc, char **argv)
 	if (argc != 1)
 		return (1);
 	(void)argv;
+	init_environ();
 	signal(SIGINT, signal_handler);
 	signal(SIGQUIT, signal_handler);
 	g_tools.error_code = 0;
@@ -63,6 +65,7 @@ int	main(int argc, char **argv)
 			{
 				parser(&g_tools);
 				expand(g_tools.cmds->args, &g_tools);
+				//executor(&g_tools);
 				builtin(&g_tools, g_tools.cmds);
 				free_lex_chained(g_tools.lex_list);
 			}

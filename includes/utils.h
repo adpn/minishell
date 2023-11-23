@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
+/*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 10:38:25 by alexphil          #+#    #+#             */
-/*   Updated: 2023/11/21 12:28:21 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/11/23 14:02:38 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ void	add_element_to_environ(char *name, char *value);
 void	replace_element_to_environ(char *name, char *value);
 char	*value_var_environ(char *name);
 void	delete_var_environ(char *name);
-
+void	init_environ(void);
+void	free_environ(void);
 int	ft_array_len(char **array);
 char	**array_copy(char **tab);
 

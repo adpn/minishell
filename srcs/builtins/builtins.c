@@ -6,62 +6,65 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:08:51 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/17 14:29:00 by adupin           ###   ########.fr       */
+/*   Updated: 2023/11/23 13:44:06 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
 
-void	ft_pwd(t_tools *tools, t_cmds *cmds)
+int	ft_pwd(t_tools *tools, t_cmds *cmds)
 {
 	char	pwd[4096];
 
-	(void)tools;
 	(void)cmds;
+	(void)tools;
 	getcwd(pwd, 4096);
-	printf("%s\n", pwd);
+	ft_putendl_fd(pwd, STDOUT_FILENO);
+	return (0);
 }
 
-void	ft_unset(t_tools *tools, t_cmds *cmds)
+int	ft_unset(t_tools *tools, t_cmds *cmds)
 {
 	extern char	**environ;
 	int			i;
 
-	(void)tools;
 	i = 1;
+	(void)tools;
 	while (cmds->args[i])
 	{
 		delete_var_environ(cmds->args[i]);
 		i++;
 	}
+	return (0);
 }
 
-void	ft_env(t_tools *tools, t_cmds *cmds)
+int	ft_env(t_tools *tools, t_cmds *cmds)
 {
 	extern char	**environ;
 	int			i;
 
-	(void)cmds;
+	(void)tools;
 	if (cmds->args[1])
 	{
-		printf("env: %s: No such file or directory\n", cmds->args[1]);
-		tools->error_code = 127; //127 normalement
-		return ;
+		ft_putstr_fd("env: ", STDERR_FILENO);
+		ft_putstr_fd(cmds->args[1], STDERR_FILENO);
+		ft_putendl_fd(": No such file or directory", STDERR_FILENO);
+		return (127);
 	}
 	i = 0;
 	while (environ[i])
 	{
-		if (environ[i][0])
-			printf("%s\n", environ[i]);
+		ft_putendl_fd(environ[i], STDOUT_FILENO);
 		i++;
 	}
+	return (0);
 }
 
-void	ft_exit(t_tools *tools, t_cmds *cmds)
+int	ft_exit(t_tools *tools, t_cmds *cmds)
 {
 	(void)tools;
 	(void)cmds;
-	ft_putendl_fd("exit", 2);
+	ft_putendl_fd("exit", STDOUT_FILENO);
 	exit(0);
 }
 

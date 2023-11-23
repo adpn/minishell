@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
+/*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 11:18:19 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/22 14:24:12 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/11/23 14:02:28 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,7 @@ typedef struct s_cmds
 
 typedef struct s_tools
 {
-	char			*args; // Unused in current iteration ? (21/11/23)
 	char			**paths;
-	char			**envp;
 	struct s_cmds	*cmds;
 	t_lex			*lex_list;
 	int				pipes;

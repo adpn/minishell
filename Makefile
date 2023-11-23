@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: adupin <adupin@student.s19.be>             +#+  +:+       +#+         #
+#    By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/24 13:17:37 by alexphil          #+#    #+#              #
-#    Updated: 2023/11/17 16:22:00 by adupin           ###   ########.fr        #
+#    Updated: 2023/11/22 11:56:12 by alexphil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,10 @@ PARSER_FILES	=	parser.c \
 					print.c
 EXPANDER_FILES	=	expander.c \
 					expand_get.c
-EXECUTOR_FILES	=
+EXECUTOR_FILES	=	executor.c \
+					handle_cmd.c \
+					check_redirects.c \
+					heredoc.c
 BUILTINS_FILES 	=	builtins.c \
 					export.c \
 					echo.c \
@@ -61,7 +64,7 @@ UTILS_FILES		=	xmalloc.c \
 					array.c \
 					quotes.c \
 					utils.c
-ERRORS_FILES	=	
+ERRORS_FILES	=	errors.c
 
 # Defining the paths of the sources files 
 SRC_MAIN		= 	$(addprefix $(SRCS_DIR)/,$(MAIN_FILE))

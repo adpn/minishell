@@ -6,7 +6,7 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 13:49:41 by alexphil          #+#    #+#             */
-/*   Updated: 2023/11/21 11:01:41 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/11/22 14:26:49 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,18 @@ void	initools(t_tools *tools)
 	tools->in_heredoc = 0;
 	tools->in_cmd = 0;
 	tools->paths = ft_split(value_var_environ("PATH"), ':');
-	; // init signals 
+	; // init signals ?
 }
 
 void	resetools(t_tools *tools)
 {
 	free_cmds(tools->cmds);
+	// free lexer ?
 	if (tools->pid)
 		free(tools->pid);
-	ft_free_split(tools->paths);
+	if (tools->paths)
+		ft_free_split(tools->paths);
 	initools(tools);
 	tools->reset = TRUE;
+	// return to readline/ms loop for next input once cleanup is done
 }

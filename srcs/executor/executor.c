@@ -6,13 +6,13 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 12:08:46 by alexphil          #+#    #+#             */
-/*   Updated: 2023/11/21 12:17:11 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/11/23 10:38:43 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "executor.h"
 
-void	expand_cmd(t_cmds *cmd)
+void	expand_cmd(t_tools *tools, t_cmds *cmd)
 {
 	t_lex	*start;
 
@@ -21,7 +21,7 @@ void	expand_cmd(t_cmds *cmd)
 	while (cmd->redirects)
 	{
 		if (cmd->redirects->word)
-			complete_string(cmd->redirects->word);
+			complete_string(cmd->redirects->word, tools);
 		cmd->redirects = cmd->redirects->next;
 	}
 	cmd->redirects = start;
@@ -38,10 +38,10 @@ int	multi_fork(t_tools *tools, int end[2], int fd_in, t_cmds *cmd)
 	}
 	tools->pid[i] = fork();
 	if (tools->pid[i] < 0)
-		return (1); // error_mgmt()
+		error_mgmt(tools, 2);
 	if (tools->pid[i] == 0)
 		dup_cmd(tools, end, fd_in, cmd);
-	i++;
+	i++; 
 	return (EXIT_SUCCESS);
 }
 
@@ -87,7 +87,7 @@ void	executor(t_tools *tools)
 		expend_cmd(&tools->cmds);
 		if (tools->cmds->next)
 			pipe(end);
-		get_heredoc(tools, tools->cmds);
+		seek_heredoc(tools, tools->cmds);
 		multi_fork(tools, end, fd_in, tools->cmds);
 		close(end[1]);
 		if (tools->cmds->prev)

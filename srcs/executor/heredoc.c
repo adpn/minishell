@@ -6,7 +6,7 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 12:24:45 by alexphil          #+#    #+#             */
-/*   Updated: 2023/11/21 09:27:52 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/11/21 12:41:43 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ char	*name_hd_file(void)
 	return (file_name);
 }
 
-void	get_heredoc(t_tools *tools, t_cmds *cmd)
+void	seek_heredoc(t_tools *tools, t_cmds *cmd)
 {
 	t_lex	*start;
 	int		sl;

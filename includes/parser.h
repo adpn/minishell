@@ -6,7 +6,7 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 16:01:42 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/10 10:15:13 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/11/22 14:05:48 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	new_cmd(t_tools *tools);
 void	add_cmd(t_tools *tools, t_cmds *cmd);
 
 // Parser
-void	syntax_check(t_tools *tools);
+int		syntax_check(t_tools *tools);
 void	parser(t_tools *tools);
 
 // Print

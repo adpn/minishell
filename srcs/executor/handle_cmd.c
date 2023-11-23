@@ -6,13 +6,13 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 11:12:58 by alexphil          #+#    #+#             */
-/*   Updated: 2023/11/21 12:16:36 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/11/23 10:40:22 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "executor.h"
 
-int	find_cmd(t_tools *tools, t_cmds *cmd)
+int	seek_cmd(t_tools *tools, t_cmds *cmd)
 {
 	char	*cmd_name;
 	char	*cmd_path;
@@ -30,7 +30,10 @@ int	find_cmd(t_tools *tools, t_cmds *cmd)
 		free(cmd_path);
 	}
 	free(cmd_name);
-	return (cmd_not_found(cmd->args[0]));
+	ft_putstr_fd("minishell: ", STDERR_FILENO);
+	ft_putstr_fd(cmd->args[0], STDERR_FILENO);
+	ft_putstr_fd(": command not found\n", STDERR_FILENO);
+	return (127);
 }
 
 void	handle_cmd(t_tools *tools, t_cmds *cmd)
@@ -43,16 +46,16 @@ void	handle_cmd(t_tools *tools, t_cmds *cmd)
 	if (cmd->builtin)
 		exit(cmd->builtin(tools, cmd));
 	else if (cmd->args[0][0] != '\0')
-		exit_code = find_cmd(tools, cmd);
+		exit_code = seek_cmd(tools, cmd);
 	return (exit_code);
 }
 
 void	dup_cmd(t_tools *tools, t_cmds *cmd, int end[2], int fd_in)
 {
 	if (cmd->prev && dup2(fd_in, STDIN_FILENO) < 0)
-		; // error_mgmt
+		error_mgmt(tools, 1);
 	if (cmd->next && dup2(end[1], STDOUT_FILENO) < 0)
-		; // error_mgmt
+		error_mgmt(tools, 1);
 	close(end[1]);
 	if (cmd->prev)
 		close(fd_in);
@@ -67,10 +70,10 @@ void	single_cmd(t_tools *tools, t_cmds *cmd)
 	expand_cmd(cmd);
 	if (cmd->builtin)
 		tools->error_code = cmd->builtin(tools, cmd);
-	get_heredoc(tools, cmd);
+	seek_heredoc(tools, cmd);
 	pid = fork();
 	if (pid < 0)
-		; // error_mgmt
+		error_mgmt(tools, 2);
 	if (pid == 0)
 		handle_cmd(tools, cmd);
 	waitpid(pid, &status, 0);

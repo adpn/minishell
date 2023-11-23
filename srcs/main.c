@@ -6,7 +6,7 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 15:09:31 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/23 14:29:43 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/11/23 15:17:54 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,54 +71,3 @@ int	main(int argc, char **argv)
 	}
 	return (0);
 }
-
-// // MAIN FOR PARSER DEBUGING
-// void	add_lex(t_tools *tools, char *word, int operator)
-// {
-// 	t_lex	*node;
-// 	t_lex	*tmp;
-
-// 	node = malloc(sizeof(t_lex));
-// 	node->word = word;
-// 	node->operator = operator;
-// 	if (!tools->lex_list)
-// 	{
-// 		tools->lex_list = node;
-// 		node->prev = NULL;
-// 	}
-// 	else
-// 	{
-// 		tmp = tools->lex_list;
-// 		while (tmp->next)
-// 			tmp = tmp->next;
-// 		node->prev = tmp;
-// 		tmp->next = node;
-// 	}
-// 	node->next = NULL;
-// }
-
-// // cat < Makefile | grep "DIR" > res.txt
-// void	fake_lex(t_tools *tools)
-// {
-// 	tools->lex_list = NULL;
-// 	add_lex(tools, "cat", WORD);
-// 	add_lex(tools, NULL, R_INPUT);
-// 	add_lex(tools, "Makefile", WORD);
-// 	add_lex(tools, NULL, PIPE);
-// 	add_lex(tools, "grep", WORD);
-// 	add_lex(tools, "DIR", WORD);
-// 	add_lex(tools, NULL, R_OUTPUT);
-// 	add_lex(tools, "res.txt", WORD);
-// }
-
-// int	main(void)
-// {
-// 	t_tools	tools;
-
-// 	fake_lex(&tools);
-// 	print_lex(tools.lex_list);
-// 	parser(&tools);
-// 	printf("===================\n");
-// 	print_lex(tools.lex_list);
-// 	printf("===================\n");
-// }

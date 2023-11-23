@@ -6,13 +6,13 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 11:16:57 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/17 14:35:46 by adupin           ###   ########.fr       */
+/*   Updated: 2023/11/23 14:17:01 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
 
-int	index_min_value(char **tab, int len) 
+int	index_min_value(char **tab, int len)
 {
 	int		i;
 	char	*min_value;
@@ -32,7 +32,7 @@ int	index_min_value(char **tab, int len)
 			min_index = i;
 		i++;
 	}
-	return(min_index);	
+	return (min_index);
 }
 
 void	print_in_alphabet_order(void)
@@ -123,29 +123,31 @@ static char	*get_name(char *str)
 	return (name);
 }
 
-void	ft_export(t_tools *tools, t_cmds *cmds)
+int	ft_export(t_cmds *cmds)
 {
 	t_var_env	var_env;
-	int		i;
+	int			i;
+	int			error_code;
 
 	if (!cmds->args[1])
 	{
 		print_in_alphabet_order();
-		return ;
+		return (0);
 	}
-	i = 1;
-	while (cmds->args[i])
+	i = 0;
+	while (cmds->args[++i])
 	{
 		var_env.name = get_name(cmds->args[i]);
 		if (!var_env.name)
 		{
-			tools->error_code = 1;
+			error_code = 1;
 			ft_print_error("export: `",
 				cmds->args[i], "': not a valid identifier\n");
-			return ;
+			continue ;
 		}
 		var_env.value = get_value(ft_strchr(cmds->args[i], '='));
 		push_var_to_environ(&var_env);
-		i++;
+		error_code = 0;
 	}
+	return (error_code);
 }

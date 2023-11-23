@@ -6,7 +6,7 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 13:49:41 by alexphil          #+#    #+#             */
-/*   Updated: 2023/11/23 11:03:23 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/11/23 11:05:02 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_cmds	*rewind_cmds(t_cmds *cmd)
 	return (cmd);
 }
 
-t_lex *rewind_lex(t_lex *cmd)
+t_lex	*rewind_lex(t_lex *cmd)
 {
 	while (cmd->prev)
 		cmd = cmd->prev;

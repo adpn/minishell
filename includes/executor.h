@@ -6,7 +6,7 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 16:02:22 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/23 10:37:55 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/11/23 11:10:02 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include "errors.h"
 
 // executor.c
-void	expand_cmd(t_cmds *cmd, t_tools *tools);
+void	expand_cmd(t_tools *tools, t_cmds *cmd);
 int		multi_fork(t_tools *tools, int end[2], int fd_in, t_cmds *cmd);
 int		check_heredoc_fd(t_tools *tools, int end[2], t_cmds *cmd);
 int		wait_pipe(t_tools *tools, int *pid, int pipes);

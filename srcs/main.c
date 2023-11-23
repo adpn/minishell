@@ -6,7 +6,7 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 15:09:31 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/23 10:57:57 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/11/23 11:04:11 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	signal_handler(int sig)
 	}
 }
 
-int	main(int argc, char **argv, char **envp)
+int	main(int argc, char **argv)
 {
 	char	*line;
 

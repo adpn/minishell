@@ -6,7 +6,7 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 11:12:58 by alexphil          #+#    #+#             */
-/*   Updated: 2023/11/23 10:57:37 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/11/23 12:30:54 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,16 @@ void	handle_cmd(t_tools *tools, t_cmds *cmd)
 	int	exit_code;
 
 	if (cmd->redirects)
-		if (check_redirects(cmd->redirects))
+		if (check_redirects(cmd))
 			exit(1);
 	if (cmd->builtin)
-		exit(cmd->builtin(tools, cmd));
+	{
+		cmd->builtin(tools, cmd);
+		return ;
+	}
 	else if (cmd->args[0][0] != '\0')
 		exit_code = seek_cmd(tools, cmd);
-	return (exit_code);
+	exit(exit_code);
 }
 
 void	dup_cmd(t_tools *tools, t_cmds *cmd, int end[2], int fd_in)
@@ -68,7 +71,7 @@ void	single_cmd(t_tools *tools, t_cmds *cmd)
 	int	pid;
 	int	status;
 
-	expand_cmd(cmd);
+	expand_cmd(tools, cmd);
 	if (cmd->builtin)
 		tools->error_code = cmd->builtin(tools, cmd);
 	seek_heredoc(tools, cmd);

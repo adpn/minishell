@@ -6,7 +6,7 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 16:01:42 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/22 14:05:48 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/11/23 11:06:41 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "struct.h"
 # include "utils.h"
+# include "errors.h"
 
 // Counters
 int		count_pipes(t_lex *lex);

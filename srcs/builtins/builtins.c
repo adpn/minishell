@@ -6,48 +6,50 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:08:51 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/21 12:53:48 by adupin           ###   ########.fr       */
+/*   Updated: 2023/11/23 13:44:06 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtins.h"
 
-void	ft_pwd(t_tools *tools, t_cmds *cmds)
+int	ft_pwd(t_tools *tools, t_cmds *cmds)
 {
 	char	pwd[4096];
 
 	(void)cmds;
+	(void)tools;
 	getcwd(pwd, 4096);
 	ft_putendl_fd(pwd, STDOUT_FILENO);
-	tools->error_code = 0;
+	return (0);
 }
 
-void	ft_unset(t_tools *tools, t_cmds *cmds)
+int	ft_unset(t_tools *tools, t_cmds *cmds)
 {
 	extern char	**environ;
 	int			i;
 
 	i = 1;
+	(void)tools;
 	while (cmds->args[i])
 	{
 		delete_var_environ(cmds->args[i]);
 		i++;
 	}
-	tools->error_code = 0;
+	return (0);
 }
 
-void	ft_env(t_tools *tools, t_cmds *cmds)
+int	ft_env(t_tools *tools, t_cmds *cmds)
 {
 	extern char	**environ;
 	int			i;
 
+	(void)tools;
 	if (cmds->args[1])
 	{
 		ft_putstr_fd("env: ", STDERR_FILENO);
 		ft_putstr_fd(cmds->args[1], STDERR_FILENO);
 		ft_putendl_fd(": No such file or directory", STDERR_FILENO);
-		tools->error_code = 127; //127 normalement
-		return ;
+		return (127);
 	}
 	i = 0;
 	while (environ[i])
@@ -55,10 +57,10 @@ void	ft_env(t_tools *tools, t_cmds *cmds)
 		ft_putendl_fd(environ[i], STDOUT_FILENO);
 		i++;
 	}
-	tools->error_code = 0;
+	return (0);
 }
 
-void	ft_exit(t_tools *tools, t_cmds *cmds)
+int	ft_exit(t_tools *tools, t_cmds *cmds)
 {
 	(void)tools;
 	(void)cmds;

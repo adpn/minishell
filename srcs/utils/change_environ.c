@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 16:21:34 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/17 16:21:44 by adupin           ###   ########.fr       */
+/*   Updated: 2023/11/23 10:48:11 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	replace_element_to_environ(char *name, char *value)
 	if (i == -1)
 		return ;
 	len_element = ft_strlen(name) + ft_strlen(value) + 2;
-	// free(environ[i]);
+	free(environ[i]);
 	environ[i] = create_element(name, value);
 }
 
@@ -70,7 +70,7 @@ void	delete_var_environ(char *name)
 	if (i == -1)
 		return ;
 	len_array = ft_array_len(environ);
-	//free(environ[i]);
+	free(environ[i]);
 	while (i < len_array - 1)
 	{
 		environ[i] = environ[i + 1];

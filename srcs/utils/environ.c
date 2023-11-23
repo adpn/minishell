@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 10:26:04 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/17 16:21:21 by adupin           ###   ########.fr       */
+/*   Updated: 2023/11/23 10:47:55 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,31 @@ char	*value_var_environ(char *name)
 		return (NULL);
 	len = ft_strlen(name);
 	return (environ[i] + len + 1);
+}
+
+void	init_environ(void)
+{
+	extern char	**environ;
+	int			i;
+
+	i = 0;
+	while (environ[i])
+	{
+		environ[i] = ft_xstrdup(environ[i]);
+		i++;
+	}
+}
+
+void	free_environ(void)
+{
+	extern char	**environ;
+	int			i;
+
+	i = 0;
+	while (environ[i])
+	{
+		free(environ[i]);
+		i++;
+	}
+	free(environ);
 }

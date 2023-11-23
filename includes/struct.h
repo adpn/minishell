@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 11:18:19 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/08 10:46:07 by adupin           ###   ########.fr       */
+/*   Updated: 2023/11/23 13:43:18 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct s_lex
 typedef struct s_cmds
 {
 	char			**args;
-	void			(*builtin)(t_tools *, struct s_cmds *);
+	int				(*builtin)(t_tools *, struct s_cmds *);
 	int				nb_redirects;
 	t_lex			*redirects;
 	struct s_cmds	*next;

@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 11:16:57 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/21 12:39:26 by adupin           ###   ########.fr       */
+/*   Updated: 2023/11/21 12:57:40 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ static char	*get_name(char *str)
 void	ft_export(t_tools *tools, t_cmds *cmds)
 {
 	t_var_env	var_env;
-	int		i;
+	int			i;
 
 	if (!cmds->args[1])
 	{

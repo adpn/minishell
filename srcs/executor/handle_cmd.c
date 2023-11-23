@@ -6,7 +6,7 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 11:12:58 by alexphil          #+#    #+#             */
-/*   Updated: 2023/11/23 10:40:22 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/11/23 10:57:37 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,20 @@
 
 int	seek_cmd(t_tools *tools, t_cmds *cmd)
 {
-	char	*cmd_name;
-	char	*cmd_path;
-	int		i;
+	extern char	**environ;
+	char		*cmd_name;
+	char		*cmd_path;
+	int			i;
 
 	if (!access(cmd->args[0], F_OK))
-		execve(cmd->args[0], cmd->args, tools->envp);
+		execve(cmd->args[0], cmd->args, environ);
 	i = -1;
 	cmd_name = ft_strjoin("/", cmd->args[0]);
 	while (tools->paths[++i])
 	{
 		cmd_path = ft_strjoin(tools->paths[i], cmd_name);
 		if (!access(cmd_path, F_OK))
-			execve(cmd_path, cmd->args, tools->envp);
+			execve(cmd_path, cmd->args, environ);
 		free(cmd_path);
 	}
 	free(cmd_name);

@@ -6,7 +6,7 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 10:38:25 by alexphil          #+#    #+#             */
-/*   Updated: 2023/11/21 12:28:21 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/11/23 10:50:05 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define UTILS_H
 
 # include "minishell.h"
+# include "lexer.h"
 
 void	*ft_xmalloc(size_t size);
 void	*ft_xcalloc(size_t count, size_t size);

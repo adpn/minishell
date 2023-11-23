@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: adupin <adupin@student.s19.be>             +#+  +:+       +#+         #
+#    By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/24 13:17:37 by alexphil          #+#    #+#              #
-#    Updated: 2023/11/23 14:01:49 by adupin           ###   ########.fr        #
+#    Updated: 2023/11/23 15:08:39 by alexphil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,8 @@ UTILS_FILES		=	xmalloc.c \
 					change_environ.c \
 					array.c \
 					quotes.c \
-					utils.c
+					utils.c \
+					tools.c
 ERRORS_FILES	=	errors.c
 
 # Defining the paths of the sources files 

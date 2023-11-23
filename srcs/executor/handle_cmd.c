@@ -6,7 +6,7 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 11:12:58 by alexphil          #+#    #+#             */
-/*   Updated: 2023/11/23 14:08:57 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/11/23 15:03:53 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	handle_cmd(t_tools *tools, t_cmds *cmd)
 			exit(1);
 	if (cmd->builtin)
 	{
-		exit_code = cmd->builtin(tools, cmd);
+		exit_code = cmd->builtin(cmd);
 		exit(exit_code);
 	}
 	else if (cmd->args[0][0] != '\0')
@@ -74,7 +74,7 @@ void	single_cmd(t_tools *tools, t_cmds *cmd)
 
 	expand_cmd(tools, cmd);
 	if (cmd->builtin)
-		tools->error_code = cmd->builtin(tools, cmd);
+		tools->error_code = cmd->builtin(cmd);
 	seek_heredoc(tools, cmd);
 	pid = fork();
 	if (pid < 0)

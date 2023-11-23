@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
+/*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:08:51 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/23 14:17:55 by adupin           ###   ########.fr       */
+/*   Updated: 2023/11/23 15:04:39 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void	builtin(t_tools *tools, t_cmds *cmds)
 {
 	size_t	len;
 
+	(void)tools;
 	len = ft_strlen(cmds->args[0]);
 	if (!ft_strncmp(cmds->args[0], "echo", len))
 		ft_echo(cmds);

@@ -6,13 +6,13 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 12:24:45 by alexphil          #+#    #+#             */
-/*   Updated: 2023/11/21 12:41:43 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/11/23 14:23:23 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "executor.h"
 
-int	heredoc(t_tools *tools, t_lex *heredoc, char *file_name)
+int	ft_heredoc(t_tools *tools, t_lex *heredoc, char *file_name)
 {
 	int		fd;
 	char	*line;
@@ -42,7 +42,7 @@ int	init_heredoc(t_tools *tools, t_lex *heredoc, char *temp_file)
 	sl = EXIT_SUCCESS;
 	tools->stop_heredoc = 0;
 	tools->in_heredoc = 1;
-	sl = create_hd_file(tools, heredoc, temp_file);
+	sl = ft_heredoc(tools, heredoc, temp_file);
 	tools->in_heredoc = 0;
 	tools->heredoc = true;
 	return (sl);
@@ -60,7 +60,7 @@ char	*name_hd_file(void)
 	return (file_name);
 }
 
-void	seek_heredoc(t_tools *tools, t_cmds *cmd)
+int	seek_heredoc(t_tools *tools, t_cmds *cmd)
 {
 	t_lex	*start;
 	int		sl;
@@ -72,8 +72,8 @@ void	seek_heredoc(t_tools *tools, t_cmds *cmd)
 		{
 			if (cmd->hd_filename)
 				free(cmd->hd_filename);
-			cmd->hd_filename = gen_hd_filename();
-			sl = heredoc(tools, cmd->redirects, cmd->hd_filename);
+			cmd->hd_filename = name_hd_file();
+			sl = ft_heredoc(tools, cmd->redirects, cmd->hd_filename);
 			if (sl)
 			{
 				tools->error_code = 1;

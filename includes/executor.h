@@ -6,7 +6,7 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 16:02:22 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/23 11:10:02 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/11/23 14:22:48 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ int		check_infile(char *filename);
 int		check_redirects(t_cmds *cmd);
 
 // heredoc.c
-int		heredoc(t_tools *tools, t_lex *heredoc, char *file_name);
+int		ft_heredoc(t_tools *tools, t_lex *heredoc, char *file_name);
 int		init_heredoc(t_tools *tools, t_lex *heredoc, char *temp_file);
 char	*name_hd_file(void);
-void	seek_heredoc(t_tools *tools, t_cmds *cmd);
+int		seek_heredoc(t_tools *tools, t_cmds *cmd);
 
 #endif

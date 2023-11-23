@@ -6,7 +6,7 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 13:37:38 by alexphil          #+#    #+#             */
-/*   Updated: 2023/11/16 15:33:10 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/11/23 14:14:10 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,14 +77,20 @@ int	check_redirects(t_cmds *cmd)
 	while (redirect)
 	{
 		if (redirect->operator == R_INPUT)
+		{
 			if (check_infile(redirect->word))
-				return (EXIT_FAILURE);
+				return (EXIT_FAILURE);	
+		}
 		else if (redirect->operator == HEREDOC)
+		{
 			if (check_infile(cmd->hd_filename))
 				return (EXIT_FAILURE);
+		}
 		else if (redirect->operator == R_OUTPUT || redirect->operator == R_APP)
+		{
 			if (check_outfile(redirect))
 				return (EXIT_FAILURE);
+		}
 		redirect = redirect->next;
 	}
 	return (EXIT_SUCCESS);

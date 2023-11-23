@@ -6,7 +6,7 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 09:50:38 by alexphil          #+#    #+#             */
-/*   Updated: 2023/11/23 10:36:12 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/11/23 14:25:27 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	parser_token_error(t_tools *tools, int operator)
 		ft_putstr_fd("'<'\n", STDERR_FILENO);
 	else if (operator == R_OUTPUT)
 		ft_putstr_fd("'>'\n", STDERR_FILENO);
+	resetools(tools);
 	return (EXIT_FAILURE);
 }
 

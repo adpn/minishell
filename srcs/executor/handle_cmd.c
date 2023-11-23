@@ -6,7 +6,7 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 11:12:58 by alexphil          #+#    #+#             */
-/*   Updated: 2023/11/23 12:30:54 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/11/23 14:08:57 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,14 @@ void	handle_cmd(t_tools *tools, t_cmds *cmd)
 {
 	int	exit_code;
 
+	exit_code = 0;
 	if (cmd->redirects)
 		if (check_redirects(cmd))
 			exit(1);
 	if (cmd->builtin)
 	{
-		cmd->builtin(tools, cmd);
-		return ;
+		exit_code = cmd->builtin(tools, cmd);
+		exit(exit_code);
 	}
 	else if (cmd->args[0][0] != '\0')
 		exit_code = seek_cmd(tools, cmd);

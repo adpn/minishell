@@ -6,7 +6,7 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 10:38:25 by alexphil          #+#    #+#             */
-/*   Updated: 2023/11/23 11:05:36 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/11/23 14:24:27 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,6 @@ t_cmds	*rewind_cmds(t_cmds *cmd);
 t_lex	*rewind_lex(t_lex *cmd);
 void	free_cmds(t_cmds *cmd);
 void	initools(t_tools *tools);
-void	resetools(t_tools *tools);
+int		resetools(t_tools *tools);
 
 #endif

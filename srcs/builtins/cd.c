@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:18:05 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/23 13:46:03 by adupin           ###   ########.fr       */
+/*   Updated: 2023/11/23 14:16:54 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,10 @@ int	update_pwd(char *new)
 	return (0);
 }
 
-int	ft_cd(t_tools *tools, t_cmds *cmds)
+int	ft_cd(t_cmds *cmds)
 {
 	char	*old;
 
-	(void)tools;
 	if (cmds->args[1] && cmds->args[2])
 	{
 		ft_print_error("cd: ", "too many arguments", "\n");

@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 11:16:57 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/21 12:57:40 by adupin           ###   ########.fr       */
+/*   Updated: 2023/11/23 14:17:01 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,16 +123,16 @@ static char	*get_name(char *str)
 	return (name);
 }
 
-void	ft_export(t_tools *tools, t_cmds *cmds)
+int	ft_export(t_cmds *cmds)
 {
 	t_var_env	var_env;
 	int			i;
+	int			error_code;
 
 	if (!cmds->args[1])
 	{
 		print_in_alphabet_order();
-		tools->error_code = 0;
-		return ;
+		return (0);
 	}
 	i = 0;
 	while (cmds->args[++i])
@@ -140,13 +140,14 @@ void	ft_export(t_tools *tools, t_cmds *cmds)
 		var_env.name = get_name(cmds->args[i]);
 		if (!var_env.name)
 		{
-			tools->error_code = 1;
+			error_code = 1;
 			ft_print_error("export: `",
 				cmds->args[i], "': not a valid identifier\n");
 			continue ;
 		}
 		var_env.value = get_value(ft_strchr(cmds->args[i], '='));
 		push_var_to_environ(&var_env);
-		tools->error_code = 0;
+		error_code = 0;
 	}
+	return (error_code);
 }

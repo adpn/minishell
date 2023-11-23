@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 11:04:09 by alexphil          #+#    #+#             */
-/*   Updated: 2023/11/23 14:03:17 by adupin           ###   ########.fr       */
+/*   Updated: 2023/11/23 14:17:13 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,11 @@ void	write_word(t_cmds *cmd, int i)
 	}
 }
 
-int	ft_echo(t_tools *tools, t_cmds *cmd)
+int	ft_echo(t_cmds *cmd)
 {
 	int			i;
 	int			flag;
 
-	(void)tools;
 	i = 0;
 	flag = (ft_strncmp(cmd->args[1], "-n", ft_strlen(cmd->args[1])) == 0);
 	if (flag)

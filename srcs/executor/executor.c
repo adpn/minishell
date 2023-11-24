@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
+/*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 12:08:46 by alexphil          #+#    #+#             */
-/*   Updated: 2023/11/23 12:25:58 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/11/24 14:17:19 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ void	executor(t_tools *tools)
 	int		end[2];
 
 	fd_in = STDIN_FILENO;
+	tools->pid = ft_xmalloc(sizeof(pid_t) * (tools->pipes + 1)); // Was not initialized
 	while (tools->cmds)
 	{
 		expand_cmd(tools, tools->cmds);

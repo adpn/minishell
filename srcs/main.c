@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 15:09:31 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/23 16:13:13 by adupin           ###   ########.fr       */
+/*   Updated: 2023/11/24 14:22:59 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int	main(int argc, char **argv)
 		return (1);
 	(void)argv;
 	init_environ();
+	initools(&g_tools); // Where is init supposed to go ?
 	signal(SIGINT, signal_handler);
 	signal(SIGQUIT, signal_handler);
 	g_tools.error_code = 0;

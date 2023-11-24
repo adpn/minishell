@@ -3,14 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
+/*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 12:08:46 by alexphil          #+#    #+#             */
-/*   Updated: 2023/11/24 14:17:19 by adupin           ###   ########.fr       */
+/*   Updated: 2023/11/24 16:44:24 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "executor.h"
+
+// NEW FUNCTION TO INIT EXECUTOR, CHECK RESETOOLS TO PLUG IT INTO A MS LOOP
+void	init_executor(t_tools *tools)
+{
+	tools->in_cmd = 1;
+	if (tools->pipes == 0)
+		single_cmd(tools, tools->cmds);
+	else
+	{
+		tools->pid = ft_calloc(sizeof(int), tools->pipes + 2);
+		if (!tools->pid)
+			error_mgmt(tools, 0);
+		executor(tools);
+	}
+	tools->in_cmd = 0;
+}
 
 void	expand_cmd(t_tools *tools, t_cmds *cmd)
 {

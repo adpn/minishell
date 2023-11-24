@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 11:37:06 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/17 16:17:25 by adupin           ###   ########.fr       */
+/*   Updated: 2023/11/24 14:53:46 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,29 @@ char	*copy_new_string(char *str, char *name, char *value, char *dol)
 	ft_strlcat(new, &str[(dol - str) + ft_strlen(name) + 1],
 		ft_strlen(new) + ft_strlen(&str[(dol - str) + ft_strlen(name)]) + 1);
 	return (new);
+}
+
+void	remove_empty_string(char **tab)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (tab[i])
+	{
+		if (tab[i][0] == '\0')
+		{
+			free(tab[i]);
+			j = i;
+			while (tab[j])
+			{
+				tab[j] = tab[j + 1];
+				j++;
+			}
+			tab[j] = NULL;
+		}
+		i++;
+	}
 }
 
 char	*complete_string(char *str, t_tools *tools)
@@ -51,20 +74,21 @@ char	*complete_string(char *str, t_tools *tools)
 }
 
 //Return 1 if success, 0 if malloc failed
-int	expand(char **str, t_tools *tools)
+int	expand(char **tab, t_tools *tools)
 {
 	int	i;
 
 	i = 0;
-	while (str[i])
+	while (tab[i])
 	{
-		if (get_dollar(str[i]))
+		if (get_dollar(tab[i]))
 		{
-			str[i] = complete_string(str[i], tools);
-			if (!str[i])
+			tab[i] = complete_string(tab[i], tools);
+			if (!tab[i])
 				return (0);
 		}
 		i++;
 	}
+	remove_empty_string(tab);
 	return (1);
 }

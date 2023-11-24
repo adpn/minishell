@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 11:04:09 by alexphil          #+#    #+#             */
-/*   Updated: 2023/11/23 14:17:13 by adupin           ###   ########.fr       */
+/*   Updated: 2023/11/24 15:03:27 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,11 @@ int	ft_echo(t_cmds *cmd)
 	int			flag;
 
 	i = 0;
+	if (!cmd->args[1])
+	{
+		write(1, "\n", 1);
+		return (0);
+	}
 	flag = (ft_strncmp(cmd->args[1], "-n", ft_strlen(cmd->args[1])) == 0);
 	if (flag)
 		i = 1;

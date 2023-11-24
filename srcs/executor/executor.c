@@ -6,7 +6,7 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 12:08:46 by alexphil          #+#    #+#             */
-/*   Updated: 2023/11/24 16:44:24 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/11/24 16:52:36 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	executor(t_tools *tools)
 	int		end[2];
 
 	fd_in = STDIN_FILENO;
-	tools->pid = ft_xmalloc(sizeof(pid_t) * (tools->pipes + 1)); // Was not initialized
+	tools->pid = ft_xmalloc(sizeof(pid_t) * (tools->pipes + 2)); // Was not initialized
 	while (tools->cmds)
 	{
 		expand_cmd(tools, tools->cmds);

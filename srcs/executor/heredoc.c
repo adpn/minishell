@@ -6,7 +6,7 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 12:24:45 by alexphil          #+#    #+#             */
-/*   Updated: 2023/11/27 13:53:53 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/11/27 14:28:51 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	seek_heredoc(t_tools *tools, t_cmds *cmd)
 			if (cmd->hd_filename)
 				free(cmd->hd_filename);
 			cmd->hd_filename = name_hd_file();
-			sl = ft_heredoc(tools, cmd->redirects, cmd->hd_filename);
+			sl = init_heredoc(tools, cmd->redirects, cmd->hd_filename);
 			if (sl)
 			{
 				tools->error_code = 1;

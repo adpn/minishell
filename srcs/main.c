@@ -6,7 +6,7 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 15:09:31 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/24 16:37:57 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/11/27 10:49:31 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,11 @@ int	main(int argc, char **argv)
 			{
 				parser(&g_tools);
 				expand(g_tools.cmds->args, &g_tools);
-				executor(&g_tools);
-				builtin(&g_tools, g_tools.cmds);
+				init_executor(&g_tools);
+				// executor(&g_tools);
+				// builtin(&g_tools, g_tools.cmds);
 				free_lex_chained(g_tools.lex_list);
+				// exit(0);
 			}
 		}
 		free(line);

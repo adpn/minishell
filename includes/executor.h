@@ -6,7 +6,7 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 16:02:22 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/23 14:22:48 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/11/27 10:36:57 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include "struct.h"
 # include "utils.h"
 # include "errors.h"
+
+void	init_executor(t_tools *tools);
 
 // executor.c
 void	expand_cmd(t_tools *tools, t_cmds *cmd);

@@ -6,7 +6,7 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 13:37:38 by alexphil          #+#    #+#             */
-/*   Updated: 2023/11/23 14:14:10 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/11/27 11:58:13 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,16 @@ int	check_append(t_lex *redirect)
 	return (fd);
 }
 
-int	check_outfile(t_lex *redirect)
+int	check_infile(char *filename)
 {
 	int	fd;
 
-	fd = check_append(redirect);
+	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 	{
 		ft_putstr_fd("minishell: ",
 			STDERR_FILENO);
-		ft_putstr_fd(redirect->word, STDERR_FILENO);
+		ft_putstr_fd(filename, STDERR_FILENO);
 		ft_putstr_fd(": No such file or directory\n", STDERR_FILENO);
 		return (EXIT_FAILURE);
 	}
@@ -46,16 +46,16 @@ int	check_outfile(t_lex *redirect)
 	return (EXIT_SUCCESS);
 }
 
-int	check_infile(char *filename)
+int	check_outfile(t_lex *redirect)
 {
 	int	fd;
 
-	fd = open(filename, O_RDONLY);
+	fd = check_append(redirect);
 	if (fd < 0)
 	{
 		ft_putstr_fd("minishell: ",
 			STDERR_FILENO);
-		ft_putstr_fd(filename, STDERR_FILENO);
+		ft_putstr_fd(redirect->word, STDERR_FILENO);
 		ft_putstr_fd(": No such file or directory\n", STDERR_FILENO);
 		return (EXIT_FAILURE);
 	}
@@ -79,7 +79,7 @@ int	check_redirects(t_cmds *cmd)
 		if (redirect->operator == R_INPUT)
 		{
 			if (check_infile(redirect->word))
-				return (EXIT_FAILURE);	
+				return (EXIT_FAILURE);
 		}
 		else if (redirect->operator == HEREDOC)
 		{

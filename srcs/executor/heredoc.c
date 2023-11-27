@@ -6,7 +6,7 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 12:24:45 by alexphil          #+#    #+#             */
-/*   Updated: 2023/11/27 13:22:52 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/11/27 13:53:53 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ int	ft_heredoc(t_tools *tools, t_lex *heredoc, char *file_name)
 	char	*line;
 
 	fd = open(file_name, O_CREAT | O_RDWR | O_TRUNC, 0644);
-	perror("HD");
-	printf("fd status from ft_heredoc: %s\n", file_name);
 	line = readline(">");
 	while (line && ft_strncmp(heredoc->word, line, ft_strlen(heredoc->word))
 		&& !tools->stop_heredoc)
@@ -75,7 +73,6 @@ int	seek_heredoc(t_tools *tools, t_cmds *cmd)
 			if (cmd->hd_filename)
 				free(cmd->hd_filename);
 			cmd->hd_filename = name_hd_file();
-			printf("Generated filename: %s\n", cmd->hd_filename);
 			sl = ft_heredoc(tools, cmd->redirects, cmd->hd_filename);
 			if (sl)
 			{

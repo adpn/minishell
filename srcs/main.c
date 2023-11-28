@@ -6,7 +6,7 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 15:09:31 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/28 10:23:09 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/11/28 10:53:25 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ int	main(int argc, char **argv)
 		{
 			add_history(line);
 			g_tools.lex_list = lexer(line);
+			// print_lex(g_tools.lex_list);
 			if (g_tools.lex_list)
 			{
 				parser(&g_tools);

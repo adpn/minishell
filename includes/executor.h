@@ -6,7 +6,7 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 16:02:22 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/28 10:15:55 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/11/28 10:30:55 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "minishell.h"
 # include "expander.h"
 # include "struct.h"
+# include "builtins.h"
 # include "utils.h"
 # include "errors.h"
 

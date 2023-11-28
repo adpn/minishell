@@ -73,8 +73,6 @@ void	single_cmd(t_tools *tools, t_cmds *cmd)
 	int	status;
 
 	expand_cmd(tools, cmd);
-	// if (cmd->builtin)
-	// 	tools->error_code = cmd->builtin(cmd);
 	seek_heredoc(tools, cmd);
 	pid = fork();
 	if (pid < 0)

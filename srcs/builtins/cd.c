@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:18:05 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/23 14:16:54 by adupin           ###   ########.fr       */
+/*   Updated: 2023/11/24 15:51:16 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,14 @@ int	update_pwd(char *new)
 	if (!new || !ft_strncmp("~/", new, 2)
 		|| !ft_strncmp("~", new, ft_strlen(new)))
 	{
-		if ((chdir(home) == -1)
-			|| (new && new[1] && new[2] && chdir(new + 2) == -1))
+		if ((chdir(home))
+			|| (new && new[1] && new[2] && chdir(new + 2)))
 		{
 			error_cd(home, new, pwd, 1);
 			return (1);
 		}
 	}
-	else if (chdir(new) == -1)
+	else if (chdir(new))
 	{
 		error_cd(home, new, pwd, 0);
 		return (1);

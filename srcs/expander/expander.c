@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 11:37:06 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/24 14:53:46 by adupin           ###   ########.fr       */
+/*   Updated: 2023/11/28 12:18:45 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ char	*complete_string(char *str, t_tools *tools)
 			return (NULL);
 		value = get_value(name, tools);
 		if (!value)
-			return (NULL);
+			return (free(name), NULL);
 		new = copy_new_string(str, name, value, dol);
 		if (name[0] == '?')
 			free(value);

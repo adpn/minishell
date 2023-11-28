@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
+/*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 12:08:46 by alexphil          #+#    #+#             */
-/*   Updated: 2023/11/28 10:15:23 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/11/28 15:31:09 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,18 @@ void	expand_cmd(t_tools *tools, t_cmds *cmd)
 	cmd->redirects = start;
 }
 
+//Nique la norme fdp
+static void	putain_de_signal(int sig)
+{
+	(void)sig;
+	ft_putstr_fd("\n", STDERR_FILENO);
+}
+
 int	multi_fork(t_tools *tools, int end[2], int fd_in, t_cmds *cmd)
 {
 	static int	i = 0;
 
+	signal(SIGINT, putain_de_signal);
 	if (tools->reset == TRUE)
 	{
 		i = 0;

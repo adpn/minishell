@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
+/*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 15:09:31 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/28 10:53:25 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/11/28 15:15:24 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ static void	signal_handler(int sig)
 		rl_redisplay();
 		g_tools.error_code = 130;
 	}
-	if (sig == SIGQUIT)
-	{
-		rl_redisplay();
-		ft_putstr_fd(CLEAR_FROM_CURSOR, STDOUT_FILENO);
-	}
+	// if (sig == SIGQUIT)
+	// {
+	// 	rl_redisplay();
+	// 	ft_putstr_fd(CLEAR_FROM_CURSOR, STDOUT_FILENO);
+	// }
 }
 
 int	main(int argc, char **argv)
@@ -47,7 +47,7 @@ int	main(int argc, char **argv)
 	init_environ();
 	initools(&g_tools); // Where is init supposed to go ?
 	signal(SIGINT, signal_handler);
-	signal(SIGQUIT, signal_handler);
+	signal(SIGQUIT, SIG_IGN);
 	g_tools.error_code = 0;
 	while (1)
 	{

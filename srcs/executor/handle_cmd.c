@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
+/*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 11:12:58 by alexphil          #+#    #+#             */
-/*   Updated: 2023/11/28 10:40:18 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/11/28 15:20:05 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,18 @@ void	dup_cmd(t_tools *tools, t_cmds *cmd, int end[2], int fd_in)
 	handle_cmd(tools, cmd);
 }
 
+static void	putain_de_signal(int sig)
+{
+	(void)sig;
+	ft_putstr_fd("\n", STDERR_FILENO);
+}
+
 void	single_cmd(t_tools *tools, t_cmds *cmd)
 {
 	int	pid;
 	int	status;
 
+	signal(SIGINT, putain_de_signal);
 	expand_cmd(tools, cmd);
 	if (cmd->builtin == ft_exit || cmd->builtin == ft_cd
 		|| cmd->builtin == ft_export || cmd->builtin == ft_unset)

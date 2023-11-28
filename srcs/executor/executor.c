@@ -6,27 +6,11 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 12:08:46 by alexphil          #+#    #+#             */
-/*   Updated: 2023/11/27 14:31:08 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/11/28 10:15:23 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "executor.h"
-
-// NEW FUNCTION TO INIT EXECUTOR, CHECK RESETOOLS TO PLUG IT INTO A MS LOOP
-void	init_executor(t_tools *tools)
-{
-	tools->in_cmd = 1;
-	if (tools->pipes == 0)
-		single_cmd(tools, tools->cmds);
-	else
-	{
-		tools->pid = ft_calloc(sizeof(int), tools->pipes + 2);
-		if (!tools->pid)
-			error_mgmt(tools, 0);
-		executor(tools);
-	}
-	tools->in_cmd = 0;
-}
 
 void	expand_cmd(t_tools *tools, t_cmds *cmd)
 {
@@ -75,7 +59,6 @@ int	check_heredoc_fd(t_tools *tools, int end[2], t_cmds *cmd)
 	return (fd_in);
 }
 
-// Is that function receiving the correct amount of pipes from count_pipes ?
 int	wait_pipe(t_tools *tools, int *pid, int pipes)
 {
 	int	i;

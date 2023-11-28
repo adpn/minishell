@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expander.h                                         :+:      :+:    :+:   */
+/*   initialization.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/26 16:02:10 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/28 10:19:31 by alexphil         ###   ########.fr       */
+/*   Created: 2023/11/28 10:15:16 by alexphil          #+#    #+#             */
+/*   Updated: 2023/11/28 10:16:52 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXPANDER_H
-# define EXPANDER_H
+#include "executor.h"
 
-# include "minishell.h"
-# include "utils.h"
-
-char	*get_dollar(char *str);
-char	*get_var_name(char *str);
-char	*get_value(char *name, t_tools *tools);
-
-char	*complete_string(char *str, t_tools *tools);
-int		expand(char **str, t_tools *tools);
-
-#endif
+void	init_executor(t_tools *tools)
+{
+	tools->in_cmd = 1;
+	if (tools->pipes == 0)
+		single_cmd(tools, tools->cmds);
+	else
+	{
+		tools->pid = ft_calloc(sizeof(int), tools->pipes + 2);
+		if (!tools->pid)
+			error_mgmt(tools, 0);
+		executor(tools);
+	}
+	tools->in_cmd = 0;
+}

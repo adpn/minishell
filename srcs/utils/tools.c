@@ -6,7 +6,7 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 13:49:41 by alexphil          #+#    #+#             */
-/*   Updated: 2023/11/23 14:17:38 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/11/28 10:18:37 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,5 @@ int	resetools(t_tools *tools)
 		ft_free_split(tools->paths);
 	initools(tools);
 	tools->reset = TRUE;
-	// return to readline/ms loop for next input once cleanup is done
 	return (EXIT_SUCCESS);
 }

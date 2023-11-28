@@ -6,7 +6,7 @@
 #    By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/24 13:17:37 by alexphil          #+#    #+#              #
-#    Updated: 2023/11/28 10:02:06 by alexphil         ###   ########.fr        #
+#    Updated: 2023/11/28 10:17:41 by alexphil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,8 @@ PARSER_FILES	=	parser.c \
 					print.c
 EXPANDER_FILES	=	expander.c \
 					expand_get.c
-EXECUTOR_FILES	=	executor.c \
+EXECUTOR_FILES	=	initialization.c \
+					executor.c \
 					handle_cmd.c \
 					check_redirects.c \
 					heredoc.c

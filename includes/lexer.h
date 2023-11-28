@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
+/*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 16:01:59 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/08 10:48:02 by adupin           ###   ########.fr       */
+/*   Updated: 2023/11/28 10:20:40 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ bool	ft_in_charset(char c, char *charset);
 t_lex	*lexer(char *str);
 
 /* nodes.c */
-t_lex *create_node(char *str, int type);
-t_lex *create_op_node(char *str);
-t_lex *create_word_node(t_lex **lex, char *buffer, int ib, int condition);
-t_lex *assign_node(t_lex *lex, t_lex *node);
+t_lex	*create_node(char *str, int type);
+t_lex	*create_op_node(char *str);
+t_lex	*create_word_node(t_lex **lex, char *buffer, int ib, int condition);
+t_lex	*assign_node(t_lex *lex, t_lex *node);
 
 #endif

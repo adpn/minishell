@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
+/*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 11:16:17 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/23 14:17:33 by adupin           ###   ########.fr       */
+/*   Updated: 2023/11/28 10:19:16 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BUILTINS_H
 # define BUILTINS_H
 
-#include "minishell.h"
-#include "struct.h"
-#include "utils.h"
+# include "minishell.h"
+# include "struct.h"
+# include "utils.h"
 
-typedef struct	s_var_env
+typedef struct s_var_env
 {
 	char	*name;
 	char	*value;

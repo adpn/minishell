@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
+/*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 08:39:20 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/09 11:20:53 by adupin           ###   ########.fr       */
+/*   Updated: 2023/11/28 10:20:00 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	print_lex(t_lex *lex)
 		printf("%i\n", lex->operator);
 	print_lex(lex->next);
 }
+
 /* Return pointer to i node*/
 t_lex	*get_element(t_lex *node, int i)
 {

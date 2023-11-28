@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 11:12:58 by alexphil          #+#    #+#             */
-/*   Updated: 2023/11/28 15:20:05 by adupin           ###   ########.fr       */
+/*   Updated: 2023/11/28 15:32:56 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,10 @@ void	single_cmd(t_tools *tools, t_cmds *cmd)
 	expand_cmd(tools, cmd);
 	if (cmd->builtin == ft_exit || cmd->builtin == ft_cd
 		|| cmd->builtin == ft_export || cmd->builtin == ft_unset)
+	{
 		tools->error_code = cmd->builtin(cmd);
+		return ;
+	}
 	seek_heredoc(tools, cmd);
 	pid = fork();
 	if (pid < 0)

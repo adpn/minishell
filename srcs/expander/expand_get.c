@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 16:16:54 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/17 16:20:27 by adupin           ###   ########.fr       */
+/*   Updated: 2023/11/27 11:43:37 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*get_var_name(char *str)
 	char	*name;
 
 	i = 1;
-	while (str[i] && !ft_in_charset(str[i], "$ \t\'\""))
+	while (str[i] && ft_isalnum(str[i]))
 		i++;
 	if (str[1] && str[1] == '?')
 		name = ft_xstrdup("?");

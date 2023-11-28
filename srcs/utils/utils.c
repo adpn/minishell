@@ -6,13 +6,13 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 11:20:29 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/17 15:23:29 by adupin           ###   ########.fr       */
+/*   Updated: 2023/11/27 11:43:29 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 
-bool	ft_in_charset(char c, char *charset)
+bool	ft_in_charset(char c, char *charset) // to remove probably
 {
 	int	i;
 

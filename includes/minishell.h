@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 13:29:21 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/23 14:01:41 by adupin           ###   ########.fr       */
+/*   Updated: 2023/12/01 15:33:58 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@
 # include "struct.h"
 
 struct s_tools	g_tools;
-
+void	handle_sigquit(int sig);
+void	init_signals(void);
 #endif

@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 11:12:58 by alexphil          #+#    #+#             */
-/*   Updated: 2023/11/28 15:32:56 by adupin           ###   ########.fr       */
+/*   Updated: 2023/12/01 15:53:56 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,18 +67,11 @@ void	dup_cmd(t_tools *tools, t_cmds *cmd, int end[2], int fd_in)
 	handle_cmd(tools, cmd);
 }
 
-static void	putain_de_signal(int sig)
-{
-	(void)sig;
-	ft_putstr_fd("\n", STDERR_FILENO);
-}
-
 void	single_cmd(t_tools *tools, t_cmds *cmd)
 {
 	int	pid;
 	int	status;
 
-	signal(SIGINT, putain_de_signal);
 	expand_cmd(tools, cmd);
 	if (cmd->builtin == ft_exit || cmd->builtin == ft_cd
 		|| cmd->builtin == ft_export || cmd->builtin == ft_unset)
@@ -91,8 +84,12 @@ void	single_cmd(t_tools *tools, t_cmds *cmd)
 	if (pid < 0)
 		error_mgmt(tools, 2);
 	if (pid == 0)
+	{
 		handle_cmd(tools, cmd);
+	}
 	waitpid(pid, &status, 0);
 	if (WIFEXITED(status))
 		tools->error_code = WEXITSTATUS(status);
+	if (tools->sig_called)
+		tools->error_code = tools->sig_called;
 }

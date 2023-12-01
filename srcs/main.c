@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 15:09:31 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/28 15:15:24 by adupin           ###   ########.fr       */
+/*   Updated: 2023/12/01 15:52:58 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,23 +18,48 @@
 #include "expander.h"
 #include "executor.h"
 
-#define CLEAR_FROM_CURSOR	"\033[0K"
-
-static void	signal_handler(int sig)
+int	event(void)
 {
-	if (sig == SIGINT)
+	return (EXIT_SUCCESS);
+}
+
+void	handle_sigint(int sig)
+{
+	g_tools.sig_called = 130;
+	if (!g_tools.in_heredoc)
+		ft_putchar_fd('\n', STDOUT_FILENO); // ERR or OUT ?
+	if (g_tools.in_cmd)
+	{
+		g_tools.stop_heredoc = 1;
+		rl_replace_line("", 0);
+		rl_redisplay();
+		rl_done = 1;
+		return ;
+	}
+	else
 	{
 		rl_replace_line("", 0);
-		ft_putchar_fd('\n', STDOUT_FILENO);
+		// ft_putchar_fd('\n', STDOUT_FILENO);
 		rl_on_new_line();
 		rl_redisplay();
-		g_tools.error_code = 130;
 	}
-	// if (sig == SIGQUIT)
-	// {
-	// 	rl_redisplay();
-	// 	ft_putstr_fd(CLEAR_FROM_CURSOR, STDOUT_FILENO);
-	// }
+	g_tools.error_code = 130;
+	(void) sig;
+}
+
+void	handle_sigquit(int sig)
+{
+	g_tools.sig_called = 131;
+	ft_putstr_fd("Quit: ", STDERR_FILENO);
+	ft_putnbr_fd(sig, STDERR_FILENO);
+	ft_putchar_fd('\n', STDERR_FILENO);
+}
+
+void	init_signals(void)
+{
+	rl_event_hook = event;
+	signal(SIGINT, handle_sigint);
+	signal(SIGQUIT, SIG_IGN);
 }
 
 int	main(int argc, char **argv)
@@ -46,12 +71,11 @@ int	main(int argc, char **argv)
 	(void)argv;
 	init_environ();
 	initools(&g_tools); // Where is init supposed to go ?
-	signal(SIGINT, signal_handler);
-	signal(SIGQUIT, SIG_IGN);
 	g_tools.error_code = 0;
 	while (1)
 	{
 		line = readline("TerminalCancer> ");
+		g_tools.sig_called = 0;
 		if (!line)
 		{
 			//free_environ();
@@ -70,6 +94,7 @@ int	main(int argc, char **argv)
 				init_executor(&g_tools);
 				// executor(&g_tools);
 				// builtin(&g_tools, g_tools.cmds);
+				resetools(&g_tools);
 				free_lex_chained(g_tools.lex_list);
 				// exit(0);
 			}

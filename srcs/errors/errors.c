@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
+/*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 09:50:38 by alexphil          #+#    #+#             */
-/*   Updated: 2023/11/24 16:33:59 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/12/01 15:22:32 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,5 @@ void	error_mgmt(t_tools *tools, int code)
 	if (code == 2)
 		ft_putstr_fd("failure to fork process\n", STDERR_FILENO);
 	resetools(tools);
+	exit(EXIT_FAILURE);
 }

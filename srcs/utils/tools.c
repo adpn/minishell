@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
+/*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 13:49:41 by alexphil          #+#    #+#             */
-/*   Updated: 2023/11/28 10:18:37 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/12/01 15:34:14 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
+# include "errors.h"
 
 t_cmds	*rewind_cmds(t_cmds *cmd)
 {
@@ -21,7 +22,7 @@ t_cmds	*rewind_cmds(t_cmds *cmd)
 
 t_lex	*rewind_lex(t_lex *cmd)
 {
-	while (cmd->prev)
+	while (cmd && cmd->prev)
 		cmd = cmd->prev;
 	return (cmd);
 }
@@ -58,6 +59,9 @@ void	initools(t_tools *tools)
 	tools->in_heredoc = 0;
 	tools->in_cmd = 0;
 	tools->paths = ft_split(value_var_environ("PATH"), ':');
+	if (!tools->paths)
+		error_mgmt(tools, 0);
+	init_signals();
 }
 
 int	resetools(t_tools *tools)

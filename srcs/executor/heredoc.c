@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
+/*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 12:24:45 by alexphil          #+#    #+#             */
-/*   Updated: 2023/11/27 14:28:51 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/12/01 15:32:41 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int	seek_heredoc(t_tools *tools, t_cmds *cmd)
 	int		sl;
 
 	start = cmd->redirects;
+	cmd->hd_filename = NULL;
 	while (cmd->redirects)
 	{
 		if (cmd->redirects->operator == HEREDOC)

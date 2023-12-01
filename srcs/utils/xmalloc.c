@@ -6,11 +6,12 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 17:10:28 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/22 14:00:48 by adupin           ###   ########.fr       */
+/*   Updated: 2023/12/01 16:13:12 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "errors.h"
 
 void	*ft_xmalloc(size_t size)
 {
@@ -20,7 +21,7 @@ void	*ft_xmalloc(size_t size)
 	if (!ptr)
 	{
 		perror("Error: malloc failed");
-		exit(EXIT_FAILURE);
+		error_mgmt(&g_tools, 0);
 	}
 	return (ptr);
 }

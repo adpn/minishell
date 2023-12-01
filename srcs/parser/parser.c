@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
+/*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:46:55 by alexphil          #+#    #+#             */
-/*   Updated: 2023/11/28 11:33:16 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/12/01 16:27:35 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,10 @@ void	parser(t_tools *tools)
 
 	head = tools->lex_list;
 	if (syntax_check(tools))
+	{
 		resetools(tools);
+		return ;
+	}
 	tools->pipes = count_pipes(tools->lex_list);
 	tools->cmds = NULL;
 	while (tools->lex_list)

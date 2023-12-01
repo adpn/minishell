@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 15:09:31 by adupin            #+#    #+#             */
-/*   Updated: 2023/12/01 15:52:58 by adupin           ###   ########.fr       */
+/*   Updated: 2023/12/01 16:05:39 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int	main(int argc, char **argv)
 				// executor(&g_tools);
 				// builtin(&g_tools, g_tools.cmds);
 				resetools(&g_tools);
-				free_lex_chained(g_tools.lex_list);
+				//free_lex_chained(g_tools.lex_list);
 				// exit(0);
 			}
 		}

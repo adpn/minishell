@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 11:16:57 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/23 14:17:01 by adupin           ###   ########.fr       */
+/*   Updated: 2023/12/01 16:20:55 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,7 @@ int	ft_export(t_cmds *cmds)
 		return (0);
 	}
 	i = 0;
+	error_code = 0;
 	while (cmds->args[++i])
 	{
 		var_env.name = get_name(cmds->args[i]);
@@ -147,7 +148,6 @@ int	ft_export(t_cmds *cmds)
 		}
 		var_env.value = get_value(ft_strchr(cmds->args[i], '='));
 		push_var_to_environ(&var_env);
-		error_code = 0;
 	}
 	return (error_code);
 }

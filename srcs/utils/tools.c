@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 13:49:41 by alexphil          #+#    #+#             */
-/*   Updated: 2023/12/01 15:34:14 by adupin           ###   ########.fr       */
+/*   Updated: 2023/12/01 16:12:59 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 t_cmds	*rewind_cmds(t_cmds *cmd)
 {
-	while (cmd->prev)
+	while (cmd && cmd->prev)
 		cmd = cmd->prev;
 	return (cmd);
 }
@@ -72,6 +72,7 @@ int	resetools(t_tools *tools)
 		free(tools->pid);
 	if (tools->paths)
 		ft_free_split(tools->paths);
+	free_lex_chained(get_element(tools->lex_list, 0));
 	initools(tools);
 	tools->reset = TRUE;
 	return (EXIT_SUCCESS);

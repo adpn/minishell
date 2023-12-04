@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
+/*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 12:08:46 by alexphil          #+#    #+#             */
-/*   Updated: 2023/12/04 10:30:40 by adupin           ###   ########.fr       */
+/*   Updated: 2023/12/04 13:25:43 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	expand_cmd(t_tools *tools, t_cmds *cmd)
 	while (cmd->redirects)
 	{
 		if (cmd->redirects->word)
-			complete_clean(cmd->redirects->word, tools);
+			cmd->redirects->word = complete_clean(cmd->redirects->word, tools);
 		cmd->redirects = cmd->redirects->next;
 	}
 	cmd->redirects = start;
@@ -81,20 +81,22 @@ void	executor(t_tools *tools)
 {
 	int		fd_in;
 	int		end[2];
+	t_cmds	*cmds;
 
+	cmds = tools->cmds;
 	fd_in = STDIN_FILENO;
-	while (tools->cmds)
+	while (cmds)
 	{
-		expand_cmd(tools, tools->cmds);
-		if (tools->cmds->next)
+		expand_cmd(tools, cmds);
+		if (cmds->next)
 			pipe(end);
-		seek_heredoc(tools, tools->cmds);
-		multi_fork(tools, end, fd_in, tools->cmds);
+		seek_heredoc(tools, cmds);
+		multi_fork(tools, end, fd_in, cmds);
 		close(end[1]);
-		if (tools->cmds->prev)
+		if (cmds->prev)
 			close(fd_in);
-		fd_in = check_heredoc_fd(tools, end, tools->cmds);
-		tools->cmds = tools->cmds->next;
+		fd_in = check_heredoc_fd(tools, end, cmds);
+		cmds = cmds->next;
 	}
 	wait_pipe(tools, tools->pid, tools->pipes);
 }

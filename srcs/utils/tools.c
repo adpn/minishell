@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 13:49:41 by alexphil          #+#    #+#             */
-/*   Updated: 2023/12/01 16:12:59 by adupin           ###   ########.fr       */
+/*   Updated: 2023/12/04 11:12:42 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	free_cmds(t_cmds *cmd)
 			ft_free_split(cmd->args);
 		if (cmd->redirects)
 			free_lex_chained(cmd->redirects);
-		if (cmd->hd_filename)
+		if (cmd->hd_filename) //unitialised 
 			free(cmd->hd_filename);
 		free(cmd);
 		cmd = next;

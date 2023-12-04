@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 12:08:46 by alexphil          #+#    #+#             */
-/*   Updated: 2023/12/01 15:53:47 by adupin           ###   ########.fr       */
+/*   Updated: 2023/12/04 10:30:40 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	expand_cmd(t_tools *tools, t_cmds *cmd)
 	while (cmd->redirects)
 	{
 		if (cmd->redirects->word)
-			complete_string(cmd->redirects->word, tools);
+			complete_clean(cmd->redirects->word, tools);
 		cmd->redirects = cmd->redirects->next;
 	}
 	cmd->redirects = start;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
+/*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 12:24:45 by alexphil          #+#    #+#             */
-/*   Updated: 2023/12/01 15:32:41 by adupin           ###   ########.fr       */
+/*   Updated: 2023/12/04 14:17:33 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,15 @@ int	ft_heredoc(t_tools *tools, t_lex *heredoc, char *file_name)
 
 int	init_heredoc(t_tools *tools, t_lex *heredoc, char *temp_file)
 {
-	int	sl;
+	int	exit_code;
 
-	sl = EXIT_SUCCESS;
+	exit_code = EXIT_SUCCESS;
 	tools->stop_heredoc = 0;
 	tools->in_heredoc = 1;
-	sl = ft_heredoc(tools, heredoc, temp_file);
+	exit_code = ft_heredoc(tools, heredoc, temp_file);
 	tools->in_heredoc = 0;
 	tools->heredoc = true;
-	return (sl);
+	return (exit_code);
 }
 
 char	*name_hd_file(void)
@@ -63,7 +63,7 @@ char	*name_hd_file(void)
 int	seek_heredoc(t_tools *tools, t_cmds *cmd)
 {
 	t_lex	*start;
-	int		sl;
+	int		exit_code;
 
 	start = cmd->redirects;
 	cmd->hd_filename = NULL;
@@ -74,8 +74,8 @@ int	seek_heredoc(t_tools *tools, t_cmds *cmd)
 			if (cmd->hd_filename)
 				free(cmd->hd_filename);
 			cmd->hd_filename = name_hd_file();
-			sl = init_heredoc(tools, cmd->redirects, cmd->hd_filename);
-			if (sl)
+			exit_code = init_heredoc(tools, cmd->redirects, cmd->hd_filename);
+			if (exit_code)
 			{
 				tools->error_code = 1;
 				return (resetools(tools));

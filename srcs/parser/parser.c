@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
+/*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:46:55 by alexphil          #+#    #+#             */
-/*   Updated: 2023/12/04 11:40:13 by adupin           ###   ########.fr       */
+/*   Updated: 2023/12/04 11:42:35 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,23 @@ int	syntax_check(t_tools *tools)
 
 	lex = tools->lex_list;
 	if (lex->operator == PIPE)
+	{
+		tools->error_code = 2;
 		return (parser_token_error(tools, lex->operator));
+	}
 	while (lex)
 	{
 		if (lex->operator != WORD)
+		{
+
 			if ((lex->prev && lex->prev->operator != WORD)
 				|| (lex->next && lex->next->operator != WORD)
 				|| lex->next == NULL)
+			{
+				tools->error_code = 2;
 				return (parser_token_error(tools, lex->operator));
+			}
+		}
 		lex = lex->next;
 	}
 	return (EXIT_SUCCESS);

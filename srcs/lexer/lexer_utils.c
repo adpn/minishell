@@ -35,3 +35,17 @@ t_lex	*get_element(t_lex *node, int i)
 	else
 		return (get_element(node->next, i));
 }
+
+bool	ft_in_charset(char c, char *charset)
+{
+	int	i;
+
+	i = 0;
+	while (charset[i])
+	{
+		if (c == charset[i])
+			return (true);
+		i++;
+	}
+	return (false);
+}

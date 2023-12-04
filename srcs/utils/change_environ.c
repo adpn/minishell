@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 16:21:34 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/23 10:48:11 by adupin           ###   ########.fr       */
+/*   Updated: 2023/12/04 11:51:01 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,22 @@ void	delete_var_environ(char *name)
 		i++;
 	}
 	environ[i] = NULL;
+}
+
+void	push_var_to_environ(t_var_env *var_env)
+{
+	char	*value;
+
+	value = var_env->value;
+	if (!value)
+	{
+		free(var_env->name);
+		return ;
+	}
+	if (index_element_environ(var_env->name) == -1)
+		add_element_to_environ(var_env->name, value);
+	else
+		replace_element_to_environ(var_env->name, value);
+	free(var_env->name);
+	free(var_env->value);
 }

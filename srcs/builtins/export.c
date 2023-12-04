@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 11:16:57 by adupin            #+#    #+#             */
-/*   Updated: 2023/12/01 16:20:55 by adupin           ###   ########.fr       */
+/*   Updated: 2023/12/04 11:48:23 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ int	index_min_value(char **tab, int len)
 			min_value = tab[i];
 			min_index = i;
 		}
-		else if (tab[i] && tab[min_index] && ft_strncmp(tab[min_index], tab[i], ft_strlen(tab[min_index])) > 0)
+		else if (tab[i] && tab[min_index] && ft_strncmp(tab[min_index],
+				tab[i], ft_strlen(tab[min_index])) > 0)
 			min_index = i;
 		i++;
 	}
@@ -58,24 +59,6 @@ void	print_in_alphabet_order(void)
 			break ;
 	}
 	free(cpy_environ);
-}
-
-void	push_var_to_environ(t_var_env *var_env)
-{
-	char	*value;
-
-	value = var_env->value;
-	if (!value)
-	{
-		free(var_env->name);
-		return ;
-	}
-	if (index_element_environ(var_env->name) == -1)
-		add_element_to_environ(var_env->name, value);
-	else
-		replace_element_to_environ(var_env->name, value);
-	free(var_env->name);
-	free(var_env->value);
 }
 
 static char	*get_value(char *str)

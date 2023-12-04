@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
+/*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 11:16:17 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/28 10:19:16 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/12/04 11:47:31 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,6 @@
 # include "minishell.h"
 # include "struct.h"
 # include "utils.h"
-
-typedef struct s_var_env
-{
-	char	*name;
-	char	*value;
-}				t_var_env;
 
 void	builtin(t_tools *tools, t_cmds *cmds);
 
@@ -33,5 +27,4 @@ int		ft_unset(t_cmds *cmds);
 int		ft_env(t_cmds *cmds);
 int		ft_exit(t_cmds *cmds);
 
-void	push_var_to_environ(t_var_env *var_env);
 #endif

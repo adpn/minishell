@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 13:29:30 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/17 15:51:02 by adupin           ###   ########.fr       */
+/*   Updated: 2023/12/04 12:11:22 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,18 @@ char	set_char(char c, t_quotes *quotes)
 	return (c);
 }
 
+int	new_op_node(t_lex *lex[2], char *str, int i)
+{
+	if (str[i] != ' ')
+	{
+		lex[1] = create_op_node(&str[i]);
+		if (lex[1]->operator == HEREDOC || lex[1]->operator == R_APP)
+			i++;
+		lex[0] = assign_node(lex[0], lex[1]);
+	}
+	return (i);
+}
+
 t_lex	*lexer(char *str)
 {
 	int			i;
@@ -40,18 +52,13 @@ t_lex	*lexer(char *str)
 	while (str[i])
 	{
 		buffer[ib++] = set_char(str[i], &quotes);
-		if (ft_in_charset(str[i], "|<> ") == true && is_inside_quotes(&quotes) == false)
+		if (ft_in_charset(str[i], "|<> ") == true
+			&& is_inside_quotes(&quotes) == false)
 		{
 			buffer[ib - 1] = '\0';
 			lex[0] = create_word_node(lex, buffer, ib, 1);
 			ib = 0;
-			if (str[i] != ' ')
-			{
-				lex[1] = create_op_node(&str[i]);
-				if (lex[1]->operator == HEREDOC || lex[1]->operator == R_APP)
-					i++;
-				lex[0] = assign_node(lex[0], lex[1]);
-			}
+			i = new_op_node(lex, str, i);
 		}
 		i++;
 	}

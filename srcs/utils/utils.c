@@ -6,25 +6,11 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 11:20:29 by adupin            #+#    #+#             */
-/*   Updated: 2023/11/27 11:43:29 by adupin           ###   ########.fr       */
+/*   Updated: 2023/12/04 11:53:01 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
-
-bool	ft_in_charset(char c, char *charset) // to remove probably
-{
-	int	i;
-
-	i = 0;
-	while (charset[i])
-	{
-		if (c == charset[i])
-			return (true);
-		i++;
-	}
-	return (false);
-}
 
 void	ft_print_error(char *cmd_name, char *s2, char *s3)
 {

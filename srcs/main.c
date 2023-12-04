@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 15:09:31 by adupin            #+#    #+#             */
-/*   Updated: 2023/12/01 16:05:39 by adupin           ###   ########.fr       */
+/*   Updated: 2023/12/04 12:13:15 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	handle_sigint(int sig)
 {
 	g_tools.sig_called = 130;
 	if (!g_tools.in_heredoc)
-		ft_putchar_fd('\n', STDOUT_FILENO); // ERR or OUT ?
+		ft_putchar_fd('\n', STDERR_FILENO);
 	if (g_tools.in_cmd)
 	{
 		g_tools.stop_heredoc = 1;
@@ -39,7 +39,6 @@ void	handle_sigint(int sig)
 	else
 	{
 		rl_replace_line("", 0);
-		// ft_putchar_fd('\n', STDOUT_FILENO);
 		rl_on_new_line();
 		rl_redisplay();
 	}
@@ -70,7 +69,7 @@ int	main(int argc, char **argv)
 		return (1);
 	(void)argv;
 	init_environ();
-	initools(&g_tools); // Where is init supposed to go ?
+	initools(&g_tools);
 	g_tools.error_code = 0;
 	while (1)
 	{
@@ -78,7 +77,6 @@ int	main(int argc, char **argv)
 		g_tools.sig_called = 0;
 		if (!line)
 		{
-			//free_environ();
 			ft_putendl_fd("exit", STDOUT_FILENO);
 			return (0);
 		}
@@ -86,17 +84,11 @@ int	main(int argc, char **argv)
 		{
 			add_history(line);
 			g_tools.lex_list = lexer(line);
-			// print_lex(g_tools.lex_list);
 			if (g_tools.lex_list)
 			{
 				parser(&g_tools);
-				// expand(g_tools.cmds->args, &g_tools);
 				init_executor(&g_tools);
-				// executor(&g_tools);
-				// builtin(&g_tools, g_tools.cmds);
 				resetools(&g_tools);
-				//free_lex_chained(g_tools.lex_list);
-				// exit(0);
 			}
 		}
 		free(line);

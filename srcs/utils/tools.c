@@ -6,12 +6,12 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 13:49:41 by alexphil          #+#    #+#             */
-/*   Updated: 2023/12/04 11:12:42 by adupin           ###   ########.fr       */
+/*   Updated: 2023/12/04 11:51:37 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
-# include "errors.h"
+#include "errors.h"
 
 t_cmds	*rewind_cmds(t_cmds *cmd)
 {
@@ -40,7 +40,7 @@ void	free_cmds(t_cmds *cmd)
 			ft_free_split(cmd->args);
 		if (cmd->redirects)
 			free_lex_chained(cmd->redirects);
-		if (cmd->hd_filename) //unitialised 
+		if (cmd->hd_filename)
 			free(cmd->hd_filename);
 		free(cmd);
 		cmd = next;

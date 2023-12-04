@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 11:03:59 by adupin            #+#    #+#             */
-/*   Updated: 2023/12/04 11:05:02 by adupin           ###   ########.fr       */
+/*   Updated: 2023/12/04 11:49:09 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ char	*cat_all_in_one(char **tab)
 	}
 	return (str);
 }
+
 static int	ft_count(char *str, char c)
 {
 	int	i;
@@ -60,9 +61,9 @@ static int	ft_count(char *str, char c)
 
 char	**split_on_dollar(char *str)
 {
-	char	**tab;
-	int		i;
-	int		j;
+	char		**tab;
+	int			i;
+	int			j;
 	t_quotes	quotes;
 
 	quotes = (t_quotes){0, 0};

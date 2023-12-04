@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 11:37:06 by adupin            #+#    #+#             */
-/*   Updated: 2023/12/04 11:07:06 by adupin           ###   ########.fr       */
+/*   Updated: 2023/12/04 11:50:38 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ char	*copy_new_string(char *str, char *name, char *value)
 {
 	char	*new;
 
-	new = ft_xmalloc((ft_strlen(str) - ft_strlen(name) + ft_strlen(value)) * sizeof(char));
+	new = ft_xmalloc((ft_strlen(str) - ft_strlen(name)
+				+ ft_strlen(value)) * sizeof(char));
 	ft_strlcpy(new, value, ft_strlen(value) + 1);
 	ft_strlcat(new, &str[ft_strlen(name) + 1],
 		ft_strlen(new) + ft_strlen(&str[ft_strlen(name)]) + 1);
@@ -71,7 +72,7 @@ char	*complete_clean(char *str, t_tools *tools)
 {
 	char		**tab;
 	int			i;
-	char 		*new;
+	char		*new;
 
 	tab = split_on_dollar(str);
 	i = 0;
@@ -97,7 +98,6 @@ int	expand(char **tab, t_tools *tools)
 	i = 0;
 	while (tab[i])
 	{
-
 		tab[i] = complete_clean(tab[i], tools);
 		i++;
 	}

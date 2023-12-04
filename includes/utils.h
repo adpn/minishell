@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
+/*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 10:38:25 by alexphil          #+#    #+#             */
-/*   Updated: 2023/11/23 15:06:30 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/12/04 11:53:17 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,14 @@ char	*value_var_environ(char *name);
 void	delete_var_environ(char *name);
 void	init_environ(void);
 void	free_environ(void);
+void	push_var_to_environ(t_var_env *var_env);
+
 int		ft_array_len(char **array);
 char	**array_copy(char **tab);
 
 bool	is_inside_quotes(t_quotes *quotes);
 void	update_quotes(t_quotes *quotes, char c);
 
-bool	ft_in_charset(char c, char *charset);
 void	ft_print_error(char *s1, char *s2, char *s3);
 
 // tools.c

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
+/*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:46:55 by alexphil          #+#    #+#             */
-/*   Updated: 2023/12/04 11:42:35 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/12/04 12:25:09 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int	syntax_check(t_tools *tools)
 	{
 		if (lex->operator != WORD)
 		{
-
 			if ((lex->prev && lex->prev->operator != WORD)
 				|| (lex->next && lex->next->operator != WORD)
 				|| lex->next == NULL)

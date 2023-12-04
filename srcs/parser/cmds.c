@@ -6,7 +6,7 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:59:34 by alexphil          #+#    #+#             */
-/*   Updated: 2023/12/04 11:42:22 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/12/04 14:01:54 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	add_cmd(t_tools *tools, t_cmds *cmd)
 	cmd->next = NULL;
 }
 
-// Is echo / cd / pwd / export / unset / env / exit ?
 void	set_builtin(t_cmds *cmd, char *arg0)
 {
 	size_t	len;

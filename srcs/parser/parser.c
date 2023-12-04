@@ -6,7 +6,7 @@
 /*   By: adupin <adupin@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:46:55 by alexphil          #+#    #+#             */
-/*   Updated: 2023/12/01 16:27:35 by adupin           ###   ########.fr       */
+/*   Updated: 2023/12/04 11:40:13 by adupin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	parser(t_tools *tools)
 	head = tools->lex_list;
 	if (syntax_check(tools))
 	{
+		tools->error_code = 2;
 		resetools(tools);
 		return ;
 	}

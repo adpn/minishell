@@ -6,7 +6,7 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:59:34 by alexphil          #+#    #+#             */
-/*   Updated: 2023/12/01 16:10:27 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/12/04 11:42:22 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	init_cmd(t_cmds *cmd)
 	cmd->builtin = NULL;
 	cmd->nb_redirects = 0;
 	cmd->redirects = NULL;
+	cmd->hd_filename = NULL;
 }
 
 void	add_cmd(t_tools *tools, t_cmds *cmd)

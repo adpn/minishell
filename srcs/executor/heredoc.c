@@ -6,7 +6,7 @@
 /*   By: alexphil <alexphil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 12:24:45 by alexphil          #+#    #+#             */
-/*   Updated: 2023/12/04 14:17:33 by alexphil         ###   ########.fr       */
+/*   Updated: 2023/12/05 14:36:19 by alexphil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	ft_heredoc(t_tools *tools, t_lex *heredoc, char *file_name)
 
 	fd = open(file_name, O_CREAT | O_RDWR | O_TRUNC, 0644);
 	line = readline(">");
-	while (line && ft_strncmp(heredoc->word, line, ft_strlen(heredoc->word))
-		&& !tools->stop_heredoc)
+	while (line && ft_strncmp(heredoc->word, line, ft_strlen(line)
+			+ ft_strlen(heredoc->word)) && !tools->stop_heredoc)
 	{
 		write(fd, line, ft_strlen(line));
 		write(fd, "\n", 1);
